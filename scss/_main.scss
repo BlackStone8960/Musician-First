@@ -1,0 +1,60 @@
+.main {
+  width: 1000px;
+  margin: 0 auto;
+  padding: $m-size 0;
+
+  &__topbuttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: $xxl-size;
+    
+    .button {
+      background: orange !important;
+      font-size: $ml-size;
+    }
+  }
+
+  &__video {
+    padding: 0 $m-size;
+    video {
+      width: 100%;
+    }
+  }
+
+  &__whatwedo {
+    text-align: center;
+    font-size: $m-size;
+    padding: $xl-length 0;
+    
+    &__paragraph {
+      margin-bottom: $s-size;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__testimonials {
+    padding: $m-size;
+    border: 1px solid $gray;
+    border-radius: 6px;
+
+    .testimonial {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      font-size: $m-size;
+      padding: $s-size;
+
+      img {
+        width: 170px;
+      }
+
+      &__comment {
+        margin-left: $l-size;
+      }
+    }
+  }
+} 

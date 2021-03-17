@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $xl-size $sm-size;
+  position: relative;
+  margin-bottom: $m-length;
+
+  .logo-wrapper {
+    border: 1px solid $gray;
+    width: $xl-length;
+    height: $xl-length;
+    margin-left: $xl-length;
+  }
+  
+  &__title {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: $blue;
+    font-size: $l-size;
+  }
+
+  &__contact {
+    color: white;
+  }
+}
