@@ -20,7 +20,7 @@ time, mark, audio, video {
 }
 
 a {
-  color: #000;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -30,10 +30,43 @@ em {
 
 .button {
   font-size: 24px;
-  padding: 8px 48px;
   background: #0044ff;
   color: #fff;
   cursor: pointer;
+}
+
+.button-anchor {
+  display: block;
+  text-align: center;
+  padding: 8px 48px;
+}
+
+.button--filter1 {
+  background: orange !important;
+}
+
+.button--filter1 .button-anchor {
+  padding: 100px 0;
+}
+
+.button--filter2 {
+  background: orange !important;
+  width: 14%;
+  margin: 0 5% 50px;
+}
+
+.button--filter2 .button-anchor {
+  padding: 12.5px 0;
+}
+
+.findcollaborator {
+  width: 20%;
+  margin: 0 auto;
+  font-size: 16px !important;
+}
+
+.findcollaborator .button-anchor {
+  padding: 50px 0;
 }
 
 .header {
@@ -142,5 +175,51 @@ em {
 
 .main__testimonials .testimonial__comment {
   margin-left: 40px;
+}
+
+.filter-topmassage, .filter-bottommassage {
+  text-align: center;
+  margin-bottom: 75px;
+  font-size: 24px;
+}
+
+.filter-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  padding: 0 50px;
+}
+
+.filter-wrapper .filter1-container {
+  width: 40%;
+  margin-bottom: 75px;
+}
+
+.filter-wrapper .filter1-container .filter1-discription {
+  margin-top: 25px;
+}
+
+.filter-bottommassage {
+  font-size: 16px;
+  width: 40%;
+  margin: 25px auto;
+}
+
+.genreSearch {
+  font-size: 24px;
+  height: 1.5em;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,7 +1,34 @@
 .button {
   font-size: $m-size;
-  padding: $s-size $xl-size;
   background: $blue;
   color: $white;
   cursor: pointer;
+
+  &-anchor {
+    display: block;
+    text-align: center;
+    padding: $s-size $xl-size;
+  }
+  &--filter1 {
+    background: $orange !important;
+    .button-anchor {
+      padding: $xxl-length 0;
+    }
+  }
+  &--filter2 {
+    background: orange !important;
+    width: 14%;
+    margin: 0 5% $l-length;
+    .button-anchor {
+      padding: $s-length 0;
+    }
+  }
+}
+.findcollaborator {
+  width: 20%;
+  margin: 0 auto;
+  font-size: $sm-size !important;
+  .button-anchor {
+    padding: $l-length 0;
+  }
 }

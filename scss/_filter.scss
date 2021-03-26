@@ -1,0 +1,38 @@
+.filter-topmassage {
+  text-align: center;
+  margin-bottom: $xl-length;
+  font-size: $m-size;
+}
+
+.filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  padding: 0 $l-length;
+
+  .filter1-container {
+    width: 40%;
+    margin-bottom: $xl-length;
+
+    .filter1-discription {
+      margin-top: $m-length;
+    }
+  }
+}
+
+.filter-bottommassage {
+  @extend .filter-topmassage;
+  font-size: $sm-size;
+  width: 40%;
+  margin: $m-length auto;
+}
+
+.genreSearch {
+  font-size: $m-size;
+  height: 1.5em;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  // border: 1px solid $orange;
+}
