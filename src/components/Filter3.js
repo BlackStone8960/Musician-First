@@ -1,22 +1,11 @@
 import React from 'react';
 import database from '../firebase/firebase';
 import FilteredProfile from './filteredProfile';
+import userDatum from '../app';
 
 class Filter3 extends React.Component {
   constructor(props) {
     super(props);
-    this.userDatum = []; // Manage user datum at the Store in the future
-
-    database.ref('userData')
-    .on('value', (snapshot) => {      
-      snapshot.forEach((childSnapshot) => {
-        this.userDatum.push({
-          id: childSnapshot.key,
-          ...childSnapshot.val()
-        })
-      });
-      console.log(this.userDatum);
-    }); 
   }
 
   render() {
@@ -28,19 +17,19 @@ class Filter3 extends React.Component {
             Select any picture to learn more about them.
           </p>
           <div className="filter-wrapper">
-            {
-              this.userDatum.length === 0 ? (
-                <div>
-                  <span>No users</span>
-                </div>
-              ) : (
-                this.userDatum.map((data) => {
-                  return (
-                    <FilteredProfile key={data.id} {...data} />
-                  )
-                })
-              )
-            }
+          {
+            userDatum.length === 0 ? (
+              <div>
+                <span>No users</span>
+              </div>
+            ) : (
+              userDatum.map((data) => {
+                return (
+                  <FilteredProfile key={data.id} {...data} />
+                )
+              })
+            )
+          }
           </div>
         </div>
       </section>  

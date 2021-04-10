@@ -14,8 +14,8 @@ import PublicRoute from './PublicRoute';
 export const history = createHistory();
 
 const AppRouter = () => (
-    <Router history={history}>
-        <div>
+	<Router history={history}>
+		<div>
 			<Switch>
 				<PublicRoute path="/" component={LoginPage} exact={true} />
 				<PublicRoute path="/filter1" component={Filter1} />
@@ -24,11 +24,11 @@ const AppRouter = () => (
 				<PublicRoute path="/filter4/:id" component={Filter4} />
 				{/* <PrivateRoute path="/filter1" component={Filter1} />
 				<PrivateRoute path="/filter2" component={Filter2} /> */}
-                {/* <PrivateRoute path="/dashboard" component={DashboardPage} /> */}
-                <Route component={NotFoundPage} />
-            </Switch>
-        </div>		
-    </Router>
+				{/* <PrivateRoute path="/dashboard" component={DashboardPage} /> */}
+				<Route component={NotFoundPage} />
+			</Switch>
+		</div>		
+	</Router>
 );
 
 export default AppRouter;

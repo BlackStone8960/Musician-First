@@ -36,3 +36,64 @@
   text-align: center;
   // border: 1px solid $orange;
 }
+
+// 3rd filter
+.filtered-profile {
+  color: $black;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  .profile-text {
+    margin: 4px;
+  }
+}
+
+// 4th filter
+.name-bio {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: $l-size;
+}
+
+.picture-bio {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: $l-size;
+
+  img {
+    margin-left: 12%;
+  }
+
+  .bio-box {
+    width: 50%;
+    border: 1px solid $black;
+    padding: $xxl-length $m-length;
+    border-radius: 8px;
+
+    .bio-sentence {
+      text-align: center;
+    }
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.music-box {
+  background: $greenBlue;
+  margin: $xl-size auto;
+  padding: $sm-size $ml-size;
+  width: 80%;
+  border-radius: 10px;
+  text-align: center;
+
+  .player-title { 
+    margin: $sm-size;
+  }
+}
