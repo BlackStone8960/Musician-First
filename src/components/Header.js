@@ -1,16 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
 export const Header = ({ startLogout }) => (
 	<header className="header">
 		<div className="logo-wrapper">LOGO</div>
-		<h1 className="header__title">Musician First</h1>
-		<div className="header__contact button">
-			<Link className="button-anchor" to="/">
-				Contact
+		<Link to="/">
+			<h1 className="header__title">Musician First</h1>
+		</Link>
+		<div className="header-rightside">
+			<Link to="">
+				<FontAwesomeIcon icon={faUserCircle} className="awesomeIcon icon-user-circle"/>
 			</Link>
+			<div className="header__contact button">
+				<Link className="button-anchor" to="/">
+					Contact
+				</Link>
+			</div>
 		</div>
 	</header>
 

@@ -24,4 +24,11 @@
   &__contact {
     color: white;
   }
+
+  .header-rightside {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
