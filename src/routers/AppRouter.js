@@ -6,6 +6,7 @@ import Filter1 from '../components/Filter1';
 import Filter2 from '../components/Filter2';
 import Filter3 from '../components/Filter3';
 import Filter4 from '../components/Filter4';
+import EditAccount from '../components/EditAccount';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
@@ -22,6 +23,7 @@ const AppRouter = () => (
 				<PublicRoute path="/filter2" component={Filter2} />
 				<PublicRoute path="/filter3" component={Filter3} />
 				<PublicRoute path="/filter4/:id" component={Filter4} />
+				<PublicRoute path="/editaccount" component={EditAccount} />
 				{/* <PrivateRoute path="/filter1" component={Filter1} />
 				<PrivateRoute path="/filter2" component={Filter2} /> */}
 				{/* <PrivateRoute path="/dashboard" component={DashboardPage} /> */}

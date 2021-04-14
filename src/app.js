@@ -9,6 +9,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'
 import database, { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
+import { startSetAccounts } from './actions/accounts';
 
 // creating store
 const store = configureStore();
@@ -19,7 +20,7 @@ const jsx = (
   </Provider>
 );
 let hasRendered = false;
-let userDatum = [];
+// let userDatum = [];
 const renderApp = () => {
   if (!hasRendered) {
     ReactDOM.render(jsx, document.getElementById('app'));
@@ -30,20 +31,24 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 // Make this Action in the future 
-database.ref('userData').once('value')
-.then((snapshot) => {
-  snapshot.forEach((data) => {
-    userDatum.push({
-      id: data.key,
-      ...data.val()
-    })
-  })
-  console.log(userDatum);
-})
-.then(() => {
+store.dispatch(startSetAccounts()).then(() => {
   renderApp();
   history.push('/');
 })
+// database.ref('userData').once('value')
+// .then((snapshot) => {
+//   snapshot.forEach((data) => {
+//     userDatum.push({
+//       id: data.key,
+//       ...data.val()
+//     })
+//   })
+//   console.log(userDatum);
+// })
+// .then(() => {
+//   renderApp();
+//   history.push('/');
+// })
 
 // Implement below later
 
@@ -61,4 +66,4 @@ database.ref('userData').once('value')
 //   }
 // });
 
-export default userDatum; // Store in the Store later
+// export default userDatum; // Store in the Store later
