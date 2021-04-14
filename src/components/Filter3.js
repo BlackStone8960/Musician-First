@@ -1,40 +1,38 @@
 import React from 'react';
-import database from '../firebase/firebase';
+import { connect } from 'react-redux';
 import FilteredProfile from './filteredProfile';
-import userDatum from '../app';
 
-class Filter3 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <section className="main">
-        <div className="main__wrapper">
-          <p className="filter-topmassage">
-            We’ve found the best matches for your sound.
-            Select any picture to learn more about them.
-          </p>
-          <div className="filter-wrapper">
-          {
-            userDatum.length === 0 ? (
-              <div>
-                <span>No users</span>
-              </div>
-            ) : (
-              userDatum.map((data) => {
-                return (
-                  <FilteredProfile key={data.id} {...data} />
-                )
-              })
-            )
-          }
+export const Filter3 = (props) => (
+  <section className="main">
+    <div className="main__wrapper">
+      <p className="filter-topmassage">
+        We’ve found the best matches for your sound.
+        Select any picture to learn more about them.
+      </p>
+      <div className="filter-wrapper">
+      {
+        props.accounts.length === 0 ? (
+          <div>
+            <span>No users</span>
           </div>
-        </div>
-      </section>  
-    )
-  }
-};
+        ) : (
+          props.accounts.map((account) => {
+            return (
+              <FilteredProfile key={account.id} {...account} />
+            )
+          })
+        )
+      }
+      </div>
+    </div>
+  </section>  
+);
 
-export default Filter3;
+const mapStateToProps = (state) => {
+  // implement filter function later
+  return {
+    accounts: state.accounts
+  };
+}
+
+export default connect(mapStateToProps)(Filter3);

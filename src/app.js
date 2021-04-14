@@ -35,20 +35,6 @@ store.dispatch(startSetAccounts()).then(() => {
   renderApp();
   history.push('/');
 })
-// database.ref('userData').once('value')
-// .then((snapshot) => {
-//   snapshot.forEach((data) => {
-//     userDatum.push({
-//       id: data.key,
-//       ...data.val()
-//     })
-//   })
-//   console.log(userDatum);
-// })
-// .then(() => {
-//   renderApp();
-//   history.push('/');
-// })
 
 // Implement below later
 

@@ -15,7 +15,7 @@ export const startSetAccounts = () => {
           id: childSnapshot.key,
           ...childSnapshot.val()
         })
-      })
+      });
       console.log(accounts);
       dispatch(setAccounts(accounts));
     })
