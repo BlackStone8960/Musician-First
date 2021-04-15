@@ -1,7 +1,9 @@
 import React from 'react';
 
 const EditAccount = () => (
-  <div></div>
+  <div>
+    <p>Edit Account! Now!</p>
+  </div>
 );
 
 export default EditAccount;

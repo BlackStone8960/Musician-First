@@ -11,6 +11,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import FlatRoute from './FlatRoute';
 
 export const history = createHistory();
 
@@ -19,14 +20,14 @@ const AppRouter = () => (
 		<div>
 			<Switch>
 				<PublicRoute path="/" component={LoginPage} exact={true} />
-				<PublicRoute path="/filter1" component={Filter1} />
-				<PublicRoute path="/filter2" component={Filter2} />
-				<PublicRoute path="/filter3" component={Filter3} />
-				<PublicRoute path="/filter4/:id" component={Filter4} />
-				<PublicRoute path="/editaccount" component={EditAccount} />
-				{/* <PrivateRoute path="/filter1" component={Filter1} />
-				<PrivateRoute path="/filter2" component={Filter2} /> */}
+				<PrivateRoute path="/top" component={LoginPage} />
+				{/*  */}
 				{/* <PrivateRoute path="/dashboard" component={DashboardPage} /> */}
+				<FlatRoute path="/filter1" component={Filter1} />
+				<FlatRoute path="/filter2" component={Filter2} />
+				<FlatRoute path="/filter3" component={Filter3} />
+				<FlatRoute path="/filter4/:id" component={Filter4} />
+				<PrivateRoute path="/editaccount" component={EditAccount} />
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>		

@@ -20,7 +20,6 @@ const jsx = (
   </Provider>
 );
 let hasRendered = false;
-// let userDatum = [];
 const renderApp = () => {
   if (!hasRendered) {
     ReactDOM.render(jsx, document.getElementById('app'));
@@ -30,26 +29,22 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
-// Make this Action in the future 
-store.dispatch(startSetAccounts()).then(() => {
-  renderApp();
-  history.push('/');
-})
-
-// Implement below later
-
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     store.dispatch(login(user.uid));
-//     renderApp();
-//     if (history.location.pathname === '/') {
-//       history.push('/dashboard');
-//     }
-//   } else {
-//     store.dispatch(logout());
-//     renderApp();
-//     history.push('/');
-//   }
-// });
-
-// export default userDatum; // Store in the Store later
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    store.dispatch(login(user.uid));
+    store.dispatch(startSetAccounts()).then(() => {
+      renderApp();
+      history.push('/top');
+    });
+    // Make a log in page?
+    // if (history.location.pathname === '/') {
+    //   history.push('/dashboard');
+    // }
+  } else {
+    store.dispatch(logout());
+    store.dispatch(startSetAccounts()).then(() => {
+      renderApp();
+      history.push('/');
+    });
+  }
+});

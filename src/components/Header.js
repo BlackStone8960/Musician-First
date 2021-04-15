@@ -8,11 +8,14 @@ import { startLogout } from '../actions/auth';
 export const Header = ({ startLogout }) => (
 	<header className="header">
 		<div className="logo-wrapper">LOGO</div>
-		<Link to="/">
+		<Link to="/top">
 			<h1 className="header__title">Musician First</h1>
 		</Link>
 		<div className="header-rightside">
-			<Link to="">
+			<div className="logout" onClick={startLogout}>
+				<span>Logout</span>
+			</div>
+			<Link to="/editaccount">
 				<FontAwesomeIcon icon={faUserCircle} className="awesomeIcon icon-user-circle"/>
 			</Link>
 			<div className="header__contact button">
@@ -22,17 +25,6 @@ export const Header = ({ startLogout }) => (
 			</div>
 		</div>
 	</header>
-
-	// <header className="header">
-	// 	<div className="content-container">
-	// 		<div className="header__container">
-	// 			<Link className="header__title" to="/dashboard">
-	// 				<h1>Boilerplate</h1>
-	// 			</Link>
-	// 			<button className="button button--link" onClick={startLogout}>Logout</button>
-	// 		</div>
-	// 	</div>
-	// </header>
 );
 
 const mapDispatchToProps = (dispatch) => ({

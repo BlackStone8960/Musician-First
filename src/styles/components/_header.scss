@@ -32,3 +32,13 @@
     align-items: center;
   }
 }
+
+.logout {
+  padding: 10px;
+  cursor: pointer;
+
+  span {
+    font-size: 18px;
+    color: $blue;
+  }
+}
