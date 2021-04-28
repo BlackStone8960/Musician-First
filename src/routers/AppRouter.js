@@ -12,6 +12,7 @@ import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import FlatRoute from './FlatRoute';
+import SignUp from '../components/SignUp';
 
 export const history = createHistory();
 
@@ -21,7 +22,7 @@ const AppRouter = () => (
 			<Switch>
 				<PublicRoute path="/" component={LoginPage} exact={true} />
 				<PrivateRoute path="/top" component={LoginPage} />
-				{/*  */}
+				<FlatRoute path="/signup" component={SignUp} />
 				{/* <PrivateRoute path="/dashboard" component={DashboardPage} /> */}
 				<FlatRoute path="/filter1" component={Filter1} />
 				<FlatRoute path="/filter2" component={Filter2} />

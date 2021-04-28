@@ -20,3 +20,8 @@ export const startLogout = () => {
     return firebase.auth().signOut();
   };
 };
+
+export const signup = () => ({
+  type: 'SIGNUP',
+  signup: true
+})

@@ -6,6 +6,11 @@ export default (state = {}, action) => {
       };
     case 'LOGOUT':
       return {};
+    case 'SIGNUP':
+      return {
+        ...state,
+        signup: action.signup
+      }
     default:
       return state;
   }
