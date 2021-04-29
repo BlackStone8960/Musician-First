@@ -28,6 +28,7 @@ export const SignUp = (props) => {
         secondaryGenre
       })
     }
+    props.history.push("/filter1");
   }
 
   return (

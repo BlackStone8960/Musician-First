@@ -26,18 +26,17 @@ const renderApp = () => {
     hasRendered = true;
   }
 };
-
+// signupボタン？を押した時用のフローを作る？
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
-// startsetAccount は更新のたびに毎回とってくるようにする？
-let hasSignedUp = false;
+// startsetAccount はページ遷移のたびに毎回とってくるようにする
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    // console.log(store);
-    store.dispatch(startSetAccounts()).then(() => {
+    // uidがfirebase上に登録されているかどうかを検索し、なければsignupページに飛ばす
+    store.dispatch(startSetAccounts()).then(() => {      
       renderApp();
-      history.push('/top');
-      // hasSignedUp ? history.push('/top') : history.push('/signup')
+      const hasSignedUp = store.getState().accounts.some((account) => account.id === user.uid);
+      hasSignedUp ? history.push('/top') : history.push('/signup')
     });
     // Make a log in page?
     // if (history.location.pathname === '/') {

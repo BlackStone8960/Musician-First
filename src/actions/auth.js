@@ -21,7 +21,7 @@ export const startLogout = () => {
   };
 };
 
-export const signup = () => ({
-  type: 'SIGNUP',
-  signup: true
-})
+// export const signUp = () => ({
+//   type: 'SIGNUP',
+//   signup: true
+// })
