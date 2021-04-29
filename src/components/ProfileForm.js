@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { startCreateAccount } from '../actions/accounts';
+import React from 'react';
 
-export const SignUp = (props) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [occupation, setOccupation] = useState('');
+const ProfilePage = (props) => {
+  const [firstName, setFirstName] = useState(profile.firstName);
+  const [lastName, setLastName] = useState(profile.lastName);
+  const [email, setEmail] = useState(profile.email);
+  const [phone, setPhone] = useState(profile.phone);
   const [bio, setBio] = useState('');
   const [primaryGenre, setPrimaryGenre] = useState('');
   const [secondaryGenre, setSecondaryGenre] = useState('');
@@ -19,16 +16,16 @@ export const SignUp = (props) => {
       setError('Please fill in the mandatory information');
     } else {
       setError('');
-      props.startCreateAccount({
-        firstName,
-        lastName,
-        email,
-        phone,
-        occupation,
-        bio,
-        primaryGenre,
-        secondaryGenre
-      })
+      // props.startCreateAccount({
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   phone,
+      //   occupation,
+      //   bio,
+      //   primaryGenre,
+      //   secondaryGenre
+      // })
     }
     props.history.push("/filter1");
   }
@@ -149,8 +146,4 @@ export const SignUp = (props) => {
   )
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  startCreateAccount: (accountData) => dispatch(startCreateAccount(accountData))
-});
-
-export default connect(undefined, mapDispatchToProps)(SignUp);
+export {ProfilePage as default};

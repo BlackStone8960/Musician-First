@@ -13,11 +13,12 @@ export const startCreateAccount = (accountData = {}) => {
       lastName,
       email,
       phone,
+      occupation,
       bio,
       primaryGenre,
       secondaryGenre
     } = accountData;
-    const account = { firstName, lastName, email, phone, bio, primaryGenre, secondaryGenre };
+    const account = { firstName, lastName, email, phone, occupation, bio, primaryGenre, secondaryGenre };
 
     return database.ref(`userData/${uid}/profile`).set(account).then((ref) => {
       dispatch(createAccount({

@@ -15,8 +15,7 @@ export const Header = ({ startLogout }) => (
 			<div className="logout" onClick={startLogout}>
 				<span>Logout</span>
 			</div>
-			<Link to="/signup">
-			{/* <Link to="/editaccount"> */}
+			<Link to="/profile">
 				<FontAwesomeIcon icon={faUserCircle} className="awesomeIcon icon-user-circle"/>
 			</Link>
 			<div className="header__contact button">

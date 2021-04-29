@@ -6,7 +6,7 @@ import Filter1 from '../components/Filter1';
 import Filter2 from '../components/Filter2';
 import Filter3 from '../components/Filter3';
 import Filter4 from '../components/Filter4';
-import EditAccount from '../components/EditAccount';
+import EditProfile from '../components/EditProfile';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
@@ -37,7 +37,7 @@ export const AppRouter = (props) => {
 					<FlatRoute path="/filter2" component={Filter2} />
 					<FlatRoute path="/filter3" component={Filter3} />
 					<FlatRoute path="/filter4/:id" component={Filter4} />
-					<PrivateRoute path="/editaccount" component={EditAccount} />
+					<PrivateRoute path="/profile" component={EditProfile} />
 					<Route component={NotFoundPage} />
 				</Switch>
 			</div>		
