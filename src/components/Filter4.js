@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-export const Filter4 = (props) => (
+export const Filter4 = ({ profile }) => (
   <section className="main">
     <div className="main__wrapper">
       <div className="name-bio">
-        <span>{props.accounts.name}</span>
-        <span>{`${props.accounts.job} Bio`}</span>
+        <span>{profile.firstName} {profile.lastName}</span>
+        <span>{`${profile.occupation} Bio`}</span>
       </div>
       <div className="picture-bio">
         <img src="/images/Ollie.png"></img>
         <div className="bio-box">
-          <div className="bio-sentence">{props.accounts.introduction}</div>
+          <div className="bio-sentence">{profile.bio}</div>
         </div>
       </div>
       <div className="button-wrapper">
@@ -30,7 +30,7 @@ export const Filter4 = (props) => (
 
 const mapStateToProps = (state, props) => {
   return {
-    accounts: state.accounts.find((account) => account.id === props.match.params.id)
+    profile: state.accounts.find((account) => account.id === props.match.params.id).profile
   };
 };
 

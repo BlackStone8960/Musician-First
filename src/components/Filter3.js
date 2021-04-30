@@ -18,7 +18,7 @@ export const Filter3 = (props) => (
         ) : (
           props.accounts.map((account) => {
             return (
-              <FilteredProfile key={account.id} {...account} />
+              <FilteredProfile key={account.id} id={account.id} profile={account.profile} />
             )
           })
         )
