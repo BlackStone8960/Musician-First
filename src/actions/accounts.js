@@ -9,16 +9,18 @@ export const startCreateAccount = (accountData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     const {
+      photo,
       firstName,
       lastName,
       email,
       phone,
       occupation,
       bio,
+      song,
       primaryGenre,
       secondaryGenre
     } = accountData;
-    const account = { firstName, lastName, email, phone, occupation, bio, primaryGenre, secondaryGenre };
+    const account = { photo, firstName, lastName, email, phone, occupation, song, bio, primaryGenre, secondaryGenre };
 
     return database.ref(`userData/${uid}/profile`).set(account).then((ref) => {
       dispatch(createAccount({
@@ -27,6 +29,21 @@ export const startCreateAccount = (accountData = {}) => {
       }));
     });
   };
+};
+
+export const editAccount = (id, updates) => ({
+  type: 'EDIT_ACCOUNT',
+  id,
+  updates
+});
+
+export const startEditAccount = (updates) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`userData/${uid}/profile`).update(updates).then(() => {
+      dispatch(editAccount(uid, updates))
+    })
+  }
 };
 
 export const setAccounts = (accounts) => ({

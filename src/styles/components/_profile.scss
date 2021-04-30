@@ -1,0 +1,14 @@
+.name-flex, .profile-upper, .photo-buttons, .profile-lower {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.name-flex {
+  justify-content: space-between;
+}
+.profile-upper, .photo-buttons, .profile-lower {
+  justify-content: space-around;
+}
+.change-photo {
+  display: none;
+}
