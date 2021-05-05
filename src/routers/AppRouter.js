@@ -19,11 +19,11 @@ import { startSetAccounts } from '../actions/accounts';
 export const history = createHistory();
 
 export const AppRouter = (props) => {
-	useEffect(() => {
-		history.listen((location, action)=> {
-			props.startSetAccounts();
-		})
-	}, []);
+	// useEffect(() => {
+	// 	history.listen((location, action)=> {
+	// 		props.startSetAccounts();
+	// 	})
+	// }, []);
 
 	return (
 		<Router history={history}>

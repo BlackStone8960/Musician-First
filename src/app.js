@@ -26,9 +26,8 @@ const renderApp = () => {
     hasRendered = true;
   }
 };
-// signupボタン？を押した時用のフローを作る？
+// signupボタン？を押した時用のフローを作る
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
-// startsetAccount はページ遷移のたびに毎回とってくるようにする
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
@@ -36,17 +35,15 @@ firebase.auth().onAuthStateChanged((user) => {
     store.dispatch(startSetAccounts()).then(() => {      
       renderApp();
       const hasSignedUp = store.getState().accounts.some((account) => account.id === user.uid);
-      hasSignedUp ? history.push('/top') : history.push('/signup')
+      if (hasSignedUp) {
+        history.location.pathname === '/' && history.push('/filter1');
+      } else {
+        history.push('/signup');
+      }
     });
-    // Make a log in page?
-    // if (history.location.pathname === '/') {
-    //   history.push('/dashboard');
-    // }
   } else {
     store.dispatch(logout());
-    store.dispatch(startSetAccounts()).then(() => {
-      renderApp();
-      history.push('/');
-    });
+    renderApp();
+    history.push('/');
   }
 });
