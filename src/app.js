@@ -7,7 +7,7 @@ import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'
-import database, { firebase } from './firebase/firebase';
+import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 import { startSetAccounts } from './actions/accounts';
 
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged((user) => {
       renderApp();
       const hasSignedUp = store.getState().accounts.some((account) => account.id === user.uid);
       if (hasSignedUp) {
-        history.location.pathname === '/' && history.push('/filter1');
+        history.location.pathname === '/' && history.push('/filter1'); // Push user to filter page after sign up
       } else {
         history.push('/signup');
       }

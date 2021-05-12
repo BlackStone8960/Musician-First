@@ -1,15 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { LoginPage } from '../../components/LoginPage';
+import { TopPage } from '../../components/TopPage';
 
 let startLogin, wrapper;
 beforeEach(() => {
   startLogin = jest.fn();
-  wrapper = shallow(<LoginPage startLogin={startLogin} />);
+  wrapper = shallow(<TopPage startLogin={startLogin} />);
 });
 
 test('should render Login Page correctly', () => {
-  // const wrapper = shallow(<LoginPage />);
+  // const wrapper = shallow(<TopPage />);
   expect(wrapper).toMatchSnapshot();
 });
 

@@ -5,10 +5,6 @@ import FilteredProfile from './filteredProfile';
 import LoadingPage from './LoadingPage';
 
 export const Filter3 = (props) => {
-  // useEffect(() => {
-  //   props.startSetAccounts();
-  // }, [])
-
   return (
     <section className="main">
       <div className="main__wrapper">
@@ -31,7 +27,7 @@ export const Filter3 = (props) => {
                 })
               )
             ) : ( 
-            <LoadingPage />
+              <LoadingPage />
             )
           }
         </div>

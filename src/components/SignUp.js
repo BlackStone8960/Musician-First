@@ -40,7 +40,7 @@ export const SignUp = (props) => {
   return (
     <section className="main">
       <div className="main__wrapper">
-        <form onSubmit={onSubmit}>
+        <form>
           {error && <p>{error}</p>}
           <div className="name-flex">
             <div>
@@ -146,7 +146,7 @@ export const SignUp = (props) => {
               <option value="indie-rock">Indie Rock</option>
             </select>
           </div>
-          <button>CREATE ACCOUNT</button>
+          <input type="button" onClick={onSubmit} value="CREATE ACCOUNT" />
         </form>
       </div>
     </section>

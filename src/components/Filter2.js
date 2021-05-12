@@ -11,9 +11,6 @@ class Filter2 extends React.Component {
   }
 
   onSelect = (e) => {
-    // console.log(e.currentTarget.classList);
-    // e.currentTarget.classList.push('clicked');
-    // e.target.value
     if (this.state.clicked === false && this.state.selectCount < 3) {
       this.setState((prevState) => {
         return {
@@ -24,7 +21,6 @@ class Filter2 extends React.Component {
       const selectCount = this.state.selectCount--;
       this.setState(() => ({ selectCount }));
     }
-    // this.setState((prevState) => ({clicked: !prevState.clicked}));
   }
 
   render() {

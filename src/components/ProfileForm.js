@@ -38,7 +38,7 @@ export const ProfilePage = (props) => {
   return (
     <section className="main">
       <div className="main__wrapper">
-        <form onSubmit={onSubmit}>
+        <form>
           {error && <p>{error}</p>}
           <div className="profile-upper">
             <div>
@@ -166,7 +166,7 @@ export const ProfilePage = (props) => {
               </div>
             </div>
           </div>
-          <button>Save Change</button>
+          <input type="button" onClick={onSubmit} value="CREATE ACCOUNT" />
         </form>
       </div>
     </section>

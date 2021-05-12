@@ -7,7 +7,7 @@ export const login = (uid) => ({
 
 export const startLogin = () => {
   return () => {
-    return firebase.auth().signInWithPopup(googleAuthProvider);
+    return firebase.auth().signInWithPopup(googleAuthProvider); // ここをどうにかこうにかしなければいけないということは分かる
   }
 };
 
@@ -20,8 +20,3 @@ export const startLogout = () => {
     return firebase.auth().signOut();
   };
 };
-
-// export const signUp = () => ({
-//   type: 'SIGNUP',
-//   signup: true
-// })

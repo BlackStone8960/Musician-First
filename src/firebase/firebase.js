@@ -17,65 +17,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+// const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-// database.ref('userData')
-//   .once('value')
-//   .then((snapshot) => {
-//     const expenses = [];
-    
-//     snapshot.forEach((childSnapshot) => {
-//       expenses.push({
-//         id: childSnapshot.key,
-//         ...childSnapshot.val()
-//       })
-//     });
-//     console.log(expenses);
-//   });
+const uiConfig = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  callbacks: {
+    signInSuccessWithAuthResult: () => false,
+  },
+}
 
-// database.ref('userData')
-//   .on('value', (snapshot) => {
-//     const expenses = [];
-    
-//     snapshot.forEach((childSnapshot) => {
-//       expenses.push({
-//         id: childSnapshot.key,
-//         ...childSnapshot.val()
-//       })
-//     });
-//     console.log(expenses);
-//   });
-
-// const userData = {
-//   name: "Ollie Doggie",
-//   job: "Producer",
-//   introduction: "I am a very smart dog and I can play any instrument including the dog whistle. I sang on 'Who Let The Dogs Out.'"  
-// }
-
-// database.ref('userData/-MXpJdvZlPd8pMLceE9I').update({
-//   job: "Guitarist"
-// });
-// database.ref('userData').push(userData);
-// database.ref('userData').push(userData);
-
-// database.ref().set({
-//   name: "Ollie Doggie",
-//   job: "Producer",
-//   introduction: "I am a very smart dog and I can play any instrument including the dog whistle. I sang on 'Who Let The Dogs Out.'"  
-// });
-
-// database.ref()
-// .once('value')
-// .then((snapshot) => {
-//   const val = snapshot.val();
-//   console.log(val);
-// })
-// .catch((e) => {
-//   console.log('Error fetching data', e);
-// });
-
-// database.ref().on('value', (snapshot) => {
-//   console.log(snapshot.val());
-// })
-
-export { firebase, googleAuthProvider, database as default };
+export { firebase, uiConfig, database as default };
