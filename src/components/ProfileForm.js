@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { startEditAccount } from '../actions/accounts'
 import { connect } from 'react-redux';
+import { firebase, storage } from '../firebase/firebase';
 
 export const ProfilePage = (props) => {
-  const [photo, setPhoto] = useState(props.profile.photo);
+  const [photo, setPhoto] = useState("");
+  const [photoUrl, setPhotoUrl] = useState(props.profile.photoUrl);
   const [firstName, setFirstName] = useState(props.profile.firstName);
   const [lastName, setLastName] = useState(props.profile.lastName);
   const [email, setEmail] = useState(props.profile.email);
@@ -13,40 +15,78 @@ export const ProfilePage = (props) => {
   const [secondaryGenre, setSecondaryGenre] = useState(props.profile.secondaryGenre);
   const [occupation, setOccupation] = useState(props.profile.occupation);
   const [song, setSong] = useState(props.profile.song);
-  const [error, setError] = useState('');
+  const [errorState, setErrorState] = useState('');
 
+  const handlePhoto = (e) => {
+    setPhoto(e.target.files[0]);
+  }
+
+  useEffect(() => {
+    // ~MB以上なら圧縮するような処理を入れる(?)
+    if (photo === "") return; // ごり押し・・・
+    const uploadTask = storage.ref(`photos/${props.uid}`).put(photo);
+    const unsubscribe = uploadTask.on(
+      firebase.storage.TaskEvent.STATE_CHANGED,
+      null,
+      error,
+      complete
+    );
+    return () => {
+      unsubscribe();
+    }
+  }, [photo]);
+  
   const onSubmit = (e) => {
     e.preventDefault();
     if(!firstName || !lastName || !email || !primaryGenre) {
-      setError('Please fill in the mandatory information');
+      setErrorState('Please fill in the mandatory information');
     } else {
-      setError('');
+      setErrorState('');
       props.startEditAccount({
+        photoUrl,
         firstName,
         lastName,
         email,
         phone,
         occupation,
         bio,
+        song,
         primaryGenre,
         secondaryGenre
       })
     }
     props.history.push("/filter1");
+  };
+
+  const error = (error) => {
+    console.log(`Error occured : ${error}`);
+  };
+
+  const complete = () => {
+    storage.ref("photos").child(props.uid).getDownloadURL().then((url) => {
+      setPhotoUrl(url);
+    })
   }
 
   return (
     <section className="main">
       <div className="main__wrapper">
         <form>
-          {error && <p>{error}</p>}
+          {errorState && <p>{errorState}</p>}
           <div className="profile-upper">
             <div>
-              <img src={photo}></img>
+              <img src={photoUrl} alt="profile-photo" className="profile-photo"></img>
               <div className="photo-buttons">
                 <label>
                   <div className="button--filter2">Change photo</div>
-                  <input type="file" name="change-photo" className="change-photo" accept="image/*"></input>
+                  <input
+                    type="file"
+                    onChange={handlePhoto}
+                    name="change-photo"
+                    className="change-photo"
+                    accept="image/*"
+                  >
+                  </input>
                 </label>
                 <div className="button--filter2" onClick={() => setPhoto('')}>Remove photo</div>
               </div>
@@ -166,7 +206,7 @@ export const ProfilePage = (props) => {
               </div>
             </div>
           </div>
-          <input type="button" onClick={onSubmit} value="CREATE ACCOUNT" />
+          <input type="button" onClick={onSubmit} value="EDIT ACCOUNT" />
         </form>
       </div>
     </section>
@@ -174,6 +214,7 @@ export const ProfilePage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+  uid: state.auth.uid,
   profile: state.accounts.find((account) => account.id === state.auth.uid).profile
 });
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { startCreateAccount } from '../actions/accounts';
 
 export const SignUp = (props) => {
-  const [photo, setPhoto] = useState('');
+  // const [photo, setPhoto] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -22,7 +22,7 @@ export const SignUp = (props) => {
     } else {
       setError('');
       props.startCreateAccount({
-        photo,
+        photoUrl: "",
         firstName,
         lastName,
         email,

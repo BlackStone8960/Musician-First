@@ -6,7 +6,7 @@ const FilteredProfile = ({id, profile}) => (
     <div className="profile-text">
       <span>{profile.firstName} {profile.lastName}</span>
     </div>
-    <img src="/images/Ollie.png"></img>
+    <img src={profile.photoUrl}></img>
     <div className="profile-text">
       <span>{profile.occupation}</span>
     </div>
