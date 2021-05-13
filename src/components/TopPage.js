@@ -6,14 +6,14 @@ const TopPage = () => (
     <div className="main__wrapper">
       <div className="main__topbuttons">
         <div className="button">
-          <Link className="button-anchor" to="/filter1">
-            Start
+          <Link className="button-anchor" to="/login">
+            Log in
           </Link>
         </div>
         <div className="button">
           {/* <div className="button-anchor" onClick={startLogin}> */}
           <Link className="button-anchor" to="/login">
-            Log in
+            Create Account
           </Link>
           {/* </div> */}
         </div>
