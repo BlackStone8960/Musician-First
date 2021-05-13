@@ -9,7 +9,7 @@ export const Filter4 = ({ profile }) => (
         <span>{`${profile.occupation} Bio`}</span>
       </div>
       <div className="picture-bio">
-        <img src={profile.photoUrl}></img>
+        <img src={profile.photoUrl} alt="user-photo" className="profile-photo"></img>
         <div className="bio-box">
           <div className="bio-sentence">{profile.bio}</div>
         </div>
