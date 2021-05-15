@@ -1,12 +1,12 @@
 const path = require('path');
-import sslRedirect from 'heroku-ssl-redirect';
+// import sslRedirect from 'heroku-ssl-redirect';
 const express = require('express');
 const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
 
+// app.use(sslRedirect());
 app.use(express.static(publicPath));
-app.use(sslRedirect());
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));

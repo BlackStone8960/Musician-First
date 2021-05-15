@@ -32,15 +32,15 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
     // uidがfirebase上に登録されているかどうかを検索し、なければsignupページに飛ばす
-    // store.dispatch(startSetAccounts()).then(() => {      
-    //   renderApp();
-    //   const hasSignedUp = store.getState().accounts.some((account) => account.id === user.uid);
-    //   if (hasSignedUp) {
-    //     history.location.pathname === '/' && history.push('/filter1'); // Push user to filter page after sign up
-    //   } else {
-    //     history.push('/signup');
-    //   }
-    // });
+    store.dispatch(startSetAccounts()).then(() => {      
+      renderApp();
+      const hasSignedUp = store.getState().accounts.some((account) => account.id === user.uid);
+      if (hasSignedUp) {
+        history.location.pathname === '/' && history.push('/filter1'); // Push user to filter page after sign up
+      } else {
+        history.push('/signup');
+      }
+    });
   } else {
     store.dispatch(logout());
     renderApp();
