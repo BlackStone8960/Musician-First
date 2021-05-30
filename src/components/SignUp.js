@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { startCreateAccount } from '../actions/accounts';
+import { startSetAccount } from '../actions/userAccount';
 
 export const SignUp = (props) => {
   // const [photo, setPhoto] = useState('');
@@ -21,7 +21,7 @@ export const SignUp = (props) => {
       setError('Please fill in the mandatory information');
     } else {
       setError('');
-      props.startCreateAccount({
+      props.startSetAccount({
         photoUrl: "",
         firstName,
         lastName,
@@ -154,7 +154,7 @@ export const SignUp = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  startCreateAccount: (accountData) => dispatch(startCreateAccount(accountData))
+  startSetAccount: (accountData) => dispatch(startSetAccount(accountData))
 });
 
 export default connect(undefined, mapDispatchToProps)(SignUp);

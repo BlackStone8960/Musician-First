@@ -1,6 +1,6 @@
 import { firebase, googleAuthProvider } from '../firebase/firebase';
 
-export const login = (uid) => ({
+export const login = (uid, token) => ({
   type: 'LOGIN',
   uid
 });
@@ -9,7 +9,7 @@ export const startLogin = () => {
   return () => {
     return firebase.auth().signInWithPopup(googleAuthProvider); // ここをどうにかこうにかしなければいけないということは分かる
   }
-};
+}; // これいらない？
 
 export const logout = () => ({
   type: 'LOGOUT'

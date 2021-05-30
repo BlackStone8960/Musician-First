@@ -1,10 +1,10 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import Filter1 from '../components/Filter1';
-import Filter2 from '../components/Filter2';
-import Filter3 from '../components/Filter3';
-import Filter4 from '../components/Filter4';
+import Filter1 from '../components/filter/Filter1';
+import Filter2 from '../components/filter/Filter2';
+import Filter3 from '../components/filter/filter3/Filter3';
+import Filter4 from '../components/filter/Filter4';
 import EditProfile from '../components/EditProfile';
 import NotFoundPage from '../components/NotFoundPage';
 import TopPage from '../components/TopPage';
@@ -21,7 +21,6 @@ const AppRouter = () => (
 		<div>
 			<Switch>
 				<PublicRoute path="/" component={TopPage} exact={true} />
-				{/* <PrivateRoute path="/top" component={TopPage} /> */}
 				<PublicRoute path="/login" component={LoginPage} />
 				<FlatRoute path="/signup" component={SignUp} />
 				<FlatRoute path="/filter1" component={Filter1} />

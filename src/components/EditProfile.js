@@ -14,10 +14,8 @@ export const EditProfile = ({ profile, history }) => {
   )
 };
 
-const mapStateToProps = (state) => {
-  return {
-    profile: state.accounts.find((account) => account.id === state.auth.uid).profile
-  }
-};
+const mapStateToProps = (state) => ({
+  profile: state.userAccount.profile
+});
 
 export default connect(mapStateToProps)(EditProfile);

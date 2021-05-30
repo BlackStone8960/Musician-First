@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { startEditAccount } from '../actions/accounts'
+import { startEditAccount } from '../actions/userAccount';
 import { connect } from 'react-redux';
 import { firebase, storage } from '../firebase/firebase';
 
@@ -24,7 +24,7 @@ export const ProfilePage = (props) => {
   useEffect(() => {
     // ~MB以上なら圧縮するような処理を入れる(?)
     if (photo === "") return; // ごり押し・・・
-    const uploadTask = storage.ref(`photos/${props.uid}`).put(photo);
+    const uploadTask = storage.ref(`photos/${props.id}`).put(photo);
     const unsubscribe = uploadTask.on(
       firebase.storage.TaskEvent.STATE_CHANGED,
       null,
@@ -63,7 +63,7 @@ export const ProfilePage = (props) => {
   };
 
   const complete = () => {
-    storage.ref("photos").child(props.uid).getDownloadURL().then((url) => {
+    storage.ref("photos").child(props.id).getDownloadURL().then((url) => {
       setPhotoUrl(url);
     })
   }
@@ -214,8 +214,8 @@ export const ProfilePage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  uid: state.auth.uid,
-  profile: state.accounts.find((account) => account.id === state.auth.uid).profile
+  id: state.userAccount.id,
+  profile: state.userAccount.profile
 });
 
 const mapDispatchToProps = (dispatch) => ({

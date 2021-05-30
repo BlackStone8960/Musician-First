@@ -30,7 +30,7 @@ export const Filter4 = ({ profile }) => (
 
 const mapStateToProps = (state, props) => {
   return {
-    profile: state.accounts.find((account) => account.id === props.match.params.id).profile
+    profile: state.otherAccounts.find((account) => account.id === props.match.params.id).profile
   };
 };
 

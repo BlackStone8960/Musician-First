@@ -9,7 +9,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'
 import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
-import { startSetAccounts } from './actions/accounts';
+import { startSetAccounts } from './actions/otherAccounts';
 
 // creating store
 const store = configureStore();
@@ -32,9 +32,9 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
     // uidがfirebase上に登録されているかどうかを検索し、なければsignupページに飛ばす
-    store.dispatch(startSetAccounts()).then(() => {      
+    store.dispatch(startSetAccounts()).then((hasSignedUp) => {      
       renderApp();
-      const hasSignedUp = store.getState().accounts.some((account) => account.id === user.uid);
+      // const hasSignedUp = store.getState().otherAccounts.some((account) => account.token === user.uid);
       if (hasSignedUp) {
         history.location.pathname === '/' && history.push('/filter1'); // Push user to filter page after sign up
       } else {
