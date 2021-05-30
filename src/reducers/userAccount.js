@@ -2,11 +2,11 @@ const userAccountReducerDefaultState = {};
 
 export default (state = userAccountReducerDefaultState, action) => {
   switch (action.type) {
-    case "SET_ACCOUNT" :
+    case "SET_USER_ACCOUNT" :
       return {
         ...action.account
       };
-    case "EDIT_ACCOUNT":
+    case "EDIT_USER_ACCOUNT":
       return {
         id: state.id,
         profile: {

@@ -1,5 +1,5 @@
 import database from '../firebase/firebase';
-import { setAccount } from './userAccount';
+import { setUserAccount } from './userAccount';
 
 export const setOtherAccounts = (otherAccounts) => ({
   type: "SET_OTHER_ACCOUNTS",
@@ -15,7 +15,7 @@ export const startSetAccounts = () => {
       let hasSignedUp = false;
       snapshot.forEach((childSnapshot) => {
         if(childSnapshot.key === uid) {
-          dispatch(setAccount({ ...childSnapshot.val() })); // dispatch userAccount's information
+          dispatch(setUserAccount({ ...childSnapshot.val() })); // dispatch userAccount's information
           hasSignedUp = true; 
         } else {
           otherAccounts.push({

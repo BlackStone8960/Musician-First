@@ -26,15 +26,13 @@ const renderApp = () => {
     hasRendered = true;
   }
 };
-// signupボタン？を押した時用のフローを作る
+
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    // uidがfirebase上に登録されているかどうかを検索し、なければsignupページに飛ばす
     store.dispatch(startSetAccounts()).then((hasSignedUp) => {      
       renderApp();
-      // const hasSignedUp = store.getState().otherAccounts.some((account) => account.token === user.uid);
       if (hasSignedUp) {
         history.location.pathname === '/' && history.push('/filter1'); // Push user to filter page after sign up
       } else {

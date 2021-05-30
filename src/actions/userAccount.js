@@ -1,12 +1,12 @@
 import database from '../firebase/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
-export const setAccount = (account) => ({
-  type: 'SET_ACCOUNT',
+export const setUserAccount = (account) => ({
+  type: 'SET_USER_ACCOUNT',
   account
 });
 
-export const startSetAccount = (accountData = {}) => {
+export const startSetUserAccount = (accountData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     const id = uuidv4(); // Create random generated string when creating account
@@ -29,7 +29,7 @@ export const startSetAccount = (accountData = {}) => {
       database.ref(`userData/${uid}/id`).set(id)
     })
     .then(() => {
-      dispatch(setAccount({
+      dispatch(setUserAccount({
         id,
         profile: { ...account }
       }));
@@ -37,16 +37,16 @@ export const startSetAccount = (accountData = {}) => {
   };
 };
 
-export const editAccount = (updates) => ({
-  type: 'EDIT_ACCOUNT',
+export const editUserAccount = (updates) => ({
+  type: 'EDIT_USER_ACCOUNT',
   updates
 });
 
-export const startEditAccount = (updates) => {
+export const startEditUserAccount = (updates) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`userData/${uid}/profile`).update(updates).then(() => {
-      dispatch(editAccount({ profile: updates }))
+      dispatch(editUserAccount({ profile: updates }))
     })
   }
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { startEditAccount } from '../actions/userAccount';
+import { startEditUserAccount } from '../actions/userAccount';
 import { connect } from 'react-redux';
 import { firebase, storage } from '../firebase/firebase';
 
@@ -42,7 +42,7 @@ export const ProfilePage = (props) => {
       setErrorState('Please fill in the mandatory information');
     } else {
       setErrorState('');
-      props.startEditAccount({
+      props.startEditUserAccount({
         photoUrl,
         firstName,
         lastName,
@@ -206,7 +206,7 @@ export const ProfilePage = (props) => {
               </div>
             </div>
           </div>
-          <input type="button" onClick={onSubmit} value="EDIT ACCOUNT" />
+          <input type="button" onClick={onSubmit} value="SAVE" />
         </form>
       </div>
     </section>
@@ -219,7 +219,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startEditAccount: (updates) => dispatch(startEditAccount(updates))
+  startEditUserAccount: (updates) => dispatch(startEditUserAccount(updates))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
