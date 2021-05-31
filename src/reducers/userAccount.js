@@ -11,7 +11,7 @@ export default (state = userAccountReducerDefaultState, action) => {
         id: state.id,
         profile: {
           ...state.profile,
-          ...action.updates
+          ...action.updates.profile
         }
       };
     default:
