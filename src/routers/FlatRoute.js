@@ -1,16 +1,15 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Header from '../components/Header';;
+import ComponentWrapper from '../components/wrapper/ComponentWrapper';
 
 const FlatRoute = ({ 
   component: Component,
   ...rest 
 }) => (
   <Route {...rest} component={(props) => (
-    <div>
-      <Header />
+    <ComponentWrapper>
       <Component {...props} />
-    </div>
+    </ComponentWrapper>
   )} />
 );
 

@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ProfileForm from './ProfileForm';
 
 export const EditProfile = ({ profile, history }) => {
   return (
-    <div>
+    <React.Fragment>
       {profile.occupation === "artist" ? 
         <ProfileForm audio={false} artist={true} history={history}/> 
         :
         <ProfileForm audio={true} artist={false} history={history}/>
       }
-    </div>
+    </React.Fragment>
   )
 };
 

@@ -6,33 +6,31 @@ import LoadingPage from '../../LoadingPage';
 
 export const Filter3 = (props) => {
   return (
-    <section className="main">
-      <div className="main__wrapper">
-        <p className="filter-topmassage">
-          We’ve found the best matches for your sound.
-          Select any picture to learn more about them.
-        </p>
-        <div className="filter-wrapper">
-          {
-            props.otherAccounts ? (
-              props.otherAccounts.length === 0 ? (
-                <div>
-                  <span>No users</span>
-                </div>
-              ) : (
-                props.otherAccounts.map((account) => {
-                  return (
-                    <FilteredProfile key={account.id} id={account.id} profile={account.profile} />
-                  )
-                })
-              )
-            ) : ( 
-              <LoadingPage />
+    <React.Fragment>
+      <p className="filter-topmassage">
+        We’ve found the best matches for your sound.
+        Select any picture to learn more about them.
+      </p>
+      <div className="filter-wrapper--center">
+        {
+          props.otherAccounts ? (
+            props.otherAccounts.length === 0 ? (
+              <div>
+                <span>No users</span>
+              </div>
+            ) : (
+              props.otherAccounts.map((account) => {
+                return (
+                  <FilteredProfile key={account.id} id={account.id} profile={account.profile} />
+                )
+              })
             )
-          }
-        </div>
+          ) : ( 
+            <LoadingPage />
+          )
+        }
       </div>
-    </section>  
+    </React.Fragment>
   )
 };
 

@@ -5,14 +5,16 @@ import Filter1 from '../components/filter/Filter1';
 import Filter2 from '../components/filter/Filter2';
 import Filter3 from '../components/filter/filter3/Filter3';
 import Filter4 from '../components/filter/Filter4';
-import EditProfile from '../components/EditProfile';
+import EditProfile from '../components/userAccount/EditProfile';
 import NotFoundPage from '../components/NotFoundPage';
 import TopPage from '../components/TopPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import FlatRoute from './FlatRoute';
-import SignUp from '../components/SignUp';
-import LoginPage from '../components/LoginPage';
+import SignUp from '../components/userAccount/SignUp';
+import LoginPage from '../components/auth/LoginPage';
+import ConfirmSendingMail from '../components/auth/ConfirmSendingMail';
+import SentMail from '../components/auth/SentMail';
 
 export const history = createHistory();
 
@@ -28,6 +30,8 @@ const AppRouter = () => (
 				<FlatRoute path="/filter3" component={Filter3} />
 				<FlatRoute path="/filter4/:id" component={Filter4} />
 				<PrivateRoute path="/profile" component={EditProfile} />
+				<PrivateRoute path="/change_password" component={ConfirmSendingMail} />
+				<PrivateRoute path="/sentmail" component={SentMail} />
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>		

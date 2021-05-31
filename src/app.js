@@ -30,12 +30,16 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    store.dispatch(login(user.uid));
+    // store.dispatch(login(user.uid));
+    store.dispatch(login({
+      uid: user.uid,
+      email: user.email
+    }));
     store.dispatch(startSetAccounts()).then((hasSignedUp) => {      
       renderApp();
       if (hasSignedUp) {
         history.location.pathname === '/' && history.push('/filter1'); // Push user to filter page after sign up
-      } else {
+      } else { // When user visit at first and signup account
         history.push('/signup');
       }
     });

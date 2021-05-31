@@ -3,16 +3,38 @@
   flex-flow: row;
   align-items: center;
 }
+.profile-upper {
+  align-items: flex-end !important;
+}
 .name-flex {
   justify-content: space-between;
 }
 .profile-upper, .photo-buttons, .profile-lower {
   justify-content: space-around;
 }
+
 .change-photo {
   display: none;
 }
 .profile-photo {
   width: 160px;
   height: 160px;
+  display: block;
+  margin: auto;
+}
+.save {
+  display: block;
+  margin: $m-size auto;
+}
+.signup-form {
+  width: 470px;
+  margin: 0 auto;
+  text-align: center;
+
+  .radio {
+    // margin-left: $sm-size;
+  }
+}
+.input-block {
+  margin-bottom: $sm-size;
 }

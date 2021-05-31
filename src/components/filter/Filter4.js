@@ -2,30 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 export const Filter4 = ({ profile }) => (
-  <section className="main">
-    <div className="main__wrapper">
-      <div className="name-bio">
-        <span>{profile.firstName} {profile.lastName}</span>
-        <span>{`${profile.occupation} Bio`}</span>
-      </div>
-      <div className="picture-bio">
-        <img src={profile.photoUrl} alt="user-photo" className="profile-photo"></img>
-        <div className="bio-box">
-          <div className="bio-sentence">{profile.bio}</div>
-        </div>
-      </div>
-      <div className="button-wrapper">
-        <div className="button button-anchor button--black">Schedule a free Zoom call</div>
-        <div className="button button-anchor button--black">Hire Now</div>
-      </div>
-      <div className="music-box">
-        <p className="player-title">Music Player</p>
-        <div>Song 1</div>
-        <div>Song 2</div>
-        <div>Song 3</div>
+  <React.Fragment>
+    <div className="name-bio">
+      <span>{profile.firstName} {profile.lastName}</span>
+      <span>{`${profile.occupation} Bio`}</span>
+    </div>
+    <div className="picture-bio">
+      <img src={profile.photoUrl} alt="user-photo" className="profile-photo"></img>
+      <div className="bio-box">
+        <div className="bio-sentence">{profile.bio}</div>
       </div>
     </div>
-  </section>  
+    <div className="button-wrapper">
+      <div className="button button-anchor button--black">Schedule a free Zoom call</div>
+      <div className="button button-anchor button--black">Hire Now</div>
+    </div>
+    <div className="music-box">
+      <p className="player-title">Music Player</p>
+      <div>Song 1</div>
+      <div>Song 2</div>
+      <div>Song 3</div>
+    </div>
+  </React.Fragment>
 );
 
 const mapStateToProps = (state, props) => {

@@ -11,6 +11,10 @@
   flex-flow: row wrap;
   padding: 0 $l-length;
 
+  &--center {
+    @extend .filter-wrapper;
+    justify-content: center;
+  }
   .filter1-container {
     width: 40%;
     margin-bottom: $xl-length;
@@ -47,6 +51,7 @@
   .profile-text {
     margin: 4px;
   }
+  margin: 0 40px 80px;
 }
 
 // 4th filter
