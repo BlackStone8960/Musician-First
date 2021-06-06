@@ -18,11 +18,11 @@ export const startSetUserAccount = (accountData = {}) => {
       phone,
       occupation,
       bio,
-      song,
+      songs,
       primaryGenre,
       secondaryGenre
     } = accountData;
-    const account = { photoUrl, firstName, lastName, email, phone, occupation, song, bio, primaryGenre, secondaryGenre };
+    const account = { photoUrl, firstName, lastName, email, phone, occupation, songs, bio, primaryGenre, secondaryGenre };
 
     return database.ref(`userData/${uid}/profile`).set(account)
     .then(() => {

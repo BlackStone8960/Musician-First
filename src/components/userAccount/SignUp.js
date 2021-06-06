@@ -12,7 +12,6 @@ export const SignUp = (props) => {
   const [bio, setBio] = useState('');
   const [primaryGenre, setPrimaryGenre] = useState('');
   const [secondaryGenre, setSecondaryGenre] = useState('');
-  const [song, setSong] = useState("");
   const [error, setError] = useState('');
 
   const onSubmit = (e) => {
@@ -31,7 +30,7 @@ export const SignUp = (props) => {
         bio,
         primaryGenre,
         secondaryGenre,
-        song
+        songs: { song1: '', song2: '', song3: '' }
       })
     }
     props.history.push("/filter1");

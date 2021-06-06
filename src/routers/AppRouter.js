@@ -4,7 +4,7 @@ import createHistory from 'history/createBrowserHistory';
 import Filter1 from '../components/filter/Filter1';
 import Filter2 from '../components/filter/Filter2';
 import Filter3 from '../components/filter/filter3/Filter3';
-import Filter4 from '../components/filter/Filter4';
+import MusicianPage from '../components/MusicianPage/MusicianPage';
 import EditProfile from '../components/userAccount/EditProfile';
 import NotFoundPage from '../components/NotFoundPage';
 import TopPage from '../components/TopPage';
@@ -28,7 +28,7 @@ const AppRouter = () => (
 				<FlatRoute path="/filter1" component={Filter1} />
 				<FlatRoute path="/filter2" component={Filter2} />
 				<FlatRoute path="/filter3" component={Filter3} />
-				<FlatRoute path="/filter4/:id" component={Filter4} />
+				<FlatRoute path="/MusicianPage/:id" component={MusicianPage} />
 				<PrivateRoute path="/profile" component={EditProfile} />
 				<PrivateRoute path="/change_password" component={ConfirmSendingMail} />
 				<PrivateRoute path="/sentmail" component={SentMail} />

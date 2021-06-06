@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MusicPlayer from './MusicPlayer';
 
-export const Filter4 = ({ profile }) => (
+export const MusicianPage = ({ profile }) => (
   <React.Fragment>
     <div className="name-bio">
       <span>{profile.firstName} {profile.lastName}</span>
@@ -18,10 +19,7 @@ export const Filter4 = ({ profile }) => (
       <div className="button button-anchor button--black">Hire Now</div>
     </div>
     <div className="music-box">
-      <p className="player-title">Music Player</p>
-      <div>Song 1</div>
-      <div>Song 2</div>
-      <div>Song 3</div>
+      <MusicPlayer songs={profile.songs} />
     </div>
   </React.Fragment>
 );
@@ -32,4 +30,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Filter4);
+export default connect(mapStateToProps)(MusicianPage);

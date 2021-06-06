@@ -9,9 +9,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default () => {
   const store = createStore(
     combineReducers({
-      auth: authReducer,
-      userAccount: userAccountReducer,
-      otherAccounts: otherAccountsReducer
+      auth: authReducer, // The information about authentication 
+      userAccount: userAccountReducer, // The information of logged in user
+      otherAccounts: otherAccountsReducer // The information of other users except logged in user
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

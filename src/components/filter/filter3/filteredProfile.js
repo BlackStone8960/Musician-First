@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FilteredProfile = ({id, profile}) => (
-  <Link className="filtered-profile" to={`/filter4/${id}`} >
+  <Link className="filtered-profile" to={`/MusicianPage/${id}`} >
     <div className="profile-text">
       <span>{profile.firstName} {profile.lastName}</span>
     </div>

@@ -26,7 +26,7 @@ export const startSetAccounts = () => {
       });
       console.log(otherAccounts);
       dispatch(setOtherAccounts(otherAccounts));
-      return hasSignedUp; // この値をもとに新規ユーザー登録ページに飛ばすかどうかを決めると良いのではないか？
+      return hasSignedUp;
     })
   }
 };

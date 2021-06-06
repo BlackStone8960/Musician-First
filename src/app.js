@@ -30,10 +30,12 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    console.log(user);
     // store.dispatch(login(user.uid));
     store.dispatch(login({
       uid: user.uid,
-      email: user.email
+      email: user.email,
+      providerId: user.providerData[0].providerId
     }));
     store.dispatch(startSetAccounts()).then((hasSignedUp) => {      
       renderApp();

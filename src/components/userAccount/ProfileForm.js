@@ -15,12 +15,10 @@ export const ProfilePage = (props) => {
   const [primaryGenre, setPrimaryGenre] = useState(props.profile.primaryGenre);
   const [secondaryGenre, setSecondaryGenre] = useState(props.profile.secondaryGenre);
   const [occupation, setOccupation] = useState(props.profile.occupation);
-  const [song, setSong] = useState(props.profile.song);
+  const [song1, setSong1] = useState(props.profile.songs.song1);
+  const [song2, setSong2] = useState(props.profile.songs.song2);
+  const [song3, setSong3] = useState(props.profile.songs.song3);
   const [errorState, setErrorState] = useState('');
-
-  const handlePhoto = (e) => {
-    setPhoto(e.target.files[0]);
-  }
 
   useEffect(() => {
     // ~MB以上なら圧縮するような処理を入れる(?)
@@ -36,6 +34,20 @@ export const ProfilePage = (props) => {
       unsubscribe();
     }
   }, [photo]);
+
+  const error = (error) => {
+    console.log(`Error occured : ${error}`);
+  };
+
+  const complete = () => {
+    storage.ref("photos").child(props.id).getDownloadURL().then((url) => {
+      setPhotoUrl(url);
+    })
+  }
+
+  const handlePhoto = (e) => {
+    setPhoto(e.target.files[0]);
+  }
   
   const onSubmit = (e) => {
     e.preventDefault();
@@ -51,23 +63,13 @@ export const ProfilePage = (props) => {
         phone,
         occupation,
         bio,
-        song,
         primaryGenre,
-        secondaryGenre
+        secondaryGenre,
+        songs: { song1, song2, song3 }
       })
     }
     props.history.push("/filter1");
   };
-
-  const error = (error) => {
-    console.log(`Error occured : ${error}`);
-  };
-
-  const complete = () => {
-    storage.ref("photos").child(props.id).getDownloadURL().then((url) => {
-      setPhotoUrl(url);
-    })
-  }
 
   return (
     <React.Fragment>
@@ -82,7 +84,6 @@ export const ProfilePage = (props) => {
                 <input
                   type="file"
                   onChange={handlePhoto}
-                  name="change-photo"
                   className="change-photo"
                   accept="image/*"
                 >
@@ -98,7 +99,6 @@ export const ProfilePage = (props) => {
                 <input
                   type="text"
                   id="first-name"
-                  name="first-name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -108,7 +108,6 @@ export const ProfilePage = (props) => {
                 <input
                   type="text"
                   id="last-name"
-                  name="last-name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -120,7 +119,6 @@ export const ProfilePage = (props) => {
                 cols="50"
                 rows="5"
                 id="bio"
-                name="bio"
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
               />
@@ -134,7 +132,6 @@ export const ProfilePage = (props) => {
               <input
                 type="mail"
                 id="mail"
-                name="mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -144,14 +141,17 @@ export const ProfilePage = (props) => {
               <input
                 type="number"
                 id="phone"
-                name="phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
-            <Link to="/change_password">
-              <input type="button" value="Change Password" className="button--config"></input>
-            </Link>
+            { 
+              props.providerId === "password" && (
+                <Link to="/change_password">
+                  <input type="button" value="Change Password" className="button--config"></input>
+                </Link>
+              )
+            }
           </div>
           <div>
             <div className="input-block">
@@ -159,7 +159,6 @@ export const ProfilePage = (props) => {
               <input
                 type="radio"
                 id="artist"
-                name="occupation"
                 value="artist"
                 defaultChecked={props.artist}
                 onClick={(e) => setOccupation(e.target.value)}
@@ -167,7 +166,6 @@ export const ProfilePage = (props) => {
               <input
                 type="radio"
                 id="producer"
-                name="occupation"
                 value="producer"
                 defaultChecked={!props.artist}
                 onClick={(e) => setOccupation(e.target.value)}
@@ -177,7 +175,6 @@ export const ProfilePage = (props) => {
               <label>Primary Genre</label><br></br>
               <select
                 id="primary-genre"
-                name="primary-genre"
                 value={primaryGenre}
                 onChange={(e) => setPrimaryGenre(e.target.value)}
               >
@@ -194,7 +191,6 @@ export const ProfilePage = (props) => {
               <label>Secondary Genre</label><br></br>
               <select
                 id="secondary-genre"
-                name="secondary-genre"
                 value={secondaryGenre}
                 onChange={(e) => setSecondaryGenre(e.target.value)}
               >
@@ -209,6 +205,27 @@ export const ProfilePage = (props) => {
             </div>
           </div>
         </div>
+        <div className="input-block">
+          <label>Songs</label><br></br>
+          <input
+            type="text"
+            value={song1}
+            onChange={(e) => setSong1(e.target.value)} 
+            // 1. onChangeの中でhttps://open.spotify.com/embed/があるかどうかで分岐を分ける
+            // 2. 見つかった場合、https://open.spotify.com/embed/の後から最初の"までの文字列を抜き出す
+            // 3. 見つからなかった場合、エラーメッセージを出す
+          />
+          <input
+            type="text"
+            value={song2}
+            onChange={(e) => setSong2(e.target.value)}
+          />
+          <input
+            type="text"
+            value={song3}
+            onChange={(e) => setSong3(e.target.value)}
+          />
+        </div> 
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
       </form>
     </React.Fragment>
@@ -217,7 +234,8 @@ export const ProfilePage = (props) => {
 
 const mapStateToProps = (state) => ({
   id: state.userAccount.id,
-  profile: state.userAccount.profile
+  profile: state.userAccount.profile,
+  providerId: state.auth.providerId
 });
 
 const mapDispatchToProps = (dispatch) => ({
