@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { firebase, storage } from '../../firebase/firebase';
 import { Link } from 'react-router-dom';
 
+const EmbeddedURLRoot = "https://open.spotify.com/embed/";
+
 export const ProfilePage = (props) => {
   const [photo, setPhoto] = useState("");
   const [photoUrl, setPhotoUrl] = useState(props.profile.photoUrl || "/images/profile_photo_default.png");
@@ -15,11 +17,17 @@ export const ProfilePage = (props) => {
   const [primaryGenre, setPrimaryGenre] = useState(props.profile.primaryGenre);
   const [secondaryGenre, setSecondaryGenre] = useState(props.profile.secondaryGenre);
   const [occupation, setOccupation] = useState(props.profile.occupation);
-  const [song1, setSong1] = useState(props.profile.songs.song1);
-  const [song2, setSong2] = useState(props.profile.songs.song2);
-  const [song3, setSong3] = useState(props.profile.songs.song3);
+  const [song1, setSong1] = useState(decodeURI(props.profile.songs.song1));
+  const [song2, setSong2] = useState(decodeURI(props.profile.songs.song2));
+  const [song3, setSong3] = useState(decodeURI(props.profile.songs.song3));
   const [errorState, setErrorState] = useState('');
 
+  useEffect(() => {
+    console.log(`song1: ${song1}`);
+    console.log(`song2: ${song2}`);
+    console.log(`song3: ${song3}`);
+  }, [song1, song2, song3]);
+  
   useEffect(() => {
     // ~MB以上なら圧縮するような処理を入れる(?)
     if (photo === "") return; // ごり押し・・・
@@ -48,11 +56,27 @@ export const ProfilePage = (props) => {
   const handlePhoto = (e) => {
     setPhoto(e.target.files[0]);
   }
+
+// const findEmbeddedURL = (input) => {
+//   const startPosition = input.indexOf(EmbeddedURLRoot) + EmbeddedURLRoot.length;
+//   const endPosition = input.indexOf('"', startPosition);
+//   return input.substring(startPosition, endPosition);
+// };
+
+  const isVerifiedSongURL = (songArr) => {
+    let verified = true;
+    songArr.forEach((song) => {
+      if (song && !song.includes(EmbeddedURLRoot)) verified = false;
+    })
+    return verified;
+  };
   
   const onSubmit = (e) => {
     e.preventDefault();
     if(!firstName || !lastName || !email || !primaryGenre) {
       setErrorState('Please fill in the mandatory information');
+    } else if (!isVerifiedSongURL([ song1, song2, song3 ])) {
+      setErrorState('Input embed code as song information');
     } else {
       setErrorState('');
       props.startEditUserAccount({
@@ -67,14 +91,13 @@ export const ProfilePage = (props) => {
         secondaryGenre,
         songs: { song1, song2, song3 }
       })
+      props.history.push("/filter1");
     }
-    props.history.push("/filter1");
   };
 
   return (
     <React.Fragment>
       <form>
-        {errorState && <p>{errorState}</p>}
         <div className="profile-upper">
           <div className="input-block">
             <img src={photoUrl} alt="profile-photo" className="profile-photo"></img>
@@ -210,22 +233,21 @@ export const ProfilePage = (props) => {
           <input
             type="text"
             value={song1}
-            onChange={(e) => setSong1(e.target.value)} 
-            // 1. onChangeの中でhttps://open.spotify.com/embed/があるかどうかで分岐を分ける
-            // 2. 見つかった場合、https://open.spotify.com/embed/の後から最初の"までの文字列を抜き出す
-            // 3. 見つからなかった場合、エラーメッセージを出す
+            onChange={(e) => { setSong1(e.target.value) }}
           />
           <input
             type="text"
             value={song2}
-            onChange={(e) => setSong2(e.target.value)}
+            onChange={(e) => { setSong2(e.target.value) }}
           />
           <input
             type="text"
             value={song3}
-            onChange={(e) => setSong3(e.target.value)}
+            onChange={(e) => { setSong3(e.target.value) }}
+            // onChange={(e) => { e.target.value.includes(EmbeddedURLRoot) ? setSong3(findEmbeddedURL(e.target.value)) : setErrorState('Input embed code as song information.') }}
           />
         </div> 
+        {errorState && <div className="error-message">{errorState}</div>}
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
       </form>
     </React.Fragment>

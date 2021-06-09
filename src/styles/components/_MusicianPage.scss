@@ -1,0 +1,56 @@
+.name-bio {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: $l-size;
+}
+
+.picture-bio {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: $l-size;
+
+  img {
+    margin-left: 12%;
+  }
+
+  .bio-box {
+    width: 50%;
+    border: 1px solid $black;
+    padding: $xxl-length $m-length;
+    border-radius: 8px;
+
+    .bio-sentence {
+      text-align: center;
+    }
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.music-box {
+  background: $greenBlue;
+  margin: $xl-size auto;
+  padding: $ml-size $sm-size;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+
+  .player-title { 
+    margin-bottom: $ml-size;
+  }
+
+  .player-wrapper {
+    display: flex;
+    flex-direction: row wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+}
+
+

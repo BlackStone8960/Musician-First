@@ -44,6 +44,13 @@ export const editUserAccount = (updates) => ({
 
 export const startEditUserAccount = (updates) => {
   return (dispatch, getState) => {
+    // const EmbeddedURLRoot = "https://open.spotify.com/embed/";
+    for (const song in updates.songs) {
+      updates.songs[song] = encodeURI(updates.songs[song]);
+      // const startPosition = updates.songs[song].indexOf(EmbeddedURLRoot) + EmbeddedURLRoot.length;
+      // const endPosition = updates.songs[song].indexOf('"', startPosition);
+      // updates.songs[song] = updates.songs[song].substring(startPosition, endPosition);  
+    }
     const uid = getState().auth.uid;
     return database.ref(`userData/${uid}/profile`).update(updates).then(() => {
       dispatch(editUserAccount({ profile: updates }))
