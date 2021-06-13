@@ -1,14 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import { startEditUserAccount } from '../../actions/userAccount';
 import { connect } from 'react-redux';
 import { firebase, storage } from '../../firebase/firebase';
 import { Link } from 'react-router-dom';
+import TrimModal from './TrimModal';
 
+// const PhotoObjContext = createContext();
 const EmbeddedURLRoot = "https://open.spotify.com/embed/";
+const defaultPhoto = "/images/profile_photo_default.png";
+
+const readFile = (file) => {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => resolve(reader.result), false);
+    reader.readAsDataURL(file);
+  })
+}
 
 export const ProfilePage = (props) => {
-  const [photo, setPhoto] = useState("");
-  const [photoUrl, setPhotoUrl] = useState(props.profile.photoUrl || "/images/profile_photo_default.png");
+  const [photoBlob, setPhotoBlob] = useState(null);
+  const [originPhotoSrc, setOriginPhotoSrc] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(props.profile.photoUrl || defaultPhoto);
   const [firstName, setFirstName] = useState(props.profile.firstName);
   const [lastName, setLastName] = useState(props.profile.lastName);
   const [email, setEmail] = useState(props.profile.email);
@@ -21,27 +33,22 @@ export const ProfilePage = (props) => {
   const [song2, setSong2] = useState(decodeURI(props.profile.songs.song2));
   const [song3, setSong3] = useState(decodeURI(props.profile.songs.song3));
   const [errorState, setErrorState] = useState('');
-
-  useEffect(() => {
-    console.log(`song1: ${song1}`);
-    console.log(`song2: ${song2}`);
-    console.log(`song3: ${song3}`);
-  }, [song1, song2, song3]);
   
   useEffect(() => {
     // ~MB以上なら圧縮するような処理を入れる(?)
-    if (photo === "") return; // ごり押し・・・
-    const uploadTask = storage.ref(`photos/${props.id}`).put(photo);
-    const unsubscribe = uploadTask.on(
-      firebase.storage.TaskEvent.STATE_CHANGED,
-      null,
-      error,
-      complete
-    );
-    return () => {
-      unsubscribe();
+    if (photoBlob){
+      const uploadTask = storage.ref(`photos/${props.id}`).put(photoBlob);
+      const unsubscribe = uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        null,
+        error,
+        complete
+      );
+      return () => {
+        unsubscribe();
+      }
     }
-  }, [photo]);
+  }, [photoBlob]);
 
   const error = (error) => {
     console.log(`Error occured : ${error}`);
@@ -53,9 +60,19 @@ export const ProfilePage = (props) => {
     })
   }
 
-  const handlePhoto = (e) => {
-    setPhoto(e.target.files[0]);
+  const onPhotoChange = async (e) => {
+    // 同じ画像を選んだ時も動くようにしておく
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const photoDataUrl = await readFile(file);
+      setOriginPhotoSrc(photoDataUrl);
+      e.target.value = "";
+    }
   }
+
+  const onClose = () => {
+    setOriginPhotoSrc(null);
+  };
 
 // const findEmbeddedURL = (input) => {
 //   const startPosition = input.indexOf(EmbeddedURLRoot) + EmbeddedURLRoot.length;
@@ -106,13 +123,13 @@ export const ProfilePage = (props) => {
                 <div className="button--photo">Change photo</div>
                 <input
                   type="file"
-                  onChange={handlePhoto}
+                  onChange={onPhotoChange}
                   className="change-photo"
                   accept="image/*"
                 >
                 </input>
               </label>
-              <div className="button--photo" onClick={() => setPhoto('')}>Remove photo</div>
+              <div className="button--photo" onClick={() => setPhotoUrl(defaultPhoto)}>Remove photo</div>
             </div>
           </div>
           <div>
@@ -250,6 +267,15 @@ export const ProfilePage = (props) => {
         {errorState && <div className="error-message">{errorState}</div>}
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
       </form>
+      {originPhotoSrc && (
+        // <PhotoObjContext.Provider value={photoBlob, setPhotoBlob}>
+        <TrimModal
+          originPhotoSrc={originPhotoSrc}
+          setPhotoBlob={setPhotoBlob}
+          onClose={onClose}
+        />
+        // </PhotoObjContext.Provider>
+      )}
     </React.Fragment>
   )
 };
