@@ -268,13 +268,11 @@ export const ProfilePage = (props) => {
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
       </form>
       {originPhotoSrc && (
-        // <PhotoObjContext.Provider value={photoBlob, setPhotoBlob}>
         <TrimModal
           originPhotoSrc={originPhotoSrc}
           setPhotoBlob={setPhotoBlob}
           onClose={onClose}
         />
-        // </PhotoObjContext.Provider>
       )}
     </React.Fragment>
   )

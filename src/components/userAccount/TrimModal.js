@@ -1,43 +1,15 @@
 import React, { useState } from 'react';
 import Modal from '../ui/Modal';
 import Cropper from 'react-easy-crop';
+import createImage, { getCroppedImg } from '../../readImage/cropImage';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
-
-const createImage = (url) =>
-  new Promise((resolve, reject) => {
-    const image = new Image()
-    image.addEventListener('load', () => resolve(image))
-    image.addEventListener('error', (error) => reject(error))
-    image.src = url
-  })
-
-const getCroppedImg = async (imageSrc, pixelCrop, rotation = 0) => {
-  const image = await createImage(imageSrc);
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = pixelCrop.width;
-  canvas.height = pixelCrop.height;
-  ctx.drawImage(
-    image,
-    pixelCrop.x,
-    pixelCrop.y,
-    pixelCrop.width,
-    pixelCrop.height,
-    0,
-    0,
-    pixelCrop.width,
-    pixelCrop.height
-  );
-  return new Promise((resolve) => {
-    canvas.toBlob(blob => resolve(blob), 'image/png')
-  })
-}
 
 const TrimModal = (props) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [error, setError] = useState(null);
   
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -53,8 +25,10 @@ const TrimModal = (props) => {
       console.log('done', { croppedImage });
       props.setPhotoBlob(croppedImage); // Send blob of image to parent component
       props.onClose(); // Close modal
-    } catch (e) {
-      console.error(e);
+      setError(null);
+    } catch (err) {
+      setError(err);
+      console.error(err);
     }
   };
   
@@ -84,6 +58,13 @@ const TrimModal = (props) => {
           />
           <span id="plus">&#43;</span>
         </div>
+        {
+          error && (
+            <div className="error-text">
+              <span>{error}</span>
+            </div>
+          )
+        }
         <div className="buttons">
           <Button
             onClick={props.onClose}

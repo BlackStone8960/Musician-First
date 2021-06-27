@@ -31,5 +31,5 @@ const uiConfig = {
     signInSuccessWithAuthResult: () => false,
   },
 }
-// Firebaseでユーザーが登録されているかどうかの判断が出来るようなので、それによってページの遷移先を変えると良い気がする
+
 export { firebase, uiConfig, storage, database as default };

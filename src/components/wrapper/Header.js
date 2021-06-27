@@ -5,16 +5,20 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { startLogout } from '../../actions/auth';
 
-export const Header = ({ startLogout }) => (
+export const Header = ({ startLogout, isAuthenticated }) => (
 	<header className="header">
 		<div className="logo-wrapper">LOGO</div>
 		<Link to="/">
 			<h1 className="header__title">Musician First</h1>
 		</Link>
 		<div className="header-rightside">
-			<div className="logout" onClick={startLogout}>
-				<span>Logout</span>
-			</div>
+			{
+				isAuthenticated && (
+					<div className="logout" onClick={startLogout}>
+						<span>Logout</span>
+					</div>
+				)
+			}
 			<Link to="/profile">
 				<FontAwesomeIcon icon={faUserCircle} className="awesomeIcon icon-user-circle"/>
 			</Link>
@@ -27,8 +31,12 @@ export const Header = ({ startLogout }) => (
 	</header>
 );
 
+const mapStateToProps = (state) => ({
+	isAuthenticated: !!state.auth.uid
+});
+
 const mapDispatchToProps = (dispatch) => ({
 	startLogout: () => dispatch(startLogout())
 });
 
-export default connect(undefined, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
