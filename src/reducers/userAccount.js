@@ -14,6 +14,8 @@ export default (state = userAccountReducerDefaultState, action) => {
           ...action.updates.profile
         }
       };
+    case "DELETE_USER_ACCOUNT":
+      return {};
     default:
       return state;
   }

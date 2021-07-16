@@ -5,6 +5,7 @@ import ProfileForm from './ProfileForm';
 export const EditProfile = ({ profile, history }) => {
   return (
     <React.Fragment>
+      {/* Show Signup component when user doesn't have profile information */}
       {profile.occupation === "artist" ? 
         <ProfileForm audio={false} artist={true} history={history}/> 
         :

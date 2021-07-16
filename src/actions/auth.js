@@ -20,3 +20,9 @@ export const startLogout = () => {
     return firebase.auth().signOut();
   };
 };
+
+export const startDeleteAuth = () => {
+  return () => {
+    return firebase.auth().currentUser.delete()
+  }
+}

@@ -1,4 +1,5 @@
-import database from '../firebase/firebase';
+import database, { firebase } from '../firebase/firebase';
+import { startDeleteAuth } from './auth';
 import { v4 as uuidv4 } from 'uuid';
 
 export const setUserAccount = (account) => ({
@@ -55,5 +56,21 @@ export const startEditUserAccount = (updates) => {
     return database.ref(`userData/${uid}/profile`).update(updates).then(() => {
       dispatch(editUserAccount({ profile: updates }))
     })
+  }
+};
+
+export const deleteUserAccount = () => ({
+  type: "DELETE_USER_ACCOUNT"
+});
+
+export const startDeleteUserAccount = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    // execute startDeleteAuth here?
+    return firebase.auth().currentUser.delete().then(() => {
+      database.ref(`userData/${uid}`).remove().then(() => {
+        dispatch(deleteUserAccount());
+      })
+    });
   }
 };

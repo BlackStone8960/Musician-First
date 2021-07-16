@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SentMail = () => (
   <div className="center-text">
-    <p>Have sent email!</p>
+    <p>Sent!</p>
     <Link to="/filter1">
       <button className="button--config">Back to Top</button>
     </Link>

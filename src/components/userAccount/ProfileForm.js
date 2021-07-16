@@ -1,8 +1,9 @@
-import React, { useEffect, useState, createContext } from 'react';
-import { startEditUserAccount } from '../../actions/userAccount';
+import React, { useEffect, useState } from 'react';
+import { startEditUserAccount, startDeleteUserAccount } from '../../actions/userAccount';
+import { startDeleteAuth } from '../../actions/auth';
 import { connect } from 'react-redux';
 import { firebase, storage } from '../../firebase/firebase';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import TrimModal from './TrimModal';
 
 // const PhotoObjContext = createContext();
@@ -33,6 +34,7 @@ export const ProfilePage = (props) => {
   const [song2, setSong2] = useState(decodeURI(props.profile.songs.song2));
   const [song3, setSong3] = useState(decodeURI(props.profile.songs.song3));
   const [errorState, setErrorState] = useState('');
+  let history = useHistory();
   
   useEffect(() => {
     // ~MB以上なら圧縮するような処理を入れる(?)
@@ -87,6 +89,13 @@ export const ProfilePage = (props) => {
     })
     return verified;
   };
+
+  // Open modal to prommpt user to confirm. 
+  const onDeleteUser = (e) => {
+    e.preventDefault();
+    // history.push("/");
+    props.startDeleteUserAccount();
+  };
   
   const onSubmit = (e) => {
     e.preventDefault();
@@ -108,7 +117,7 @@ export const ProfilePage = (props) => {
         secondaryGenre,
         songs: { song1, song2, song3 }
       })
-      props.history.push("/filter1");
+      history.push("/filter1");
     }
   };
 
@@ -246,7 +255,11 @@ export const ProfilePage = (props) => {
           </div>
         </div>
         <div className="input-block">
-          <label>Songs</label><br></br>
+          <label>
+            Embed up to 3 Spotify Artists, Albums, or Songs. Must be on a desktop computer. 
+            Click on this <a target="_blank" href="https://www.jimdo.com/blog/embed-spotify-playlist-on-website/" rel="noopener noreferrer">link </a>
+            for instructions.
+          </label><br></br>
           <input
             type="text"
             value={song1}
@@ -263,7 +276,10 @@ export const ProfilePage = (props) => {
             onChange={(e) => { setSong3(e.target.value) }}
             // onChange={(e) => { e.target.value.includes(EmbeddedURLRoot) ? setSong3(findEmbeddedURL(e.target.value)) : setErrorState('Input embed code as song information.') }}
           />
-        </div> 
+        </div>
+        <div>
+          <input type="button" onClick={onDeleteUser} value="Delete Account" />
+        </div>
         {errorState && <div className="error-message">{errorState}</div>}
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
       </form>
@@ -285,7 +301,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startEditUserAccount: (updates) => dispatch(startEditUserAccount(updates))
+  startEditUserAccount: (updates) => dispatch(startEditUserAccount(updates)),
+  startDeleteUserAccount: () => dispatch(startDeleteUserAccount()),
+  startDeleteAuth: () => dispatch(startDeleteAuth())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
