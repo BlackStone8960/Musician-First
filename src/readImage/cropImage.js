@@ -1,5 +1,5 @@
-// const MAX_IMG_SIZE = 4194304; // Set max limit of cropped img as 4MB
-const MAX_IMG_SIZE = 1; // Set max limit of cropped img as 4MB
+const MAX_IMG_SIZE = 4194304; // Set max limit of cropped img as 4MB
+// const MAX_IMG_SIZE = 1; // Set max limit of cropped img as 4MB
 const ERROR_TOO_BIG_IMG = "Image size is too large. Max limit 4MB"
 const ERROR_LOADING_FAILED = "Failed to upload image. Try to upload again."
 // Image size is too large. Max limit 4MB
