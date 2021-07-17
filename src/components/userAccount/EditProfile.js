@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProfileForm from './ProfileForm';
 
+// We don't need this component?
+
 export const EditProfile = ({ profile, history }) => {
   return (
     <React.Fragment>

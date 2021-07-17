@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { firebase, storage } from '../../firebase/firebase';
 import { Link, useHistory } from 'react-router-dom';
 import TrimModal from './TrimModal';
+import MusicPlayer from '../MusicianPage/MusicPlayer';
 
 // const PhotoObjContext = createContext();
 const EmbeddedURLRoot = "https://open.spotify.com/embed/";
@@ -30,14 +31,14 @@ export const ProfilePage = (props) => {
   const [primaryGenre, setPrimaryGenre] = useState(props.profile.primaryGenre);
   const [secondaryGenre, setSecondaryGenre] = useState(props.profile.secondaryGenre);
   const [occupation, setOccupation] = useState(props.profile.occupation);
-  const [song1, setSong1] = useState(decodeURI(props.profile.songs.song1));
-  const [song2, setSong2] = useState(decodeURI(props.profile.songs.song2));
-  const [song3, setSong3] = useState(decodeURI(props.profile.songs.song3));
+  const [song1, setSong1] = useState(decodeURI(props.profile.songs.song1) || "");
+  const [song2, setSong2] = useState(decodeURI(props.profile.songs.song2) || "");
+  const [song3, setSong3] = useState(decodeURI(props.profile.songs.song3) || "");
+  const [encodedSongsArr, setEncodedSongsArr] = useState([]);
   const [errorState, setErrorState] = useState('');
   let history = useHistory();
   
   useEffect(() => {
-    // ~MB以上なら圧縮するような処理を入れる(?)
     if (photoBlob){
       const uploadTask = storage.ref(`photos/${props.id}`).put(photoBlob);
       const unsubscribe = uploadTask.on(
@@ -51,6 +52,11 @@ export const ProfilePage = (props) => {
       }
     }
   }, [photoBlob]);
+
+  useEffect(() => {
+    const songsArr = [song1, song2, song3];
+    setEncodedSongsArr(songsArr.map(song => encodeURI(song)));
+  }, [song1, song2, song3])
 
   const error = (error) => {
     console.log(`Error occured : ${error}`);
@@ -99,7 +105,7 @@ export const ProfilePage = (props) => {
   
   const onSubmit = (e) => {
     e.preventDefault();
-    if(!firstName || !lastName || !email || !primaryGenre) {
+    if (!firstName || !lastName || !email || !primaryGenre) {
       setErrorState('Please fill in the mandatory information');
     } else if (!isVerifiedSongURL([ song1, song2, song3 ])) {
       setErrorState('Input embed code as song information');
@@ -210,14 +216,16 @@ export const ProfilePage = (props) => {
                 id="artist"
                 value="artist"
                 defaultChecked={props.artist}
-                onClick={(e) => setOccupation(e.target.value)}
+                checked={occupation === "artist"}
+                onChange={(e) => setOccupation(e.target.value)}
               />Artist
               <input
                 type="radio"
                 id="producer"
                 value="producer"
                 defaultChecked={!props.artist}
-                onClick={(e) => setOccupation(e.target.value)}
+                checked={occupation === "producer"}
+                onChange={(e) => setOccupation(e.target.value)}
               />Producer
             </div>
             <div className="input-block">
@@ -255,32 +263,50 @@ export const ProfilePage = (props) => {
           </div>
         </div>
         <div className="input-block">
-          <label>
-            Embed up to 3 Spotify Artists, Albums, or Songs. Must be on a desktop computer. 
-            Click on this <a target="_blank" href="https://www.jimdo.com/blog/embed-spotify-playlist-on-website/" rel="noopener noreferrer">link </a>
-            for instructions.
-          </label><br></br>
-          <input
-            type="text"
-            value={song1}
-            onChange={(e) => { setSong1(e.target.value) }}
-          />
-          <input
-            type="text"
-            value={song2}
-            onChange={(e) => { setSong2(e.target.value) }}
-          />
-          <input
-            type="text"
-            value={song3}
-            onChange={(e) => { setSong3(e.target.value) }}
-            // onChange={(e) => { e.target.value.includes(EmbeddedURLRoot) ? setSong3(findEmbeddedURL(e.target.value)) : setErrorState('Input embed code as song information.') }}
-          />
+          <div className="spotify-wrapper">
+            <p className="spotify-description">
+              Embed up to 3 Spotify Artists, Albums, or Songs. Must be on a desktop computer. <br/>
+              Click on this <a target="_blank" href="https://www.jimdo.com/blog/embed-spotify-playlist-on-website/" rel="noopener noreferrer">link</a> for instructions.
+            </p>
+            <label className="spotify-label">
+              <span className="link-label">Link 1</span>
+              <input
+                type="text"
+                value={song1}
+                onChange={(e) => { setSong1(e.target.value) }}
+                className="spotify-link-input"
+              />
+            </label><br />
+            <label className="spotify-label">
+              <span className="link-label">Link 2</span>
+              <input
+                type="text"
+                value={song2}
+                onChange={(e) => { setSong2(e.target.value) }}
+                className="spotify-link-input"
+              />
+            </label><br />
+            <label className="spotify-label">
+              <span className="link-label">Link 3</span>
+              <input
+                type="text"
+                value={song3}
+                onChange={(e) => { setSong3(e.target.value) }}
+                className="spotify-link-input"
+              />
+            </label><br />
+            <div className="preview-container">
+              <div className="preview-header">Preview</div>
+              <div className="player-container">
+                <MusicPlayer songs={encodedSongsArr} />
+              </div>
+            </div>
+          </div>
         </div>
         <div>
           <input type="button" onClick={onDeleteUser} value="Delete Account" />
         </div>
-        {errorState && <div className="error-message">{errorState}</div>}
+        {errorState ? <div className="error-message">{errorState}</div> : <div className="error-message-spacing"></div>}
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
       </form>
       {originPhotoSrc && (

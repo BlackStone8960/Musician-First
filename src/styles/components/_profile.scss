@@ -1,44 +1,92 @@
-.name-flex, .profile-upper, .photo-buttons, .profile-lower {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
+.name-flex,
+.profile-upper,
+.photo-buttons,
+.profile-lower {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
 }
 .profile-upper {
-  align-items: flex-end !important;
+	align-items: flex-end !important;
 }
 .name-flex {
-  justify-content: space-between;
+	justify-content: space-between;
 }
-.profile-upper, .photo-buttons, .profile-lower {
-  justify-content: space-around;
+.profile-upper,
+.photo-buttons,
+.profile-lower {
+	justify-content: space-around;
 }
 
 .change-photo {
-  display: none;
+	display: none;
 }
 .profile-photo {
-  width: 160px;
-  height: 160px;
-  display: block;
-  margin: auto;
-  border-radius: 9999px;
+	width: 160px;
+	height: 160px;
+	display: block;
+	margin: auto;
+	border-radius: 9999px;
 }
 .save {
-  display: block;
-  margin: $m-size auto;
+	display: block;
+	margin: $m-size auto;
 }
 .signup-form {
-  width: 470px;
-  margin: 0 auto;
-  text-align: center;
+	width: 470px;
+	margin: 0 auto;
+	text-align: center;
 
-  .radio {
-    // margin-left: $sm-size;
-  }
+	.signup-error {
+		color: red;
+		margin: 10px 0;
+	}
+	.signup-error-spacing {
+		margin: 10px 0;
+		height: 1em;
+	}
+
+	.radio {
+		// margin-left: $sm-size;
+	}
 }
 .input-block {
-  margin-bottom: $sm-size;
+	margin-bottom: $sm-size;
+
+	.spotify-wrapper {
+		margin: 0 auto;
+		width: 700px;
+
+		.spotify-description {
+			margin-bottom: 16px;
+		}
+
+		.spotify-label {
+			margin-bottom: 8px;
+			display: inline-block;
+		}
+
+		.link-label {
+			margin-right: 16px;
+		}
+
+		.spotify-link-input {
+			width: 500px;
+		}
+	}
+
+	.preview-container {
+		text-align: center;
+		.preview-header {
+			margin: 16px 0;
+		}
+	}
 }
 .error-message {
-  color: red;
+	color: red;
+	margin: 10px 0;
+}
+.error-message-spacing {
+	margin: 10px 0;
+	height: 1em;
 }

@@ -16,7 +16,7 @@ export const SignUp = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if(!firstName || !lastName || !email || !primaryGenre) {
+    if (!firstName || !lastName || !email || !primaryGenre) {
       setError('Please fill in the mandatory information');
     } else {
       setError('');
@@ -32,14 +32,13 @@ export const SignUp = (props) => {
         secondaryGenre,
         songs: { song1: '', song2: '', song3: '' }
       })
+      props.history.push("/filter1");
     }
-    props.history.push("/filter1");
   }
 
   return (
     <React.Fragment>
       <form className="signup-form">
-        {error && <p>{error}</p>}
         <div className="name-flex">
           <div className="input-block">
             <label>First Name</label><br></br>
@@ -84,13 +83,15 @@ export const SignUp = (props) => {
             type="radio"
             id="artist"
             value="artist"
-            onClick={(e) => setOccupation(e.target.value)}
+            checked={occupation === "artist"}            
+            onChange={(e) => setOccupation(e.target.value)}
           />Artist
           <input
             type="radio"
             id="producer"
             value="producer"
-            onClick={(e) => setOccupation(e.target.value)}
+            checked={occupation === "producer"}
+            onChange={(e) => setOccupation(e.target.value)}
             className="radio"
           />Producer
         </div>
@@ -138,6 +139,7 @@ export const SignUp = (props) => {
             <option value="indie-rock">Indie Rock</option>
           </select>
         </div>
+        {error ? <p className="signup-error">{error}</p> : <div className="signup-error-spacing"></div>}
         <input type="button" onClick={onSubmit} value="CREATE ACCOUNT" className="button--config" />
       </form>
     </React.Fragment>

@@ -18,7 +18,7 @@ const MusicPlayer = ({ songs }) => {
       }
     }
     setSongsArr(songBox);
-  }, [])
+  }, [songs])
   
   return (
     <React.Fragment>
