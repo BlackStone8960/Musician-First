@@ -35,7 +35,7 @@
     "heroku-ssl-redirect": "^0.1.1",
     "history": "4.7.2",
     "moment": "^2.18.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "4.14.1",
     "normalize.css": "^7.0.0",
     "numeral": "^2.0.6",
     "raf": "^3.3.2",
@@ -67,5 +67,6 @@
     "jest": "^20.0.4",
     "react-test-renderer": "^16.0.0",
     "webpack-dev-server": "^2.5.1"
-  }
+  },
+  "repository": "https://github.com/BlackStone8960/Musician-First.git"
 }
