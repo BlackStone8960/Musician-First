@@ -215,7 +215,6 @@ export const ProfilePage = (props) => {
                 type="radio"
                 id="artist"
                 value="artist"
-                defaultChecked={props.artist}
                 checked={occupation === "artist"}
                 onChange={(e) => setOccupation(e.target.value)}
               />Artist
@@ -223,7 +222,6 @@ export const ProfilePage = (props) => {
                 type="radio"
                 id="producer"
                 value="producer"
-                defaultChecked={!props.artist}
                 checked={occupation === "producer"}
                 onChange={(e) => setOccupation(e.target.value)}
               />Producer
@@ -296,7 +294,6 @@ export const ProfilePage = (props) => {
               />
             </label><br />
             <div className="preview-container">
-              <div className="preview-header">Preview</div>
               <div className="player-container">
                 <MusicPlayer songs={encodedSongsArr} />
               </div>
