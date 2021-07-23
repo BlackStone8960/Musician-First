@@ -7,7 +7,11 @@ import { startLogout } from '../../actions/auth';
 
 export const Header = ({ startLogout, isAuthenticated }) => (
 	<header className="header">
-		<div className="logo-wrapper">LOGO</div>
+		<div className="logo-wrapper">
+			<Link to="/">
+				<img src="/images/Logo_1.png" alt="logo" className="header-logo"></img>
+			</Link>	
+		</div>
 		<Link to="/">
 			<h1 className="header__title">Musician First</h1>
 		</Link>
