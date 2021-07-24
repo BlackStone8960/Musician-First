@@ -20,10 +20,21 @@ class Filter2 extends React.Component {
 
   onSelect = (index) => {
 
-    this.state.clicked.splice(index, 1, !this.state.clicked[index])
-    this.setState({
-      clicked: this.state.clicked
-    })
+    if (this.state.selectCount > 2) {
+      this.setState((prevState) => {
+        return {
+          selectCount: prevState.selectCount - 1,
+          clicked: prevState.clicked
+        }
+      })
+      return;
+    }
+
+
+    // this.state.clicked.splice(index, 1, !this.state.clicked[index])
+    // this.setState({
+    //   clicked: this.state.clicked
+    // })
     // if (this.state.clicked === false && this.state.selectCount < 3) {
     //   this.setState((prevState) => {
     //     return {
@@ -37,18 +48,31 @@ class Filter2 extends React.Component {
     //   this.setState(() => ({ selectCount }));
     // }
 
-    // if (this.state.selectCount < 3) {
+    // if (this.state.selectCount >= 3) {
+
     //   this.setState((prevState) => {
     //     return {
-    //       selectCount: prevState.selectCount + 1
+    //       selectCount: prevState.selectCount - 1,
+    //       clicked: prevState.clicked
     //     }
     //   })
-    // } else if (this.state.selectCount > 0) {
-    //   return
-    // }
-    const numOfTrue = this.state.clicked.filter((val) => val === true).length;
-    console.log(numOfTrue);
+    // this.setState({
+    //   clicked: this.state.clicked
+    // })
+
+    if (this.state.selectCount < 3) {
+      console.log("hello")
+      this.state.clicked.splice(index, 1, !this.state.clicked[index])
+      this.setState((prevState) => {
+        return {
+          selectCount: this.state.clicked[index] ? prevState.selectCount + 1 : prevState.selectCount - 1,
+          clicked: this.state.clicked
+        }
+      })
+    }
+    // selectCount = this.state.clicked.filter((val) => val === true).length;
     console.log(this.state.clicked);
+    console.log(this.state.selectCount);
   }
 
   render() {
