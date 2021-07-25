@@ -19,49 +19,17 @@ class Filter2 extends React.Component {
   }
 
   onSelect = (index) => {
-
-    if (this.state.selectCount > 2) {
+    if (this.state.clicked[index] && this.state.selectCount > 0) {
+      console.log("to false")
+      this.state.clicked.splice(index, 1, !this.state.clicked[index])
       this.setState((prevState) => {
         return {
           selectCount: prevState.selectCount - 1,
-          clicked: prevState.clicked
+          clicked: this.state.clicked
         }
       })
-      return;
-    }
-
-
-    // this.state.clicked.splice(index, 1, !this.state.clicked[index])
-    // this.setState({
-    //   clicked: this.state.clicked
-    // })
-    // if (this.state.clicked === false && this.state.selectCount < 3) {
-    //   this.setState((prevState) => {
-    //     return {
-    //       selectCount: prevState.selectCount + 1,
-    //       clicked: [...prevState.clicked]
-    //     }
-    //   });
-
-    // } else if (this.state.clicked === true && this.state.selectCount > 0) {
-    //   const selectCount = this.state.selectCount--;
-    //   this.setState(() => ({ selectCount }));
-    // }
-
-    // if (this.state.selectCount >= 3) {
-
-    //   this.setState((prevState) => {
-    //     return {
-    //       selectCount: prevState.selectCount - 1,
-    //       clicked: prevState.clicked
-    //     }
-    //   })
-    // this.setState({
-    //   clicked: this.state.clicked
-    // })
-
-    if (this.state.selectCount < 3) {
-      console.log("hello")
+    } else if (!this.state.clicked[index] && this.state.selectCount < 3) {
+      console.log("to true")
       this.state.clicked.splice(index, 1, !this.state.clicked[index])
       this.setState((prevState) => {
         return {
@@ -70,12 +38,10 @@ class Filter2 extends React.Component {
         }
       })
     }
-    // selectCount = this.state.clicked.filter((val) => val === true).length;
-    console.log(this.state.clicked);
-    console.log(this.state.selectCount);
   }
 
   render() {
+    console.log(this.state.selectCount, this.state.clicked);
     return (
       <React.Fragment >
         <p className="filter-topmassage">
