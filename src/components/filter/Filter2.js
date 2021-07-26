@@ -20,7 +20,6 @@ class Filter2 extends React.Component {
 
   onSelect = (index) => {
     if (this.state.clicked[index] && this.state.selectCount > 0) {
-      console.log("to false")
       this.state.clicked.splice(index, 1, !this.state.clicked[index])
       this.setState((prevState) => {
         return {
@@ -29,7 +28,6 @@ class Filter2 extends React.Component {
         }
       })
     } else if (!this.state.clicked[index] && this.state.selectCount < 3) {
-      console.log("to true")
       this.state.clicked.splice(index, 1, !this.state.clicked[index])
       this.setState((prevState) => {
         return {
@@ -41,7 +39,6 @@ class Filter2 extends React.Component {
   }
 
   render() {
-    console.log(this.state.selectCount, this.state.clicked);
     return (
       <React.Fragment >
         <p className="filter-topmassage">
