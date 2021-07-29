@@ -103,7 +103,6 @@ export const ProfilePage = (props) => {
     e.preventDefault();
     // history.push("/");
     props.startDeleteUserAccount();
-    setIsModalOpen(true);
   };
 
   const onSubmit = (e) => {
@@ -304,7 +303,7 @@ export const ProfilePage = (props) => {
           </div>
         </div>
         <div>
-          <input type="button" onClick={onDeleteUser} value="Delete Account" />
+          <input className="delete-account-btn" type="button" onClick={() => setIsModalOpen(true)} value="Delete Account" />
         </div>
         {errorState ? <div className="error-message">{errorState}</div> : <div className="error-message-spacing"></div>}
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
@@ -317,7 +316,10 @@ export const ProfilePage = (props) => {
         />
       )}
       {isModalOpen && (
-        <DeleteAccountModal />
+        <DeleteAccountModal
+          setIsModalOpen={setIsModalOpen}
+          onDeleteUser={onDeleteUser}
+        />
       )}
     </React.Fragment>
   )
