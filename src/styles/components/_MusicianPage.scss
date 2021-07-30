@@ -1,3 +1,7 @@
+.other-user-profile {
+	position: relative;
+}
+
 .name-bio {
 	display: flex;
 	justify-content: space-around;
@@ -51,4 +55,15 @@
 	flex-direction: row wrap;
 	align-items: flex-start;
 	justify-content: space-around;
+}
+
+.chat-box-wrapper {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background: white;
+	width: 300px;
+	height: 400px;
+	padding: 6px;
+	border: 1px solid gray;
 }
