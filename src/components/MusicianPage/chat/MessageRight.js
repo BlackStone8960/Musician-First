@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react'
 import Avator from '@material-ui/core/Avatar';
 
-const MessageLeft = () => {
+const MessageRight = () => {
   return (
     <div>
-      ml
+      mr
     </div>
   )
 }
 
 
-export default MessageLeft;
+export default MessageRight;

@@ -1,30 +1,33 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import database from '../firebase/firebase';
 
-const useDatabase = (id1, id2) => {
-  const ref = database.ref(`/messages/${id1}_${id2}`) ? database.ref(`/messages/${id1}_${id2}`) : database.ref(`/messages/${id2}_${id1}`)
-  return ref ? ref.orderByChild('createdAt').limitToLast(30) : null
-}
-  
-const useFetchData = (ref) => {
+const useFetchAllChatData = (id1, id2) => {
+  let ref = null;
   const [data, setData] = useState();
+
+  // check if chat id exists or not
+  database.ref("/messages").once("value").then(snapshot => {
+    if (snapshot.child(`${id1}_${id2}`).exists()) {
+      ref = database.ref(`/messages/${id1}_${id2}`);
+    } else if (snapshot.child(`${id2}_${id1}`).exists()) {
+      ref = database.ref(`/messages/${id2}_${id1}`);
+    }
+  })
+  const orderedRef = ref ? ref.orderByChild('createdAt').limitToLast(30) : null
+
   useEffect(() => {
-    ref.on('value', snapshot => {
-      if (snapshot?.val()) {
+    orderedRef && orderedRef.on('value', snapshot => {
+      if (snapshot && snapshot.val()) {
         console.log('snapshot.val()');
         setData(snapshot.val());
       }
     })
     return () => {
-      ref.off();
+      orderedRef.off();
     };
-  }, [ref]);
-  return { data };
-}
+  }, [orderedRef]);
 
-const useFetchAllChatData = (id1, id2) => {
-  const ref = useDatabase(id1, id2);
-  return useFetchData(ref);
+  return { data };
 }
 
 export default useFetchAllChatData;

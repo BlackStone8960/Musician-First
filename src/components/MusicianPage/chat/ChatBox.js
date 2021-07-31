@@ -5,7 +5,7 @@ import ChatScreen from './ChatScreen';
 const ChatBox = ({ otherId }) => {
   return (
     <div className="chat-box">
-      <ChatScreen />
+      <ChatScreen otherId={otherId} />
       <TextInput otherId={otherId} />
     </div>
   )
