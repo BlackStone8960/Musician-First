@@ -1,20 +1,55 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import useFetchAllChatData from '../../../hooks/useFetchAllChatData';
 import MessageLeft from './MessageLeft';
 import MessageRight from './MessageRight';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import database from '../../../firebase/firebase';
 
 const ChatScreen = ({ uid, otherId }) => {
-  const { data } = useFetchAllChatData(uid, otherId);
-  const dataList = useMemo(() => Object.entries(data || {}).map(([key, value]) => ({ key, value })), [data]);
-  console.log(dataList);
-  let viewDate = '';
+  const [dataList, setDataList] = useState([]);
+  const [viewDate, setViewDate] = useState("");
+  const [orderedRef, setOrderedRef] = useState(null);
+
+  useEffect(() => {
+    if (uid && otherId) {
+      let ref = null;
+
+      // check if chat id exists or not
+      database.ref("/messages").once("value").then(snapshot => {
+        if (snapshot.child(`${uid}_${otherId}`).exists()) {
+          ref = database.ref(`/messages/${uid}_${otherId}`);
+        } else if (snapshot.child(`${otherId}_${uid}`).exists()) {
+          ref = database.ref(`/messages/${otherId}_${uid}`);
+        }
+        setOrderedRef(ref && ref.orderByChild('createdAt').limitToLast(30));
+      });
+    }
+  }, [uid, otherId]);
+
+  useEffect(() => {
+    if (orderedRef) {
+      orderedRef.on('value', snapshot => {
+        if (snapshot && snapshot.val()) {
+          console.log('snapshot.val()');
+          const data = snapshot.val();
+          setDataList(Object.entries(data || {}).map(([key, value]) => ({ key, value })));
+        }
+      })
+      return () => {
+        orderedRef.off();
+      };
+    }
+  }, [orderedRef]);
+
+  useEffect(() => {
+    console.log(dataList);
+  }, [dataList]);
 
   const showViewDate = (value) => {
     const formattedCreatedAt = moment(value.createdAt).format('YYYY/MM/DD')
     if (viewDate !== formattedCreatedAt) {
-      viewDate = formattedCreatedAt;
+      setViewDate(formattedCreatedAt);
       return viewDate;
     }
   }
@@ -24,9 +59,21 @@ const ChatScreen = ({ uid, otherId }) => {
       <div>{dataList.length === 0 && "loading..."}</div>
       {dataList.map(({ key, value }) => (
         <React.Fragment key={`${key}`}>
-          <div>{showViewDate(value)}</div>
+          <div className="view-date">{showViewDate(value)}</div>
           {
-
+            uid !== value.uid ? (
+              <MessageLeft
+                message={value.message}
+                timeStamp={moment(value.createdAt).format('HH:mm')}
+                id={value.uid}
+              />
+            ) : (
+              <MessageRight
+                message={value.message}
+                timeStamp={moment(value.createdAt).format('HH:mm')}
+                id={value.uid}
+              />
+            )
           }
         </React.Fragment>
       ))}
@@ -35,7 +82,8 @@ const ChatScreen = ({ uid, otherId }) => {
 }
 
 const mapStateToProps = (state) => ({
-  uid: state.userAccount.id
+  uid: state.userAccount.id,
+  photoUrl: state.userAccount.profile.photoUrl
 });
 
 export default connect(mapStateToProps)(ChatScreen);

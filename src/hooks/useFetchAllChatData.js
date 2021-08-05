@@ -3,6 +3,7 @@ import database from '../firebase/firebase';
 
 const useFetchAllChatData = (id1, id2) => {
   let ref = null;
+  const [orderedRef, setOrderedRef] = useState(null);
   const [data, setData] = useState();
 
   // check if chat id exists or not
@@ -12,19 +13,21 @@ const useFetchAllChatData = (id1, id2) => {
     } else if (snapshot.child(`${id2}_${id1}`).exists()) {
       ref = database.ref(`/messages/${id2}_${id1}`);
     }
-  })
-  const orderedRef = ref ? ref.orderByChild('createdAt').limitToLast(30) : null
+    setOrderedRef(ref && ref.orderByChild('createdAt').limitToLast(30));
+  });
 
   useEffect(() => {
-    orderedRef && orderedRef.on('value', snapshot => {
-      if (snapshot && snapshot.val()) {
-        console.log('snapshot.val()');
-        setData(snapshot.val());
-      }
-    })
-    return () => {
-      orderedRef.off();
-    };
+    if (orderedRef) {
+      orderedRef.on('value', snapshot => {
+        if (snapshot && snapshot.val()) {
+          console.log('snapshot.val()');
+          setData(snapshot.val());
+        }
+      })
+      return () => {
+        orderedRef.off();
+      };
+    }
   }, [orderedRef]);
 
   return { data };
