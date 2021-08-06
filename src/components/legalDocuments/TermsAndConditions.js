@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TermsAndConditions = () => (
-  <div>
-    <p>This is terms and conditions</p>
+  <div >
+    <p>This is terms and conditiions</p>
   </div>
 
 )
