@@ -19,21 +19,23 @@ const TextInput = ({ uid, otherId }) => {
       message,
       createdAt: timeStamp.format('YYYY-MM-DD HH:mm:ss')
     }
-    database.ref(`messages/${uid}_${otherId}/${timeStamp.format('YYYYMMDDHHmmss')}_${uid}`)
-    .set(messageData)
-    .then(() => {
-      console.log('success');
-      setMessage('');
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    const orderedIdArr = [uid, otherId].sort((a, b) => (a < b ? -1 : 1));
+
+    database.ref(`messages/${orderedIdArr[0]}_${orderedIdArr[1]}/${timeStamp.format('YYYYMMDDHHmmss')}_${uid}`)
+      .set(messageData)
+      .then(() => {
+        console.log('success');
+        setMessage('');
+      })
+      .catch(err => {
+        console.error(err);
+      })
   }
-  
+
   return (
     <React.Fragment>
       <form noValidate autoComplete="off">
-        <TextField 
+        <TextField
           id="standard-text"
           label="Input Message"
           value={message}

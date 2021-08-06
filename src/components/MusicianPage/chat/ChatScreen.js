@@ -6,10 +6,10 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import database from '../../../firebase/firebase';
 
-const ChatScreen = ({ uid, otherId }) => {
+const ChatScreen = ({ uid, otherId, otherProfile = null }) => {
   const [dataList, setDataList] = useState([]);
-  const [viewDate, setViewDate] = useState("");
   const [orderedRef, setOrderedRef] = useState(null);
+  let viewDate = "";
 
   useEffect(() => {
     if (uid && otherId) {
@@ -49,7 +49,7 @@ const ChatScreen = ({ uid, otherId }) => {
   const showViewDate = (value) => {
     const formattedCreatedAt = moment(value.createdAt).format('YYYY/MM/DD')
     if (viewDate !== formattedCreatedAt) {
-      setViewDate(formattedCreatedAt);
+      viewDate = formattedCreatedAt;
       return viewDate;
     }
   }
@@ -62,17 +62,9 @@ const ChatScreen = ({ uid, otherId }) => {
           <div className="view-date">{showViewDate(value)}</div>
           {
             uid !== value.uid ? (
-              <MessageLeft
-                message={value.message}
-                timeStamp={moment(value.createdAt).format('HH:mm')}
-                id={value.uid}
-              />
+              <MessageLeft {...value} otherProfile={otherProfile} />
             ) : (
-              <MessageRight
-                message={value.message}
-                timeStamp={moment(value.createdAt).format('HH:mm')}
-                id={value.uid}
-              />
+              <MessageRight {...value} />
             )
           }
         </React.Fragment>
