@@ -15,6 +15,8 @@ import SignUp from '../components/userAccount/SignUp';
 import LoginPage from '../components/auth/LoginPage';
 import ConfirmSendingMail from '../components/auth/ConfirmSendingMail';
 import SentMail from '../components/auth/SentMail';
+import PrivacyPolicy from '../components/legalDocuments/PrivacyPolicy';
+import TermsAndConditions from '../components/legalDocuments/TermsAndConditions';
 
 export const history = createHistory();
 
@@ -28,13 +30,15 @@ const AppRouter = () => (
 				<FlatRoute path="/filter1" component={Filter1} />
 				<FlatRoute path="/filter2" component={Filter2} />
 				<FlatRoute path="/filter3" component={Filter3} />
+				<FlatRoute path="/privacy-policy" component={PrivacyPolicy} />
+				<FlatRoute path="/terms-and-conditions" component={TermsAndConditions} />
 				<FlatRoute path="/MusicianPage/:id" component={MusicianPage} />
 				<PrivateRoute path="/profile" component={EditProfile} />
 				<PrivateRoute path="/change_password" component={ConfirmSendingMail} />
 				<PrivateRoute path="/sentmail" component={SentMail} />
 				<Route component={NotFoundPage} />
 			</Switch>
-		</div>		
+		</div>
 	</Router>
 );
 
