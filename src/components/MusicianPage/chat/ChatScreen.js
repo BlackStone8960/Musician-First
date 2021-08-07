@@ -13,16 +13,19 @@ const ChatScreen = ({ uid, otherId }) => {
   useEffect(() => {
     if (uid && otherId) {
       let ref = null;
+      const orderedIdArr = [uid, otherId].sort((a, b) => (a < b ? -1 : 1));
+      ref = database.ref(`/messages/${orderedIdArr[0]}_${orderedIdArr[1]}`);
+      setOrderedRef(ref && ref.orderByChild('createdAt').limitToLast(30));
 
       // check if chat id exists or not
-      database.ref("/messages").once("value").then(snapshot => {
-        if (snapshot.child(`${uid}_${otherId}`).exists()) {
-          ref = database.ref(`/messages/${uid}_${otherId}`);
-        } else if (snapshot.child(`${otherId}_${uid}`).exists()) {
-          ref = database.ref(`/messages/${otherId}_${uid}`);
-        }
-        setOrderedRef(ref && ref.orderByChild('createdAt').limitToLast(30));
-      });
+      // database.ref("/messages").once("value").then(snapshot => {
+      //   if (snapshot.child(`${uid}_${otherId}`).exists()) {
+      //     ref = database.ref(`/messages/${uid}_${otherId}`);
+      //   } else if (snapshot.child(`${otherId}_${uid}`).exists()) {
+      //     ref = database.ref(`/messages/${otherId}_${uid}`);
+      //   }
+      // setOrderedRef(ref && ref.orderByChild('createdAt').limitToLast(30));
+      // });
     }
   }, [uid, otherId]);
 
@@ -57,7 +60,7 @@ const ChatScreen = ({ uid, otherId }) => {
     <div className="chat-container">
       <div className="paper">
         <div className="messages-body">
-          <div>{dataList.length === 0 && "loading..."}</div>
+          {/* <div>{dataList.length === 0 && "loading..."}</div> */}
           {dataList.map(({ key, value }) => (
             <React.Fragment key={`${key}`}>
               <div className="view-date">{showViewDate(value)}</div>

@@ -34,7 +34,7 @@ const TextInput = ({ uid, otherId }) => {
 
   return (
     <div className="chat-input">
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete="off" className="input-form">
         <TextField
           id="standard-text"
           label="Input Message"

@@ -1,4 +1,6 @@
 .chat-box {
+	height: 100%;
+	width: 100%;
 	display: flex;
 	flex-flow: column;
 	align-items: center;
@@ -9,10 +11,18 @@
 	position: absolute;
 	bottom: 0;
 	z-index: 10;
+	background-color: white;
+
+	.input-form {
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+	}
 }
 .paper {
-	width: 80%;
-	height: 80%;
+	width: 100%;
+	height: 100%;
 	// max-width: 500px;
 	// max-height: 700px;
 	display: flex;
@@ -33,13 +43,24 @@
 	height: 100%;
 	display: flex;
 	align-items: center;
-	justify-content: center
+	justify-content: center;
+
+	.view-date {
+		text-align: center;
+    font-size: 14px;
+	}
 }
 .messages-body {
 	width: calc( 100% - 20px ); 
 	margin: 10px;
 	overflow-y: scroll;
-	height: calc( 100% - 80px )
+	-ms-overflow-style: none;    /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+	height: calc( 100% - 80px );
+
+	&::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+		display:none;
+	}
 }
 
 // Message
