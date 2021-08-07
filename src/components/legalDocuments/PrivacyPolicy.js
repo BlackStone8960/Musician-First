@@ -1,6 +1,5 @@
 import React from 'react';
 import BackButton from '../ui/BackButton'
-import { Link } from 'react-router-dom';
 
 const PrivacyPolicy = () => (
   <main className="privacy-policy-container">
@@ -744,9 +743,9 @@ const PrivacyPolicy = () => (
         </div>
       </div>
     </div>
-    <Link to='/filter1' className='back-btn-on-leagl-doc'>
+    <div className='back-btn-on-leagl-doc'>
       <BackButton />
-    </Link>
+    </div>
   </main>
 );
 
