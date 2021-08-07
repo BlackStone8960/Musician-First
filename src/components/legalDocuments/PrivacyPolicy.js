@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react';
+import BackButton from '../ui/BackButton'
+import { Link } from 'react-router-dom';
 
 const PrivacyPolicy = () => (
-  <main>
+  <main className="privacy-policy-container">
     <div id="outputPage" className="ContractText">
       <div className="format-html">
         <div data-exp="simple2" className="outputVersion1">
@@ -23,6 +25,7 @@ const PrivacyPolicy = () => (
             </div>
           </div>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -30,13 +33,13 @@ const PrivacyPolicy = () => (
               color: "#000000",
               textAlign: "Center",
             }}
-            className="documentTitle"
           >
             <span style={{ fontStyle: "normal", fontWeight: "bold" }}>
               www.musicianfirst.ca Privacy Policy
             </span>
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -51,6 +54,7 @@ const PrivacyPolicy = () => (
             Effective date: 1st day of September, 2021
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -69,6 +73,7 @@ const PrivacyPolicy = () => (
             ________________________________________
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -91,6 +96,7 @@ const PrivacyPolicy = () => (
             inform users of our Site of the following:
           </p>
           <ol
+            className="mb-16px"
             start="1"
             style={{
               lineHeight: "18.0pt",
@@ -98,6 +104,7 @@ const PrivacyPolicy = () => (
               fontFamily: "Times New Roman",
               color: "#000000",
               listStyle: "decimal",
+              paddingLeft: "40px"
             }}
           >
             <li value="1">
@@ -126,6 +133,7 @@ const PrivacyPolicy = () => (
             </li>
           </ol>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -139,6 +147,7 @@ const PrivacyPolicy = () => (
           </p>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -160,6 +169,7 @@ const PrivacyPolicy = () => (
               By using our Site users agree that they consent to:
             </p>
             <ol
+              className="mb-16px"
               start="1"
               style={{
                 lineHeight: "18.0pt",
@@ -167,6 +177,7 @@ const PrivacyPolicy = () => (
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "decimal",
+                paddingLeft: "40px"
               }}
             >
               <li value="1">
@@ -187,6 +198,7 @@ const PrivacyPolicy = () => (
             </ol>
           </div>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -211,6 +223,7 @@ const PrivacyPolicy = () => (
             <br />
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -227,6 +240,7 @@ const PrivacyPolicy = () => (
             functions on our Site:
           </p>
           <ol
+            className="mb-16px"
             start="1"
             style={{
               lineHeight: "18.0pt",
@@ -234,6 +248,7 @@ const PrivacyPolicy = () => (
               fontFamily: "Times New Roman",
               color: "#000000",
               listStyle: "decimal",
+              paddingLeft: "40px"
             }}
           >
             <li value="1">
@@ -268,6 +283,7 @@ const PrivacyPolicy = () => (
             </li>
           </ol>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -279,6 +295,7 @@ const PrivacyPolicy = () => (
             This data may be collected using the following methods:
           </p>
           <ol
+            className="mb-16px"
             start="1"
             style={{
               lineHeight: "18.0pt",
@@ -286,6 +303,7 @@ const PrivacyPolicy = () => (
               fontFamily: "Times New Roman",
               color: "#000000",
               listStyle: "decimal",
+              paddingLeft: "40px"
             }}
           >
             <li value="1">
@@ -296,6 +314,7 @@ const PrivacyPolicy = () => (
             </li>
           </ol>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -320,6 +339,7 @@ const PrivacyPolicy = () => (
             this Privacy Policy.
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -332,6 +352,7 @@ const PrivacyPolicy = () => (
             used for the following purposes:
           </p>
           <ol
+            className="mb-16px"
             start="1"
             style={{
               lineHeight: "18.0pt",
@@ -339,6 +360,7 @@ const PrivacyPolicy = () => (
               fontFamily: "Times New Roman",
               color: "#000000",
               listStyle: "decimal",
+              paddingLeft: "40px"
             }}
           >
             <li value="1">
@@ -349,6 +371,7 @@ const PrivacyPolicy = () => (
             </li>
           </ol>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -375,6 +398,7 @@ const PrivacyPolicy = () => (
           </p>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -391,6 +415,7 @@ const PrivacyPolicy = () => (
               except in the following cases:
             </p>
             <ol
+              className="mb-16px"
               start="1"
               style={{
                 lineHeight: "18.0pt",
@@ -398,6 +423,7 @@ const PrivacyPolicy = () => (
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "decimal",
+                paddingLeft: "40px"
               }}
             >
               <li value="1">
@@ -429,6 +455,7 @@ const PrivacyPolicy = () => (
               </li>
             </ol>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -443,6 +470,7 @@ const PrivacyPolicy = () => (
             </p>
           </div>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -469,6 +497,7 @@ const PrivacyPolicy = () => (
             period.
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -502,6 +531,7 @@ const PrivacyPolicy = () => (
           </p>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -523,6 +553,7 @@ const PrivacyPolicy = () => (
               We transfer user personal data to the following countries:
             </p>
             <ol
+              className="mb-16px"
               start="1"
               style={{
                 lineHeight: "18.0pt",
@@ -530,6 +561,7 @@ const PrivacyPolicy = () => (
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "decimal",
+                paddingLeft: "40px"
               }}
             >
               <li value="1">
@@ -540,6 +572,7 @@ const PrivacyPolicy = () => (
               </li>
             </ol>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -555,6 +588,7 @@ const PrivacyPolicy = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -583,6 +617,7 @@ const PrivacyPolicy = () => (
             </p>
           </div>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -617,6 +652,7 @@ const PrivacyPolicy = () => (
             ________________________________________
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -645,6 +681,7 @@ const PrivacyPolicy = () => (
             time.
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -672,6 +709,7 @@ const PrivacyPolicy = () => (
             notify users by email of changes to this Privacy Policy.
           </p>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -706,6 +744,9 @@ const PrivacyPolicy = () => (
         </div>
       </div>
     </div>
+    <Link to='/filter1' className='back-btn-on-leagl-doc'>
+      <BackButton />
+    </Link>
   </main>
 );
 

@@ -1,4 +1,4 @@
-.t-and-cs-container {
+.terms-and-conditions-container {
 
   div.header,
   div.firstHeader,
@@ -9,6 +9,7 @@
 
   .LDCopyright {
     font-size:67%;
+    margin-bottom: 16px;
   }
 
   .mtb-16px {
@@ -17,6 +18,11 @@
 
   .mb-16px {
     margin-bottom: 16px;
+  }
+
+  .back-btn-on-leagl-doc {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 

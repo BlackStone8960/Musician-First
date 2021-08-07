@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react';
+import BackButton from '../ui/BackButton';
+import { Link } from 'react-router-dom';
 
 const TermsAndConditions = () => (
-  <main className="t-and-cs-container">
+  <main className="terms-and-conditions-container">
     <div id="outputPage" className="ContractText">
       <div className="format-html">
         <div data-exp="simple2" className="outputVersion1">
@@ -23,6 +25,7 @@ const TermsAndConditions = () => (
             </span>
           </div>
           <p
+            className="mtb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -31,7 +34,7 @@ const TermsAndConditions = () => (
               textAlign: "Center",
             }}
           >
-            <div className="mtb-16px"
+            <span
               style={{
                 fontStyle: "normal",
                 fontWeight: "bold",
@@ -39,7 +42,7 @@ const TermsAndConditions = () => (
               }}
             >
               TERMS AND CONDITIONS
-            </div>
+            </span>
           </p>
           <p className="mb-16px"
             style={{
@@ -278,6 +281,7 @@ const TermsAndConditions = () => (
               </li>
             </ul>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -292,6 +296,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -314,6 +319,7 @@ const TermsAndConditions = () => (
               following:
             </p>
             <ol
+              className="mb-16px"
               start="1"
               style={{
                 lineHeight: "18.0pt",
@@ -321,6 +327,7 @@ const TermsAndConditions = () => (
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "decimal",
+                paddingLeft: "40px"
               }}
             >
               <li style={{ marginBottom: "18.0pt" }} value="1">
@@ -345,6 +352,7 @@ const TermsAndConditions = () => (
               </li>
             </ol>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -360,6 +368,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -382,6 +391,7 @@ const TermsAndConditions = () => (
               on our Site.
             </p>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -393,12 +403,14 @@ const TermsAndConditions = () => (
               The following services are available on our Site:
             </p>
             <ul
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "disc",
+                paddingLeft: "40px"
               }}
             >
               <li style={{ marginBottom: "0.0pt" }} value="1">
@@ -409,6 +421,7 @@ const TermsAndConditions = () => (
               </li>
             </ul>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -421,6 +434,7 @@ const TermsAndConditions = () => (
               ordered.
             </p>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -438,6 +452,7 @@ const TermsAndConditions = () => (
               services from our Site at your own risk.
             </p>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -455,6 +470,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -484,6 +500,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -505,12 +522,14 @@ const TermsAndConditions = () => (
               We accept the following payment methods on our Site:
             </p>
             <ul
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "disc",
+                paddingLeft: "40px"
               }}
             >
               <li style={{ marginBottom: "18.0pt" }} value="1">
@@ -527,6 +546,7 @@ const TermsAndConditions = () => (
               </li>
             </ul>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -549,6 +569,7 @@ const TermsAndConditions = () => (
           <div>
             <div>
               <p
+                className="mb-16px"
                 style={{
                   lineHeight: "18.0pt",
                   fontSize: "12.0pt",
@@ -575,6 +596,7 @@ const TermsAndConditions = () => (
                 We provide refunds for services sold on our Site as follows:
               </p>
               <ul
+                className="mb-16px"
                 style={{
                   lineHeight: "18.0pt",
                   fontSize: "12.0pt",
@@ -582,6 +604,7 @@ const TermsAndConditions = () => (
                   fontFamily: "Times New Roman",
                   color: "#000000",
                   listStyle: "disc",
+                  paddingLeft: "40px"
                 }}
               >
                 <li style={{ marginBottom: "0.0pt" }} value="1">
@@ -601,6 +624,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -634,6 +658,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -660,6 +685,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -688,6 +714,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -712,6 +739,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -738,6 +766,7 @@ const TermsAndConditions = () => (
               acceptable to both you and Alexander Purcell.
             </p>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -754,6 +783,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -773,12 +803,14 @@ const TermsAndConditions = () => (
               </span>
             </p>
             <ul
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "disc",
+                paddingLeft: "40px"
               }}
             >
               <li style={{ marginBottom: "0.0pt" }} value="1">
@@ -796,6 +828,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -824,6 +857,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -851,6 +885,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -880,6 +915,7 @@ const TermsAndConditions = () => (
               ______________________________________
             </p>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -893,6 +929,7 @@ const TermsAndConditions = () => (
             </p>
           </div>
           <p
+            className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -910,7 +947,10 @@ const TermsAndConditions = () => (
         </div>
       </div>
     </div>
-  </main>
+    <Link to="/filter1" className="back-btn-on-leagl-doc">
+      <BackButton />
+    </Link>
+  </main >
 );
 
 export default TermsAndConditions;

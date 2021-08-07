@@ -1,10 +1,22 @@
-div.header,
-div.firstHeader,
-div.footer,
-div.firstFooter { 
-  display: none;
-}
+.privacy-policy-container {
 
-.LDCopyright {
-	font-size:67%;
+  div.header,
+  div.firstHeader,
+  div.footer,
+  div.firstFooter { 
+    display: none;
+  }
+
+  .LDCopyright {
+    font-size:67%;
+    margin-bottom: 16px;
+  }
+  .mb-16px, li {
+    margin-bottom: 16px;
+  }
+  .back-btn-on-leagl-doc {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
 }
