@@ -1,7 +1,7 @@
 import React from "react";
 
 const TermsAndConditions = () => (
-  <main>
+  <main className="t-and-cs-container">
     <div id="outputPage" className="ContractText">
       <div className="format-html">
         <div data-exp="simple2" className="outputVersion1">
@@ -31,7 +31,7 @@ const TermsAndConditions = () => (
               textAlign: "Center",
             }}
           >
-            <span
+            <div className="mtb-16px"
               style={{
                 fontStyle: "normal",
                 fontWeight: "bold",
@@ -39,9 +39,9 @@ const TermsAndConditions = () => (
               }}
             >
               TERMS AND CONDITIONS
-            </span>
+            </div>
           </p>
-          <p
+          <p className="mb-16px"
             style={{
               lineHeight: "18.0pt",
               fontSize: "12.0pt",
@@ -67,7 +67,7 @@ const TermsAndConditions = () => (
             IMPACTS YOUR RIGHTS ABOUT HOW TO RESOLVE DISPUTES. PLEASE READ IT
             CAREFULLY.
           </p>
-          <div>
+          <div className="mb-16px">
             <p
               style={{
                 lineHeight: "18.0pt",
@@ -94,7 +94,7 @@ const TermsAndConditions = () => (
               composition of our Site.
             </p>
           </div>
-          <div>
+          <div className="mb-16px">
             <p
               style={{
                 lineHeight: "18.0pt",
@@ -120,7 +120,7 @@ const TermsAndConditions = () => (
             </p>
           </div>
           <div>
-            <p
+            <p className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -143,12 +143,14 @@ const TermsAndConditions = () => (
               use our Site for illegal purposes, and not to:
             </p>
             <ul
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "disc",
+                paddingLeft: "40px"
               }}
             >
               <li style={{ marginBottom: "18.0pt" }} value="1">
@@ -206,6 +208,7 @@ const TermsAndConditions = () => (
               </li>
             </ul>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -223,6 +226,7 @@ const TermsAndConditions = () => (
           </div>
           <div>
             <p
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
@@ -244,12 +248,14 @@ const TermsAndConditions = () => (
               Users may post the following information on our Site:
             </p>
             <ul
+              className="mb-16px"
               style={{
                 lineHeight: "18.0pt",
                 fontSize: "12.0pt",
                 fontFamily: "Times New Roman",
                 color: "#000000",
                 listStyle: "disc",
+                paddingLeft: "40px"
               }}
             >
               <li style={{ marginBottom: "18.0pt" }} value="1">

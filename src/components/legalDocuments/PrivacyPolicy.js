@@ -6,13 +6,13 @@ const PrivacyPolicy = () => (
       <div className="format-html">
         <div data-exp="simple2" className="outputVersion1">
           <div className="header">
-            <div style={{ lineHeight: "18.0pt" }} className="content">
+            <span style={{ lineHeight: "18.0pt" }} className="content">
               Website Privacy Policy
-            </div>
-            <div style={{ lineHeight: "18.0pt" }} className="pageNumbers">
+            </span>
+            <span style={{ lineHeight: "18.0pt" }} className="pageNumbers">
               Page <span className="currentPageNum"></span> of{" "}
               <span className="totalPageNum"></span>
-            </div>
+            </span>
           </div>
           <div className="footer"></div>
           <div className=" firstHeader"></div>
