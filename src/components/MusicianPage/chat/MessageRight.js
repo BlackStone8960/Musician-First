@@ -15,9 +15,9 @@ const MessageRight = ({
 
   return (
     <React.Fragment>
-      <div className="messageRowRight">
+      <div className="message-row-right">
         <div>
-          <div className="messageOrange">
+          <div className="message-orange">
             <div><p className="message-content">{message}</p></div>
             <div className="message-timestamp-right">{createdAt ? moment(createdAt).format('HH:mm') : ''}</div>
           </div>

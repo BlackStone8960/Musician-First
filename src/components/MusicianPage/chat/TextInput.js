@@ -33,7 +33,7 @@ const TextInput = ({ uid, otherId }) => {
   }
 
   return (
-    <React.Fragment>
+    <div className="chat-input">
       <form noValidate autoComplete="off">
         <TextField
           id="standard-text"
@@ -45,7 +45,7 @@ const TextInput = ({ uid, otherId }) => {
           <SendIcon />
         </Button>
       </form>
-    </React.Fragment>
+    </div>
   )
 }
 

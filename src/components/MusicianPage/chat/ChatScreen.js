@@ -1,12 +1,11 @@
-import React, { useMemo, useEffect, useState } from 'react'
-import useFetchAllChatData from '../../../hooks/useFetchAllChatData';
+import React, { useEffect, useState } from 'react'
 import MessageLeft from './MessageLeft';
 import MessageRight from './MessageRight';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import database from '../../../firebase/firebase';
 
-const ChatScreen = ({ uid, otherId, otherProfile = null }) => {
+const ChatScreen = ({ uid, otherId }) => {
   const [dataList, setDataList] = useState([]);
   const [orderedRef, setOrderedRef] = useState(null);
   let viewDate = "";
@@ -55,27 +54,30 @@ const ChatScreen = ({ uid, otherId, otherProfile = null }) => {
   }
 
   return (
-    <div>
-      <div>{dataList.length === 0 && "loading..."}</div>
-      {dataList.map(({ key, value }) => (
-        <React.Fragment key={`${key}`}>
-          <div className="view-date">{showViewDate(value)}</div>
-          {
-            uid !== value.uid ? (
-              <MessageLeft {...value} otherProfile={otherProfile} />
-            ) : (
-              <MessageRight {...value} />
-            )
-          }
-        </React.Fragment>
-      ))}
+    <div className="chat-container">
+      <div className="paper">
+        <div className="messages-body">
+          <div>{dataList.length === 0 && "loading..."}</div>
+          {dataList.map(({ key, value }) => (
+            <React.Fragment key={`${key}`}>
+              <div className="view-date">{showViewDate(value)}</div>
+              {
+                uid !== value.uid ? (
+                  <MessageLeft {...value} />
+                ) : (
+                  <MessageRight {...value} />
+                )
+              }
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
 
 const mapStateToProps = (state) => ({
-  uid: state.userAccount.id,
-  photoUrl: state.userAccount.profile.photoUrl
+  uid: state.userAccount.id
 });
 
 export default connect(mapStateToProps)(ChatScreen);

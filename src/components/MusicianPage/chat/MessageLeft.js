@@ -5,9 +5,9 @@ const MessageLeft = ({
   message = 'no message',
   createdAt
 }) => (
-  <div className="messageRow">
+  <div className="message-row">
     <div>
-      <div className="messageBlue">
+      <div className="message-blue">
         <div><p className="message-content">{message}</p></div>
         <div className="message-timestamp-right">{createdAt ? moment(createdAt).format('HH:mm') : ''}</div>
       </div>

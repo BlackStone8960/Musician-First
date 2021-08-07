@@ -3,17 +3,54 @@
 	flex-flow: column;
 	align-items: center;
 	justify-content: center;
+	position: relative;
+}
+.chat-input {
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+}
+.paper {
+	width: 80%;
+	height: 80%;
+	// max-width: 500px;
+	// max-height: 700px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	position: relative
+}
+// .paper2 {
+// 	width: 80vw;
+// 	max-width: 500px;
+// 	display: flex;
+// 	align-items: center;
+// 	flex-direction: column;
+// 	position: relative
+// };
+.chat-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+.messages-body {
+	width: calc( 100% - 20px ); 
+	margin: 10px;
+	overflow-y: scroll;
+	height: calc( 100% - 80px )
 }
 
 // Message
-.messageRow {
+.message-row {
 	display: flex;
 }
-.messageRowRight {
+.message-row-right {
 	display: flex;
-	justifyContent: flex-end;
+	justify-content: flex-end;
 }
-.messageBlue {
+.message-blue {
 	position: relative;
 	margin-left: 20px;
 	padding: 10px;
@@ -49,7 +86,7 @@
 			left: -17px;
 	}
 }
-.messageOrange {
+.message-orange {
 	position: relative;
 	margin-right: 20px;
 	margin-bottom: 10px;
@@ -85,11 +122,11 @@
 	}
 }
 
-.messageContent {
+.message-content {
 	padding: 0;
 	margin: 0;
 }
-.messageTimeStampRight {
+.message-timestamp-right {
 	position: absolute;
 	font-size: .85em;
 	font-weight: 300;
