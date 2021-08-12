@@ -6,6 +6,7 @@ import { firebase, storage } from '../../firebase/firebase';
 import { Link, useHistory } from 'react-router-dom';
 import TrimModal from './TrimModal';
 import MusicPlayer from '../MusicianPage/MusicPlayer';
+import DeleteAccountModal from './DeleteAccountModal';
 
 // const PhotoObjContext = createContext();
 const EmbeddedURLRoot = "https://open.spotify.com/embed/";
@@ -36,10 +37,11 @@ export const ProfilePage = (props) => {
   const [song3, setSong3] = useState(decodeURI(props.profile.songs.song3) || "");
   const [encodedSongsArr, setEncodedSongsArr] = useState([]);
   const [errorState, setErrorState] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   let history = useHistory();
-  
+
   useEffect(() => {
-    if (photoBlob){
+    if (photoBlob) {
       const uploadTask = storage.ref(`photos/${props.id}`).put(photoBlob);
       const unsubscribe = uploadTask.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
@@ -82,11 +84,11 @@ export const ProfilePage = (props) => {
     setOriginPhotoSrc(null);
   };
 
-// const findEmbeddedURL = (input) => {
-//   const startPosition = input.indexOf(EmbeddedURLRoot) + EmbeddedURLRoot.length;
-//   const endPosition = input.indexOf('"', startPosition);
-//   return input.substring(startPosition, endPosition);
-// };
+  // const findEmbeddedURL = (input) => {
+  //   const startPosition = input.indexOf(EmbeddedURLRoot) + EmbeddedURLRoot.length;
+  //   const endPosition = input.indexOf('"', startPosition);
+  //   return input.substring(startPosition, endPosition);
+  // };
 
   const isVerifiedSongURL = (songArr) => {
     let verified = true;
@@ -102,12 +104,12 @@ export const ProfilePage = (props) => {
     // history.push("/");
     props.startDeleteUserAccount();
   };
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!firstName || !lastName || !email || !primaryGenre) {
       setErrorState('Please fill in the mandatory information');
-    } else if (!isVerifiedSongURL([ song1, song2, song3 ])) {
+    } else if (!isVerifiedSongURL([song1, song2, song3])) {
       setErrorState('Input embed code as song information');
     } else {
       setErrorState('');
@@ -200,7 +202,7 @@ export const ProfilePage = (props) => {
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
-            { 
+            {
               props.providerId === "password" && (
                 <Link to="/change_password">
                   <input type="button" value="Change Password" className="button--config"></input>
@@ -263,7 +265,7 @@ export const ProfilePage = (props) => {
         <div className="input-block">
           <div className="spotify-wrapper">
             <p className="spotify-description">
-              Embed up to 3 Spotify Artists, Albums, or Songs. Must be on a desktop computer. <br/>
+              Embed up to 3 Spotify Artists, Albums, or Songs. Must be on a desktop computer. <br />
               Click on this <a target="_blank" href="https://www.jimdo.com/blog/embed-spotify-playlist-on-website/" rel="noopener noreferrer">link</a> for instructions.
             </p>
             <label className="spotify-label">
@@ -301,7 +303,7 @@ export const ProfilePage = (props) => {
           </div>
         </div>
         <div>
-          <input type="button" onClick={onDeleteUser} value="Delete Account" />
+          <input className="delete-account-btn" type="button" onClick={() => setIsModalOpen(true)} value="Delete Account" />
         </div>
         {errorState ? <div className="error-message">{errorState}</div> : <div className="error-message-spacing"></div>}
         <input type="button" onClick={onSubmit} value="SAVE" className="button--config save" />
@@ -311,6 +313,12 @@ export const ProfilePage = (props) => {
           originPhotoSrc={originPhotoSrc}
           setPhotoBlob={setPhotoBlob}
           onClose={onClose}
+        />
+      )}
+      {isModalOpen && (
+        <DeleteAccountModal
+          setIsModalOpen={setIsModalOpen}
+          onDeleteUser={onDeleteUser}
         />
       )}
     </React.Fragment>

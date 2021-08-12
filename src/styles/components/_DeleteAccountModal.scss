@@ -1,0 +1,24 @@
+.delete-account-modal-container {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .alert-message {
+    text-align: center;
+  }
+
+  .modal-btns-wrapper {
+    margin-top: 20px;
+
+    .delete-btn {
+      margin-right: 5px;
+    }
+
+    .cancel-btn {
+      margin-left: 5px;
+    }
+  }
+}
