@@ -23,7 +23,21 @@ const Filter1 = () => (
       </div>
       <div className="filter1-container">
         <div className="button button--filter1">
-          <a className="button-anchor">Chill</a>
+          <Link className="button-anchor" to="/filter2/traditional">
+            Traditional
+          </Link>
+        </div>
+        <p className="filter1-discription">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. In quisquam
+          vitae animi consectetur, sunt id labore sit officiis harum ex quo
+          omnis obcaecati libero amet ad ut. Suscipit, recusandae magnam.
+        </p>
+      </div>
+      <div className="filter1-container">
+        <div className="button button--filter1">
+          <Link className="button-anchor" to="/filter2/chill">
+            Chill
+          </Link>
         </div>
         <p className="filter1-discription">
           If radio was still the most popular place to listen to music, this is
@@ -34,7 +48,9 @@ const Filter1 = () => (
       </div>
       <div className="filter1-container">
         <div className="button button--filter1">
-          <a className="button-anchor">Dance Driven</a>
+          <Link className="button-anchor" to="/filter2/dancedriven">
+            Dance Driven
+          </Link>
         </div>
         <p className="filter1-discription">
           Far out This is self explanatory, but when your main goal in life is
@@ -45,7 +61,9 @@ const Filter1 = () => (
       </div>
       <div className="filter1-container">
         <div className="button button--filter1">
-          <a className="button-anchor">Far out</a>
+          <Link className="button-anchor" to="/filter2/farout">
+            Far Out
+          </Link>
         </div>
         <p className="filter1-discription">
           Rules in music? Pfft, as if. Genre is just a 5 letter word, and you

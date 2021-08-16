@@ -1,7 +1,18 @@
 import React from "react";
 
-const MusicGenre = () => {
-  return <h1>music genre button</h1>;
+const MusicGenre = ({ index, musicGenre, isClickedArr, onSelect }) => {
+  return (
+    <div
+      className={[
+        "button",
+        "button--filter2",
+        isClickedArr[index] ? "clicked" : null,
+      ].join(" ")}
+      onClick={() => onSelect(index)}
+    >
+      <div className="button-anchor">{musicGenre}</div>
+    </div>
+  );
 };
 
 export default MusicGenre;

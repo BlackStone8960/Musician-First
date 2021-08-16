@@ -1,4 +1,4 @@
-const genreList = {
+const genresList = {
   edgy: [
     "Rock",
     "Alternative",
@@ -42,7 +42,7 @@ const genreList = {
     "Surf",
     "Bluegrass",
   ],
-  dance: [
+  dancedriven: [
     "Techno",
     "Deep House",
     "Trap",
@@ -63,7 +63,7 @@ const genreList = {
     "Trance",
     "Latin",
   ],
-  farOut: [
+  farout: [
     "Noise",
     "Avant-garde",
     "Experimental",
@@ -76,4 +76,4 @@ const genreList = {
   ],
 };
 
-export default genreList;
+export default genresList;
