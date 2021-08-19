@@ -2,11 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import genresList from "../../../data/genresList";
 import MusicGenre from "./MusicGenre";
+import {
+  addSelectedGenre,
+  removeSelectedGenre,
+} from "../../../actions/selectedGenres";
+import { connect } from "react-redux";
 
-const Filter2 = (props) => {
+export const Filter2 = (props) => {
   const [selectCount, setSelectCount] = useState(0);
   const [isClickedArr, setIsClickedArr] = useState([]);
   const [genres, setGenres] = useState(genresList[props.match.params.category]);
+
+  console.log(props);
 
   const makeIsClickedCheckList = () => {
     let checkListArr = [];
@@ -16,17 +23,20 @@ const Filter2 = (props) => {
     setIsClickedArr(checkListArr);
   };
 
-  const onSelect = (index) => {
+  const onSelect = (index, selectedGenre) => {
+    console.log(selectedGenre);
     if (isClickedArr[index] && selectCount > 0) {
       isClickedArr.splice(index, 1, !isClickedArr[index]);
       setSelectCount((prevState) => prevState - 1);
       setIsClickedArr(isClickedArr);
+      props.removeSelectedGenre(selectedGenre);
     } else if (!isClickedArr[index] && selectCount < 3) {
       isClickedArr.splice(index, 1, !isClickedArr[index]);
       setSelectCount((prevState) =>
         isClickedArr[index] ? selectCount + 1 : selectCount - 1
       );
       setIsClickedArr(isClickedArr);
+      props.addSelectedGenre(selectedGenre);
     }
   };
 
@@ -74,4 +84,15 @@ const Filter2 = (props) => {
   );
 };
 
-export default Filter2;
+const mapStateToProps = (state) => ({
+  selectedGenres: state.selectedGenres,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addSelectedGenre: (selectedGenre) =>
+    dispatch(addSelectedGenre(selectedGenre)),
+  removeSelectedGenre: (selectedGenre) =>
+    dispatch(removeSelectedGenre(selectedGenre)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter2);

@@ -23,9 +23,11 @@
     background: orange;
     width: 14%;
     margin: 0 5% $l-length;
-    .button-anchor {
-      padding: $s-length 0;
-    }
+    border: none;
+    padding: $s-length 0;
+    // .button-anchor {
+    //   padding: $s-length 0;
+    // }
   }
   &--black {
     background: $black;
@@ -45,8 +47,8 @@
   }
 }
 .clicked {
-  background: lighten(orange, 30%)
-} 
+  background: lighten(orange, 30%);
+}
 .findcollaborator {
   width: 20%;
   margin: 0 auto;

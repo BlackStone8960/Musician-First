@@ -2,16 +2,18 @@ import React from "react";
 
 const MusicGenre = ({ index, musicGenre, isClickedArr, onSelect }) => {
   return (
-    <div
+    <button
       className={[
         "button",
         "button--filter2",
         isClickedArr[index] ? "clicked" : null,
       ].join(" ")}
-      onClick={() => onSelect(index)}
+      onClick={(e) => onSelect(index, e.target.value)}
+      value={musicGenre}
     >
-      <div className="button-anchor">{musicGenre}</div>
-    </div>
+      {musicGenre}
+      {/* <div className="button-anchor">{musicGenre}</div> */}
+    </button>
   );
 };
 
