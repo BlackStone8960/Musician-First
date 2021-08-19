@@ -7,6 +7,7 @@ const GenreOptions = ({
   setGenre,
   isSignUpPage,
 }) => {
+  console.log(genre);
   return (
     <React.Fragment>
       <div className="input-block">
@@ -28,160 +29,160 @@ const GenreOptions = ({
           )}
           <optgroup label="Edgy">
             <option
-              disabled={currentOtherGenre === "rock" ? true : false}
-              value="rock"
+              disabled={currentOtherGenre === "Rock" ? true : false}
+              value="Rock"
             >
               Rock
             </option>
             <option
-              disabled={currentOtherGenre === "alternative" ? true : false}
-              value="alternative"
+              disabled={currentOtherGenre === "Alternative" ? true : false}
+              value="Alternative"
             >
               Alternative
             </option>
             <option
-              disabled={currentOtherGenre === "hiphop rap" ? true : false}
-              value="hiphop rap"
+              disabled={currentOtherGenre === "Hip Hop/Rap" ? true : false}
+              value="Hip Hop/Rap"
             >
               Hip Hop/Rap
             </option>
             <option
-              disabled={currentOtherGenre === "metal" ? true : false}
-              value="metal"
+              disabled={currentOtherGenre === "Metal" ? true : false}
+              value="Metal"
             >
               Metal
             </option>
             <option
-              disabled={currentOtherGenre === "punk" ? true : false}
-              value="punk"
+              disabled={currentOtherGenre === "Punk" ? true : false}
+              value="Punk"
             >
               Punk
             </option>
             <option
-              disabled={currentOtherGenre === "progressive-rock" ? true : false}
-              value="progressive-rock"
+              disabled={currentOtherGenre === "Progressive Rock" ? true : false}
+              value="Progressive Rock"
             >
               Progressive Rock
             </option>
             <option
-              disabled={currentOtherGenre === "indie-rock" ? true : false}
-              value="indie-rock"
+              disabled={currentOtherGenre === "Indie Rock" ? true : false}
+              value="Indie Rock"
             >
               Indie Rock
             </option>
             <option
-              disabled={currentOtherGenre === "rock-n-roll" ? true : false}
-              value="rock-n-roll"
+              disabled={currentOtherGenre === "Rock & Roll" ? true : false}
+              value="Rock & Roll"
             >
               Rock & Roll
             </option>
             <option
-              disabled={currentOtherGenre === "pop-rock" ? true : false}
-              value="pop-rock"
+              disabled={currentOtherGenre === "Pop Rock" ? true : false}
+              value="Pop Rock"
             >
               Pop Rock
             </option>
             <option
-              disabled={currentOtherGenre === "rockabilly" ? true : false}
-              value="rockabilly"
+              disabled={currentOtherGenre === "Rockabilly" ? true : false}
+              value="Rockabilly"
             >
               Rockabilly
             </option>
             <option
-              disabled={currentOtherGenre === "hardcore" ? true : false}
-              value="hardcore"
+              disabled={currentOtherGenre === "Hardcore" ? true : false}
+              value="Hardcore"
             >
               Hardcore
             </option>
             <option
-              disabled={currentOtherGenre === "pstchedelic-rock" ? true : false}
-              value="pstchedelic-rock"
+              disabled={currentOtherGenre === "Psychedelic Rock" ? true : false}
+              value="Psychedelic Rock"
             >
               Psychedelic Rock
             </option>
             <option
-              disabled={currentOtherGenre === "grunge" ? true : false}
-              value="grunge"
+              disabled={currentOtherGenre === "Grunge" ? true : false}
+              value="Grunge"
             >
               Grunge
             </option>
             <option
-              disabled={currentOtherGenre === "industrial" ? true : false}
-              value="industrial"
+              disabled={currentOtherGenre === "Industrial" ? true : false}
+              value="Industrial"
             >
               Industrial
             </option>
             <option
-              disabled={currentOtherGenre === "goth" ? true : false}
-              value="goth"
+              disabled={currentOtherGenre === "Goth" ? true : false}
+              value="Goth"
             >
               Goth
             </option>
           </optgroup>
           <optgroup label="Traditional">
             <option
-              disabled={currentOtherGenre === "folk" ? true : false}
-              value="folk"
+              disabled={currentOtherGenre === "Folk" ? true : false}
+              value="Folk"
             >
               Folk
             </option>
             <option
-              disabled={currentOtherGenre === "blues" ? true : false}
-              value="blues"
+              disabled={currentOtherGenre === "Blues" ? true : false}
+              value="Blues"
             >
               Blues
             </option>
             <option
-              disabled={currentOtherGenre === "jazz" ? true : false}
-              value="jazz"
+              disabled={currentOtherGenre === "Jazz" ? true : false}
+              value="Jazz"
             >
               Jazz
             </option>
             <option
-              disabled={currentOtherGenre === "caribbean" ? true : false}
-              value="caribbean"
+              disabled={currentOtherGenre === "Caribbean" ? true : false}
+              value="Caribbean"
             >
               Caribbean
             </option>
             <option
-              disabled={currentOtherGenre === "indigenous-music" ? true : false}
-              value="indigenous-music"
+              disabled={currentOtherGenre === "Indigenous Music" ? true : false}
+              value="Indigenous Music"
             >
               Indigenous Music
             </option>
             <option
-              disabled={currentOtherGenre === "bluegrass" ? true : false}
-              value="bluegrass"
+              disabled={currentOtherGenre === "Bluegrass" ? true : false}
+              value="Bluegrass"
             >
               Bluegrass
             </option>
             <option
-              disabled={currentOtherGenre === "country" ? true : false}
-              value="country"
+              disabled={currentOtherGenre === "Country" ? true : false}
+              value="Country"
             >
               Country
             </option>
             <option
-              disabled={currentOtherGenre === "classical" ? true : false}
-              value="classical"
+              disabled={currentOtherGenre === "Classical" ? true : false}
+              value="Classical"
             >
               Classical
             </option>
             <option
-              disabled={currentOtherGenre === "gospel" ? true : false}
-              value="gospel"
+              disabled={currentOtherGenre === "Gospel" ? true : false}
+              value="Gospel"
             >
               Gospel
             </option>
             <option
-              disabled={currentOtherGenre === "christian-rock" ? true : false}
-              value="christian-rock"
+              disabled={currentOtherGenre === "Christian Rock" ? true : false}
+              value="Christian Rock"
             >
               Christian Rock
             </option>
             <option
-              disabled={currentOtherGenre === "spiritual" ? true : false}
-              value="spiritual"
+              disabled={currentOtherGenre === "Spiritual" ? true : false}
+              value="Spiritual"
             >
               Spiritual
             </option>
@@ -189,219 +190,219 @@ const GenreOptions = ({
           <optgroup label="Chill">
             <option
               disabled={
-                currentOtherGenre === "singer-songwriter" ? true : false
+                currentOtherGenre === "Singer-Songwriter" ? true : false
               }
-              value="singer-songwriter"
+              value="Singer-Songwriter"
             >
               Singer-Songwriter
             </option>
             <option
-              disabled={currentOtherGenre === "alternative" ? true : false}
-              value="alternative"
+              disabled={currentOtherGenre === "Alternative" ? true : false}
+              value="Alternative"
             >
               Alternative
             </option>
             <option
-              disabled={currentOtherGenre === "pop" ? true : false}
-              value="pop"
+              disabled={currentOtherGenre === "Pop" ? true : false}
+              value="Pop"
             >
               Pop
             </option>
             <option
-              disabled={currentOtherGenre === "lofi" ? true : false}
-              value="lofi"
+              disabled={currentOtherGenre === "Lofi" ? true : false}
+              value="Lofi"
             >
               Lofi
             </option>
             <option
               disabled={
-                currentOtherGenre === "adult-contemporary" ? true : false
+                currentOtherGenre === "Adult Contemporary" ? true : false
               }
-              value="adult-contemporary"
+              value="Adult Contemporary"
             >
               Adult Contemporary
             </option>
             <option
-              disabled={currentOtherGenre === "blues" ? true : false}
-              value="blues"
+              disabled={currentOtherGenre === "Blues" ? true : false}
+              value="Blues"
             >
               Blues
             </option>
             <option
-              disabled={currentOtherGenre === "trip-hop" ? true : false}
-              value="trip-hop"
+              disabled={currentOtherGenre === "Trip Hop" ? true : false}
+              value="Trip Hop"
             >
               Trip Hop
             </option>
             <option
-              disabled={currentOtherGenre === "easy-listening" ? true : false}
-              value="easy-listening"
+              disabled={currentOtherGenre === "Easy Listening" ? true : false}
+              value="Easy Listening"
             >
               Easy Listening
             </option>
             <option
-              disabled={currentOtherGenre === "christian-rock" ? true : false}
-              value="christian-rock"
+              disabled={currentOtherGenre === "Christian Rock" ? true : false}
+              value="Christian Rock"
             >
               Christian Rock
             </option>
             <option
-              disabled={currentOtherGenre === "surf" ? true : false}
-              value="surf"
+              disabled={currentOtherGenre === "Surf" ? true : false}
+              value="Surf"
             >
               Surf
             </option>
             <option
-              disabled={currentOtherGenre === "bluegrass" ? true : false}
-              value="bluegrass"
+              disabled={currentOtherGenre === "Bluegrass" ? true : false}
+              value="Bluegrass"
             >
               Bluegrass
             </option>
           </optgroup>
           <optgroup label="Dance">
             <option
-              disabled={currentOtherGenre === "techno" ? true : false}
-              value="techno"
+              disabled={currentOtherGenre === "Techno" ? true : false}
+              value="Techno"
             >
               Techno
             </option>
             <option
-              disabled={currentOtherGenre === "deep-house" ? true : false}
-              value="deep-house"
+              disabled={currentOtherGenre === "Deep House" ? true : false}
+              value="Deep House"
             >
               Deep House
             </option>
             <option
-              disabled={currentOtherGenre === "trap" ? true : false}
-              value="trap"
+              disabled={currentOtherGenre === "Trap" ? true : false}
+              value="Trap"
             >
               Trap
             </option>
             <option
-              disabled={currentOtherGenre === "rnb" ? true : false}
-              value="rnb"
+              disabled={currentOtherGenre === "RnB" ? true : false}
+              value="RnB"
             >
               RnB
             </option>
             <option
-              disabled={currentOtherGenre === "dram-n-bass" ? true : false}
-              value="dram-n-bass"
+              disabled={currentOtherGenre === "Drum & Bass" ? true : false}
+              value="Drum & Bass"
             >
               Drum & Bass
             </option>
             <option
-              disabled={currentOtherGenre === "dance" ? true : false}
-              value="dance"
+              disabled={currentOtherGenre === "Dance" ? true : false}
+              value="Dance"
             >
               Dance
             </option>
             <option
-              disabled={currentOtherGenre === "funk" ? true : false}
-              value="funk"
+              disabled={currentOtherGenre === "Funk" ? true : false}
+              value="Funk"
             >
               Funk
             </option>
             <option
-              disabled={currentOtherGenre === "edm" ? true : false}
-              value="edm"
+              disabled={currentOtherGenre === "EDM" ? true : false}
+              value="EDM"
             >
               EDM
             </option>
             <option
-              disabled={currentOtherGenre === "reggae" ? true : false}
-              value="reggae"
+              disabled={currentOtherGenre === "Reggae" ? true : false}
+              value="Reggae"
             >
               Reggae
             </option>
             <option
-              disabled={currentOtherGenre === "bass" ? true : false}
-              value="bass"
+              disabled={currentOtherGenre === "Bass" ? true : false}
+              value="Bass"
             >
               Bass
             </option>
             <option
-              disabled={currentOtherGenre === "disco" ? true : false}
-              value="disco"
+              disabled={currentOtherGenre === "Disco" ? true : false}
+              value="Disco"
             >
               Disco
             </option>
             <option
-              disabled={currentOtherGenre === "electro" ? true : false}
-              value="electro"
+              disabled={currentOtherGenre === "Electro" ? true : false}
+              value="Electro"
             >
               Electro
             </option>
             <option
-              disabled={currentOtherGenre === "dub-step" ? true : false}
-              value="dub-step"
+              disabled={currentOtherGenre === "Dub Step" ? true : false}
+              value="Dub Step"
             >
               Dub Step
             </option>
             <option
-              disabled={currentOtherGenre === "jazz" ? true : false}
-              value="jazz"
+              disabled={currentOtherGenre === "Jazz" ? true : false}
+              value="Jazz"
             >
               Jazz
             </option>
             <option
-              disabled={currentOtherGenre === "blues" ? true : false}
-              value="blues"
+              disabled={currentOtherGenre === "Blues" ? true : false}
+              value="Blues"
             >
               blues
             </option>
             <option
-              disabled={currentOtherGenre === "dancehall" ? true : false}
-              value="dancehall"
+              disabled={currentOtherGenre === "Dancehall" ? true : false}
+              value="Dancehall"
             >
               Dancehall
             </option>
             <option
-              disabled={currentOtherGenre === "trance" ? true : false}
-              value="trance"
+              disabled={currentOtherGenre === "Trance" ? true : false}
+              value="Trance"
             >
               Trance
             </option>
             <option
-              disabled={currentOtherGenre === "latin" ? true : false}
-              value="latin"
+              disabled={currentOtherGenre === "Latin" ? true : false}
+              value="Latin"
             >
               Latin
             </option>
           </optgroup>
           <optgroup label="Far Out">
             <option
-              disabled={currentOtherGenre === "noise" ? true : false}
-              value="noise"
+              disabled={currentOtherGenre === "Noise" ? true : false}
+              value="Noise"
             >
               Noise
             </option>
             <option
-              disabled={currentOtherGenre === "avant-garde" ? true : false}
-              value="avant-garde"
+              disabled={currentOtherGenre === "Avant-garde" ? true : false}
+              value="Avant-garde"
             >
               Avant Garde
             </option>
             <option
-              disabled={currentOtherGenre === "experimantal" ? true : false}
-              value="experimantal"
+              disabled={currentOtherGenre === "Experimental" ? true : false}
+              value="Experimental"
             >
               Experimantal
             </option>
             <option
-              disabled={currentOtherGenre === "art-rock" ? true : false}
-              value="art-rock"
+              disabled={currentOtherGenre === "Art Rock" ? true : false}
+              value="Art Rock"
             >
               Art Rock
             </option>
             <option
-              disabled={currentOtherGenre === "soundscapes" ? true : false}
-              value="soundscapes"
+              disabled={currentOtherGenre === "Soundscapes" ? true : false}
+              value="Soundscapes"
             >
               Soundscapes
             </option>
             <option
-              disabled={currentOtherGenre === "new-age" ? true : false}
-              value="new-age"
+              disabled={currentOtherGenre === "New Age" ? true : false}
+              value="New Age"
             >
               New Age
             </option>
@@ -412,14 +413,14 @@ const GenreOptions = ({
               8bit
             </option>
             <option
-              disabled={currentOtherGenre === "new-classical" ? true : false}
-              value="new-classical"
+              disabled={currentOtherGenre === "New Classical" ? true : false}
+              value="New Classical"
             >
               New Classical
             </option>
             <option
-              disabled={currentOtherGenre === "instrumental" ? true : false}
-              value="instrumental"
+              disabled={currentOtherGenre === "Instrumental" ? true : false}
+              value="Instrumental"
             >
               Instrumental
             </option>

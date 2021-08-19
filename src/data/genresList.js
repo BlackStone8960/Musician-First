@@ -37,7 +37,7 @@ const genresList = {
     "Adult Contemporary",
     "Blues",
     "Trip Hop",
-    "Easy listening",
+    "Easy Listening",
     "Christian Rock",
     "Surf",
     "Bluegrass",

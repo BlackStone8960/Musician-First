@@ -14,7 +14,6 @@ export const SignUp = (props) => {
   const [primaryGenre, setPrimaryGenre] = useState("");
   const [secondaryGenre, setSecondaryGenre] = useState("");
   const [error, setError] = useState("");
-  console.log(primaryGenre, secondaryGenre);
 
   const onSubmit = (e) => {
     e.preventDefault();
