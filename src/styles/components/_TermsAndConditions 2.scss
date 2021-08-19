@@ -1,0 +1,28 @@
+.terms-and-conditions-container {
+
+  div.header,
+  div.firstHeader,
+  div.footer,
+  div.firstFooter { 
+    display: none;
+  }
+
+  .LDCopyright {
+    font-size:67%;
+    margin-bottom: 16px;
+  }
+
+  .mtb-16px {
+    margin: 16px 0;
+  }
+
+  .mb-16px {
+    margin-bottom: 16px;
+  }
+
+  .back-btn-on-leagl-doc {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
