@@ -15,8 +15,6 @@ export const Filter2 = (props) => {
   const [isClickedArr, setIsClickedArr] = useState([]);
   const [genres, setGenres] = useState(genresList[props.match.params.category]);
 
-  console.log(props, props.selectedGenres);
-
   const makeIsClickedCheckList = () => {
     let checkListArr = [];
     for (let i = 0; i < genres.length; i++) {
@@ -43,46 +41,61 @@ export const Filter2 = (props) => {
   };
 
   useEffect(() => {
-    makeIsClickedCheckList();
-    resetSelectedGenres();
+    if (
+      genresList &&
+      Object.keys(genresList).includes(props.match.params.category)
+    ) {
+      makeIsClickedCheckList();
+      resetSelectedGenres();
+    } else {
+      props.history.push("/page-not-found");
+    }
   }, []);
 
   return (
     <React.Fragment>
-      <p className="filter-topmassage">
-        Let’s get specific. Pick at least three styles that represent your
-        project.<br></br>
-        You will be matched by someone who understands these specific vibes.
-      </p>
-      <div className="filter-wrapper">
-        {genres.map((genre, index) => (
-          <MusicGenre
-            key={index}
-            index={index}
-            musicGenre={genre}
-            onSelect={onSelect}
-            isClickedArr={isClickedArr}
-          />
-        ))}
-      </div>
-      <div className="button findcollaborator">
-        {selectCount > 0 ? (
-          <Link className="button-anchor" to="/filter3">
-            Find my collaborator
-          </Link>
-        ) : (
-          <div className="button-anchor unactive">Find my collaborator</div>
+      {genresList &&
+        Object.keys(genresList).includes(props.match.params.category) && (
+          <React.Fragment>
+            <p className="filter-topmassage">
+              Let’s get specific. Pick at least three styles that represent your
+              project.<br></br>
+              You will be matched by someone who understands these specific
+              vibes.
+            </p>
+            <div className="filter-wrapper">
+              {genres.map((genre, index) => (
+                <MusicGenre
+                  key={index}
+                  index={index}
+                  musicGenre={genre}
+                  onSelect={onSelect}
+                  isClickedArr={isClickedArr}
+                />
+              ))}
+            </div>
+            <div className="button findcollaborator">
+              {selectCount > 0 ? (
+                <Link className="button-anchor" to="/filter3">
+                  Find my collaborator
+                </Link>
+              ) : (
+                <div className="button-anchor unactive">
+                  Find my collaborator
+                </div>
+              )}
+            </div>
+            <p className="filter-bottommassage">
+              Didn’t find your style? Just search here and we may have exactly
+              what you are looking for.
+            </p>
+            <input
+              className="genreSearch"
+              type="text"
+              placeholder="Type Link genre"
+            ></input>
+          </React.Fragment>
         )}
-      </div>
-      <p className="filter-bottommassage">
-        Didn’t find your style? Just search here and we may have exactly what
-        you are looking for.
-      </p>
-      <input
-        className="genreSearch"
-        type="text"
-        placeholder="Type Link genre"
-      ></input>
     </React.Fragment>
   );
 };
