@@ -6,6 +6,8 @@ export default (state = [], action) => {
       return state;
     case "REMOVE_SELECTED_GENRE":
       return state.filter((genre) => genre !== action.selectedGenre);
+    case "RESET_SELECTED_GENRES":
+      return state;
     default:
       return state;
   }

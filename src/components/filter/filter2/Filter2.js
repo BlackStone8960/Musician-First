@@ -5,15 +5,17 @@ import MusicGenre from "./MusicGenre";
 import {
   addSelectedGenre,
   removeSelectedGenre,
+  resetSelectedGenres,
 } from "../../../actions/selectedGenres";
 import { connect } from "react-redux";
+import { reset } from "numeral";
 
 export const Filter2 = (props) => {
   const [selectCount, setSelectCount] = useState(0);
   const [isClickedArr, setIsClickedArr] = useState([]);
   const [genres, setGenres] = useState(genresList[props.match.params.category]);
 
-  console.log(props);
+  console.log(props, props.selectedGenres);
 
   const makeIsClickedCheckList = () => {
     let checkListArr = [];
@@ -42,6 +44,7 @@ export const Filter2 = (props) => {
 
   useEffect(() => {
     makeIsClickedCheckList();
+    resetSelectedGenres();
   }, []);
 
   return (
@@ -93,6 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addSelectedGenre(selectedGenre)),
   removeSelectedGenre: (selectedGenre) =>
     dispatch(removeSelectedGenre(selectedGenre)),
+  resetSelectedGenres: () => dispatch(resetSelectedGenres()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter2);
