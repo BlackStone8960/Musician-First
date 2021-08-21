@@ -1,3 +1,39 @@
+.chat-box-wrapper {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background: white;
+	width: 300px;
+	height: 400px;
+	padding: 6px;
+	border: 1px solid gray;
+}
+
+.chat-box-hidden {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background: white;
+	width: 300px;
+	// height: 400px;
+	padding: 6px;
+	border: 1px solid gray;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__text {
+		font-size: 12px;
+		font-weight: bold;
+	}
+}
+
+.relative {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
 .chat-box {
 	height: 100%;
 	width: 100%;
@@ -12,6 +48,7 @@
 	bottom: 0;
 	z-index: 10;
 	background-color: white;
+	border-top: 1px solid gray;
 
 	.input-form {
 		display: flex;
@@ -171,4 +208,17 @@
 }
 .displayName {
 	margin-left: 20px;
+}
+
+.toggle-button-up {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.toggle-button-down {
+	position: absolute;
+	right: 0;
+	top: 0;
 }

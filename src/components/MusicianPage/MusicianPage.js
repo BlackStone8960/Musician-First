@@ -22,9 +22,7 @@ export const MusicianPage = ({ profile, id }) => (
     <div className="music-box">
       <MusicPlayer songs={profile.songs} />
     </div>
-    <div className="chat-box-wrapper">
-      <ChatBox otherId={id} otherProfile={profile} />
-    </div>
+    <ChatBox otherId={id} otherProfile={profile} />
   </div>
 );
 
