@@ -51,5 +51,21 @@
   .profile-text {
     margin: 4px;
   }
+  .genre-tags {
+    margin-top: 5px;
+    .tag {
+      margin: 5px;
+      border: solid 1px gray;
+      border-radius: 2px;
+      padding: 2px;
+    }
+    // temporary colors
+    .primary-genre-tag {
+      background: rgb(247, 235, 131);
+    }
+    .secondary-genre-tag {
+      background: rgb(248, 180, 141);
+    }
+  }
   margin: 0 40px 80px;
 }

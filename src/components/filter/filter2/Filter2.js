@@ -9,11 +9,14 @@ import {
 } from "../../../actions/selectedGenres";
 import { connect } from "react-redux";
 import { reset } from "numeral";
+// import selectedGenres from "../../../reducers/selectedGenres";
 
 export const Filter2 = (props) => {
   const [selectCount, setSelectCount] = useState(0);
+  const [selectedGenresArr, setSelectedGenresArr] = useState([]);
   const [isClickedArr, setIsClickedArr] = useState([]);
   const [genres, setGenres] = useState(genresList[props.match.params.category]);
+  console.log(selectedGenresArr);
 
   const makeIsClickedCheckList = () => {
     let checkListArr = [];
@@ -24,19 +27,23 @@ export const Filter2 = (props) => {
   };
 
   const onSelect = (index, selectedGenre) => {
-    console.log(selectedGenre);
     if (isClickedArr[index] && selectCount > 0) {
+      const indexOfRemovedGenre = selectedGenresArr.indexOf(selectedGenre);
       isClickedArr.splice(index, 1, !isClickedArr[index]);
       setSelectCount((prevState) => prevState - 1);
       setIsClickedArr(isClickedArr);
-      props.removeSelectedGenre(selectedGenre);
+      selectedGenresArr.splice(indexOfRemovedGenre, 1);
+      setSelectedGenresArr(selectedGenresArr);
+      // props.removeSelectedGenre(selectedGenre);
     } else if (!isClickedArr[index] && selectCount < 3) {
       isClickedArr.splice(index, 1, !isClickedArr[index]);
       setSelectCount((prevState) =>
         isClickedArr[index] ? selectCount + 1 : selectCount - 1
       );
       setIsClickedArr(isClickedArr);
-      props.addSelectedGenre(selectedGenre);
+      selectedGenresArr.push(selectedGenre);
+      setSelectedGenresArr(selectedGenresArr);
+      // props.addSelectedGenre(selectedGenre);
     }
   };
 
@@ -51,6 +58,13 @@ export const Filter2 = (props) => {
       props.history.push("/page-not-found");
     }
   }, []);
+
+  useEffect(() => {
+    // if (sessionStorage.hasOwnProperty("selectedGenres")) {
+    //   sessionStorage.removeItem("selectedGenres");
+    // }
+    sessionStorage.setItem("selectedGenres", JSON.stringify(selectedGenresArr));
+  }, [selectCount]);
 
   return (
     <React.Fragment>

@@ -11,27 +11,41 @@ export const Filter3 = (props) => {
   console.log(filteredAccounts);
 
   const filterAccountsByGenres = () => {
+    const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));
     let filteredAccountsTempList = [];
-    for (let i = 0; i < props.selectedGenres.length; i++) {
+    // for (let i = 0; i < props.selectedGenres.length; i++) {
+    for (let i = 0; i < selectedGenres.length; i++) {
       const accountsMatchPrimaryGenre = props.otherAccounts.filter(
-        (account) => account.profile.primaryGenre === props.selectedGenres[i]
+        // (account) => account.profile.primaryGenre === props.selectedGenres[i]
+        (account) =>
+          account.profile.primaryGenre === selectedGenres[i] &&
+          // remove exact duplicates ↓
+          !filteredAccountsTempList.includes(account)
       );
       const accountsMatchSecondaryGenre = props.otherAccounts.filter(
-        (account) => account.profile.secondaryGenre === props.selectedGenres[i]
+        // (account) => account.profile.secondaryGenre === props.selectedGenres[i]
+        (account) =>
+          account.profile.secondaryGenre === selectedGenres[i] &&
+          !filteredAccountsTempList.includes(account)
       );
       filteredAccountsTempList = [
         ...filteredAccountsTempList,
         ...accountsMatchPrimaryGenre,
         ...accountsMatchSecondaryGenre,
       ];
-      console.log(accountsMatchPrimaryGenre, accountsMatchSecondaryGenre);
     }
+
+    // remove duplicate
+
     console.log(filteredAccountsTempList);
     setFilteredAccounts(filteredAccountsTempList);
   };
 
   useEffect(() => {
-    if (props.otherAccounts && props.selectedGenres) filterAccountsByGenres();
+    // if (props.otherAccounts && props.selectedGenres) filterAccountsByGenres();
+    if (sessionStorage.hasOwnProperty("selectedGenres")) {
+      filterAccountsByGenres();
+    }
   }, []);
   return (
     <React.Fragment>
@@ -46,10 +60,10 @@ export const Filter3 = (props) => {
               <span>No users</span>
             </div>
           ) : (
-            filteredAccounts.map((account) => {
+            filteredAccounts.map((account, index) => {
               return (
                 <FilteredProfile
-                  key={account.id}
+                  key={index}
                   id={account.id}
                   profile={account.profile}
                 />
