@@ -16,7 +16,6 @@ export const Filter2 = (props) => {
   const [selectedGenresArr, setSelectedGenresArr] = useState([]);
   const [isClickedArr, setIsClickedArr] = useState([]);
   const [genres, setGenres] = useState(genresList[props.match.params.category]);
-  console.log(selectedGenresArr);
 
   const makeIsClickedCheckList = () => {
     let checkListArr = [];
@@ -60,9 +59,6 @@ export const Filter2 = (props) => {
   }, []);
 
   useEffect(() => {
-    // if (sessionStorage.hasOwnProperty("selectedGenres")) {
-    //   sessionStorage.removeItem("selectedGenres");
-    // }
     sessionStorage.setItem("selectedGenres", JSON.stringify(selectedGenresArr));
   }, [selectCount]);
 

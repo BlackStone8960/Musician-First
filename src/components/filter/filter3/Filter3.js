@@ -5,10 +5,7 @@ import FilteredProfile from "./filteredProfile";
 import LoadingPage from "../../LoadingPage";
 
 export const Filter3 = (props) => {
-  console.log(props.selectedGenres);
-  console.log(props.otherAccounts);
   const [filteredAccounts, setFilteredAccounts] = useState([]);
-  console.log(filteredAccounts);
 
   const filterAccountsByGenres = () => {
     const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));
@@ -34,10 +31,6 @@ export const Filter3 = (props) => {
         ...accountsMatchSecondaryGenre,
       ];
     }
-
-    // remove duplicate
-
-    console.log(filteredAccountsTempList);
     setFilteredAccounts(filteredAccountsTempList);
   };
 
@@ -53,6 +46,16 @@ export const Filter3 = (props) => {
         We’ve found the best matches for your sound. Select any picture to learn
         more about them.
       </p>
+      <div className="color-example-container">
+        <div className="color-example-wrap">
+          <div className="primary-color"></div>
+          <div>Primary Genre</div>
+        </div>
+        <div className="color-example-wrap">
+          <div className="secondary-color"></div>
+          <div> Secondary Genre</div>
+        </div>
+      </div>
       <div className="filter-wrapper--center">
         {props.otherAccounts ? (
           filteredAccounts.length === 0 ? (
@@ -60,10 +63,10 @@ export const Filter3 = (props) => {
               <span>No users</span>
             </div>
           ) : (
-            filteredAccounts.map((account, index) => {
+            filteredAccounts.map((account) => {
               return (
                 <FilteredProfile
-                  key={index}
+                  key={account.id}
                   id={account.id}
                   profile={account.profile}
                 />

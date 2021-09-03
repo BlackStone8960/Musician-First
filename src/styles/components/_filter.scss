@@ -1,6 +1,6 @@
 .filter-topmassage {
   text-align: center;
-  margin-bottom: $xl-length;
+  margin-bottom: $s-length;
   font-size: $m-size;
 }
 
@@ -42,6 +42,28 @@
 }
 
 // 3rd filter
+.color-example-container {
+  display: flex;
+  margin-bottom: $xl-length;
+  .color-example-wrap {
+    display: flex;
+    margin-right: 20px;
+  }
+  .primary-color,
+  .secondary-color {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    border-radius: 50%;
+    align-self: center;
+  }
+  .primary-color {
+    background: rgb(247, 235, 131);
+  }
+  .secondary-color {
+    background: rgb(248, 180, 141);
+  }
+}
 .filtered-profile {
   color: $black;
   display: flex;
@@ -51,19 +73,19 @@
   .profile-text {
     margin: 4px;
   }
-  .genre-tags {
+  .genre-labels {
     margin-top: 5px;
-    .tag {
+    .label {
       margin: 5px;
       border: solid 1px gray;
       border-radius: 2px;
       padding: 2px;
     }
     // temporary colors
-    .primary-genre-tag {
+    .primary-genre-label {
       background: rgb(247, 235, 131);
     }
-    .secondary-genre-tag {
+    .secondary-genre-label {
       background: rgb(248, 180, 141);
     }
   }

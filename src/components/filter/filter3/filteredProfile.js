@@ -16,10 +16,10 @@ const FilteredProfile = ({ id, profile }) => (
     <div className="profile-text">
       <span>{profile.occupation}</span>
     </div>
-    <div className="genre-tags">
-      <span className="tag primary-genre-tag">{profile.primaryGenre}</span>
+    <div className="genre-labels">
+      <span className="label primary-genre-label">{profile.primaryGenre}</span>
       {profile.secondaryGenre !== "" && (
-        <span className="tag secondary-genre-tag">
+        <span className="label secondary-genre-label">
           {profile.secondaryGenre}
         </span>
       )}
