@@ -2,16 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import genresList from "../../../data/genresList";
 import MusicGenre from "./MusicGenre";
-import {
-  addSelectedGenre,
-  removeSelectedGenre,
-  resetSelectedGenres,
-} from "../../../actions/selectedGenres";
-import { connect } from "react-redux";
-import { reset } from "numeral";
-// import selectedGenres from "../../../reducers/selectedGenres";
 
-export const Filter2 = (props) => {
+const Filter2 = (props) => {
   const [selectCount, setSelectCount] = useState(0);
   const [selectedGenresArr, setSelectedGenresArr] = useState([]);
   const [isClickedArr, setIsClickedArr] = useState([]);
@@ -33,7 +25,6 @@ export const Filter2 = (props) => {
       setIsClickedArr(isClickedArr);
       selectedGenresArr.splice(indexOfRemovedGenre, 1);
       setSelectedGenresArr(selectedGenresArr);
-      // props.removeSelectedGenre(selectedGenre);
     } else if (!isClickedArr[index] && selectCount < 3) {
       isClickedArr.splice(index, 1, !isClickedArr[index]);
       setSelectCount((prevState) =>
@@ -42,7 +33,6 @@ export const Filter2 = (props) => {
       setIsClickedArr(isClickedArr);
       selectedGenresArr.push(selectedGenre);
       setSelectedGenresArr(selectedGenresArr);
-      // props.addSelectedGenre(selectedGenre);
     }
   };
 
@@ -52,7 +42,6 @@ export const Filter2 = (props) => {
       Object.keys(genresList).includes(props.match.params.category)
     ) {
       makeIsClickedCheckList();
-      resetSelectedGenres();
     } else {
       props.history.push("/page-not-found");
     }
@@ -110,16 +99,4 @@ export const Filter2 = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  selectedGenres: state.selectedGenres,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addSelectedGenre: (selectedGenre) =>
-    dispatch(addSelectedGenre(selectedGenre)),
-  removeSelectedGenre: (selectedGenre) =>
-    dispatch(removeSelectedGenre(selectedGenre)),
-  resetSelectedGenres: () => dispatch(resetSelectedGenres()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter2);
+export default Filter2;

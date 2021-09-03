@@ -18,7 +18,7 @@ const FilteredProfile = ({ id, profile }) => (
     </div>
     <div className="genre-labels">
       <span className="label primary-genre-label">{profile.primaryGenre}</span>
-      {profile.secondaryGenre !== "" && (
+      {profile.secondaryGenre && (
         <span className="label secondary-genre-label">
           {profile.secondaryGenre}
         </span>

@@ -54,8 +54,6 @@ export const ProfilePage = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   let history = useHistory();
 
-  console.log(primaryGenre, secondaryGenre);
-
   useEffect(() => {
     if (photoBlob) {
       const uploadTask = storage.ref(`photos/${props.id}`).put(photoBlob);

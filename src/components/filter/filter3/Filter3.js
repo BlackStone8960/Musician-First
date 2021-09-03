@@ -10,17 +10,14 @@ export const Filter3 = (props) => {
   const filterAccountsByGenres = () => {
     const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));
     let filteredAccountsTempList = [];
-    // for (let i = 0; i < props.selectedGenres.length; i++) {
     for (let i = 0; i < selectedGenres.length; i++) {
       const accountsMatchPrimaryGenre = props.otherAccounts.filter(
-        // (account) => account.profile.primaryGenre === props.selectedGenres[i]
         (account) =>
           account.profile.primaryGenre === selectedGenres[i] &&
           // remove exact duplicates ↓
           !filteredAccountsTempList.includes(account)
       );
       const accountsMatchSecondaryGenre = props.otherAccounts.filter(
-        // (account) => account.profile.secondaryGenre === props.selectedGenres[i]
         (account) =>
           account.profile.secondaryGenre === selectedGenres[i] &&
           !filteredAccountsTempList.includes(account)
@@ -35,7 +32,6 @@ export const Filter3 = (props) => {
   };
 
   useEffect(() => {
-    // if (props.otherAccounts && props.selectedGenres) filterAccountsByGenres();
     if (sessionStorage.hasOwnProperty("selectedGenres")) {
       filterAccountsByGenres();
     }
@@ -85,7 +81,6 @@ const mapStateToProps = (state) => {
   // implement filter function later
   return {
     otherAccounts: state.otherAccounts,
-    selectedGenres: state.selectedGenres,
   };
 };
 
