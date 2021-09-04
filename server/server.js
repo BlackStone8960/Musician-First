@@ -8,7 +8,6 @@ const rootDir = path.dirname(require.main.filename)
 
 app.use(cors())
 
-
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
       if (req.headers.host === 'localhost:3000')
@@ -20,7 +19,6 @@ app.use((req, res, next) => {
   } else
       return next();
 });
-
 
 app.use(express.static(path.join(rootDir, '../public')));
 
