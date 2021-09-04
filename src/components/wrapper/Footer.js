@@ -12,12 +12,17 @@ const Footer = () => {
         <React.Fragment></React.Fragment>
       ) : (
         <React.Fragment>
-          <Link to="/privacy-policy" className="footer__link">
-            Privacy Policy
-          </Link>
-          <span>/</span>
-          <Link to="/terms-and-conditions" className="footer__link">
-            Terms & Conditions
+          <div className="footer__terms-and-conditions">
+            <Link to="/privacy-policy" className="footer__link">
+              Privacy Policy
+            </Link>
+            <span>/</span>
+            <Link to="/terms-and-conditions" className="footer__link">
+              Terms & Conditions
+            </Link>
+          </div>
+          <Link to="/contact-us" className="footer__contactus">
+            Contact Us
           </Link>
         </React.Fragment>
       )}
