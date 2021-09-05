@@ -1,11 +1,11 @@
 const path = require('path');
-// import sslRedirect from 'heroku-ssl-redirect';
+// import sslRedirect from 'heroku-ssl-redirect'; 
 const express = require('express');
 const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
 
-// app.use(sslRedirect());
+// app.use(sslRedirect()); // Redirect users to secured URL when they try to access via non-secured URL
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
