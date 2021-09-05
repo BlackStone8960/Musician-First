@@ -29,7 +29,7 @@ app.use('/test', (req, res) => {
 
 app.use('*', (req, res) => {
   console.log(path.join(rootDir, '../public', 'index.html'))
-  console.log(process.env.NODE_ENV)
+  // console.log(process.env.NODE_ENV)
   res.sendFile(path.join(rootDir, '../public', 'index.html'));
 });
 
