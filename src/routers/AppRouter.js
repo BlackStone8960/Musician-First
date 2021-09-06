@@ -17,6 +17,7 @@ import ConfirmSendingMail from '../components/auth/ConfirmSendingMail';
 import SentMail from '../components/auth/SentMail';
 import PrivacyPolicy from '../components/legalDocuments/PrivacyPolicy';
 import TermsAndConditions from '../components/legalDocuments/TermsAndConditions';
+import Messages from '../components/MusicianPage/chat/Messages/Messages';
 
 export const history = createHistory();
 
@@ -36,6 +37,7 @@ const AppRouter = () => (
 				<PrivateRoute path="/profile" component={EditProfile} />
 				<PrivateRoute path="/change_password" component={ConfirmSendingMail} />
 				<PrivateRoute path="/sentmail" component={SentMail} />
+				{/* <PrivateRoute path="/messages" component={Messages} /> */}
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>
