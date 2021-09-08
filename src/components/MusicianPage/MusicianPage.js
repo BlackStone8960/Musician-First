@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MusicPlayer from './MusicPlayer';
+import ChatBox from './chat/ChatBox';
 
-export const MusicianPage = ({ profile }) => (
-  <React.Fragment>
+export const MusicianPage = ({ profile, id }) => (
+  <div className="other-user-profile">
     <div className="name-bio">
       <span>{profile.firstName} {profile.lastName}</span>
       <span>{`${profile.occupation} Bio`}</span>
@@ -21,12 +22,15 @@ export const MusicianPage = ({ profile }) => (
     <div className="music-box">
       <MusicPlayer songs={profile.songs} />
     </div>
-  </React.Fragment>
+    <ChatBox otherId={id} otherProfile={profile} />
+  </div>
 );
 
 const mapStateToProps = (state, props) => {
+  const clickedUser = state.otherAccounts.find((account) => account.id === props.match.params.id)
   return {
-    profile: state.otherAccounts.find((account) => account.id === props.match.params.id).profile
+    profile: clickedUser.profile,
+    id: clickedUser.id
   };
 };
 
