@@ -1,15 +1,27 @@
 const path = require('path');
-// import sslRedirect from 'heroku-ssl-redirect'; //
 const express = require('express');
 const app = express();
-const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
+const cors = require('cors');
+const rootDir = path.dirname(require.main.filename);
 
-// app.use(sslRedirect()); // Redirect users to secured URL when they try to access via non-secured URL
-app.use(express.static(publicPath));
+app.use(cors());
+app.use(express.static(path.join(rootDir, '../public')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production') {
+      if (req.headers.host === 'localhost:3000')
+          return res.redirect(301, 'https://localhost:3000');
+      if (req.headers['x-forwarded-proto'] !== 'https')
+          return res.redirect('https://' + req.headers.host + req.url);
+      else
+          return next();
+  } else
+      return next();
+});
+
+app.use('*', (req, res) => {
+  res.sendFile(path.join(rootDir, '../public', 'index.html'));
 });
 
 app.listen(port, () => {
