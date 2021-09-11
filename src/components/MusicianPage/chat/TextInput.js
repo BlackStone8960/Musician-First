@@ -52,9 +52,6 @@ const TextInput = ({ uid, otherId }) => {
           label="Input Message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => {
-            e.key === "Enter" && sendMessageData();
-          }}
         />
         <Button variant="contained" color="primary" onClick={sendMessageData}>
           <SendIcon />
