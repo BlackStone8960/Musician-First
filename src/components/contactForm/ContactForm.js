@@ -41,6 +41,7 @@ const ContactForm = () => {
     setMessage("");
     e.target.value = "";
     console.log("submitted");
+    console.log(data);
   };
   return (
     <React.Fragment>
