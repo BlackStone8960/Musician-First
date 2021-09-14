@@ -84,6 +84,15 @@ const Filter1 = () => {
           </p>
         </div>
       </div>
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <input type="text" placeholder="search by the artist name" />
+        </form>
+      </div>
     </React.Fragment>
   );
 };
