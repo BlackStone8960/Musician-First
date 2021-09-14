@@ -5,20 +5,27 @@ import Button from "@material-ui/core/Button";
 import firebase from "firebase/app";
 import "firebase/functions";
 
-console.log(firebase);
-
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
+      display: "flex",
+      justifyContent: "center",
     },
+  },
+  textInput: {
+    width: "24rem",
+    marginBottom: "1rem",
+  },
+  textArea: {
+    width: "50rem",
+    marginBottom: "2rem",
   },
   button: {
     width: "15rem",
     height: "2.5rem",
     borderRadius: "20px",
     fontSize: "1.1rem",
+    margin: "0 auto",
   },
 }));
 
@@ -55,14 +62,14 @@ const ContactForm = () => {
         >
           <div className="form-wrap">
             <TextField
-              className="text-input name-input"
+              className={classes.textInput}
               id="outlined-basic"
               label="Name"
               variant="outlined"
               onChange={(e) => setName(e.target.value)}
             />
             <TextField
-              className="text-input email-input"
+              className={classes.textInput}
               id="outlined-basic"
               label="Email"
               variant="outlined"
@@ -70,7 +77,7 @@ const ContactForm = () => {
             />
           </div>
           <TextField
-            className="textarea"
+            className={classes.textArea}
             id="outlined-textarea"
             label="Message"
             placeholder="Placeholder"

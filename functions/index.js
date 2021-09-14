@@ -4,15 +4,6 @@ const gmailEmail = functions.config().gmail.email;
 const gmailPassword = functions.config().gmail.password;
 const adminEmail = functions.config().admin.email;
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", { structuredData: true });
-//   console.log(functions.config());
-//   response.send("Hello from Firebase!");
-// });
-
 const mailTransport = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -22,8 +13,7 @@ const mailTransport = nodemailer.createTransport({
 });
 
 const adminContents = (data) => {
-  console.log(data);
-  return `Your message below has been sent successfuly.
+  return `You've got a message from Musician First.
   Name: ${data.name}
   Email: ${data.email}
   Message: ${data.content}`;
@@ -35,14 +25,13 @@ exports.sendMail = functions
     const adminMail = {
       from: gmailEmail,
       to: adminEmail,
-      subject: "questionaire from a user on Musician first",
+      subject: "Message from a user on Musician first",
       text: adminContents(data),
     };
-    console.log("email function!");
     mailTransport.sendMail(adminMail, (err, info) => {
       if (err) {
-        return console.error(`send failed. ${err}`);
+        return console.error(`transmission error: ${err}`);
       }
-      return console.log("send success.");
+      return console.log("Email sent successfully.");
     });
   });

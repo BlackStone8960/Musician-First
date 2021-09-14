@@ -9,21 +9,8 @@
   }
   .form-wrap {
     display: flex;
-
-    .text-input {
-      width: 24rem;
-      margin: 1rem;
-    }
-
-    .name-input {
-      margin-left: 1rem;
-    }
-    .email-input {
-      margin-right: 1rem;
-    }
-  }
-  .textarea {
-    width: 50rem;
-    margin-bottom: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
 }
