@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Filter1 = () => {
+  const [inputName, setInputName] = useState("");
+  const users = useSelector((state) => state.otherAccounts);
+
   // 下記Useeffect, Filter3からトップページに戻った時もsessionStorage中身リセットしたいので書いてる
   // （Filter2経由せずにFilter3行ってしまった時に前回の結果表示を防ぐため）
   useEffect(() => {
@@ -9,6 +13,15 @@ const Filter1 = () => {
       sessionStorage.removeItem("selectedGenres");
     }
   }, []);
+
+  const searchUsersHandler = () => {
+    users.filter((user) => {
+      inputName.includes(user.profile.firstName) ||
+      inputName.includes(user.profile.lastName)
+        ? console.log(user)
+        : console.log("not match");
+    });
+  };
 
   return (
     <React.Fragment>
@@ -88,9 +101,16 @@ const Filter1 = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            searchUsersHandler();
           }}
         >
-          <input type="text" placeholder="search by the artist name" />
+          <input
+            type="text"
+            placeholder="search by the artist name"
+            onChange={(e) => {
+              setInputName(e.target.value);
+            }}
+          />
         </form>
       </div>
     </React.Fragment>
