@@ -38,8 +38,6 @@ const ContactForm = () => {
   const [isInvalid, setIsinvalid] = useState(null);
   const [errMessages, setErrMessages] = useState([]);
   const [isBtnClicked, setIsBtnClicked] = useState(false);
-  console.log(isInvalid);
-  console.log(errMessages);
 
   const isEmptyOrHasWhiteSpace = (input) => {
     if (validator.isEmpty(input) || !input.match(/\S/g)) {
@@ -114,7 +112,7 @@ const ContactForm = () => {
       data.content = message;
       const sendMail = firebase.functions().httpsCallable("sendMail");
       sendMail(data);
-      console.log(data);
+      console.log("message sent successfully");
     } else {
       console.log("sending failed");
     }
