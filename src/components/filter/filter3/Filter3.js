@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { startSetAccounts } from "../../../actions/otherAccounts";
 import FilteredProfile from "./filteredProfile";
 import LoadingPage from "../../LoadingPage";
 
 export const Filter3 = (props) => {
   const [filteredAccounts, setFilteredAccounts] = useState([]);
+  const data = useSelector((state) => state);
+
+  console.log("data", data);
 
   const filterAccountsByGenres = () => {
     const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));

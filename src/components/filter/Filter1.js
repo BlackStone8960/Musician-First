@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+
+export const setFilterOtherAccount = (others, inputName) => (
+  console.log("others", others, "inputName", inputName),
+  {
+    type: "FILTER_OTHER_ACCOUNT",
+    others,
+    inputName,
+  }
+);
 
 const Filter1 = () => {
   const [inputName, setInputName] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
   const users = useSelector((state) => state.otherAccounts);
 
   // 下記Useeffect, Filter3からトップページに戻った時もsessionStorage中身リセットしたいので書いてる
@@ -15,12 +26,17 @@ const Filter1 = () => {
   }, []);
 
   const searchUsersHandler = () => {
-    users.filter((user) => {
-      inputName.includes(user.profile.firstName) ||
-      inputName.includes(user.profile.lastName)
-        ? console.log(user)
-        : console.log("not match");
-    });
+    // users.filter((user) => {
+    //   if (
+    //     inputName.includes(user.profile.firstName) ||
+    //     inputName.includes(user.profile.lastName)
+    //   ) {
+    //     dispatch(setFilterOtherAccount(user));
+    //     history.push("/filter3");
+    //   }
+    // });
+    dispatch(setFilterOtherAccount(users, inputName));
+    history.push("/filter3");
   };
 
   return (
