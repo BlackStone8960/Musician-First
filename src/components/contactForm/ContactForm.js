@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import firebase from "firebase/app";
 import "firebase/functions";
 import validator from "validator";
+import MessageSentModal from "./MessageSentModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   textInput: {
     width: "24rem",
     marginBottom: "1rem",
+    zIndex: "0",
   },
   textArea: {
     width: "50rem",
@@ -38,6 +40,7 @@ const ContactForm = () => {
   const [isInvalid, setIsinvalid] = useState(null);
   const [errMessages, setErrMessages] = useState([]);
   const [isBtnClicked, setIsBtnClicked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isEmptyOrHasWhiteSpace = (input) => {
     if (validator.isEmpty(input) || !input.match(/\S/g)) {
@@ -112,6 +115,10 @@ const ContactForm = () => {
       data.content = message;
       const sendMail = firebase.functions().httpsCallable("sendMail");
       sendMail(data);
+      setName("");
+      setEmail("");
+      setMessage("");
+      setIsModalOpen(true);
       console.log("message sent successfully");
     } else {
       console.log("sending failed");
@@ -126,7 +133,6 @@ const ContactForm = () => {
     ) {
       sendEmail();
     }
-
     setIsBtnClicked(true);
   };
 
@@ -154,6 +160,7 @@ const ContactForm = () => {
               label="Name"
               variant="outlined"
               type="text"
+              value={name}
               onChange={(e) => validateName(e.target.value)}
             />
             <TextField
@@ -162,6 +169,7 @@ const ContactForm = () => {
               label="Email"
               variant="outlined"
               type="email"
+              value={email}
               onChange={(e) => validateEmail(e.target.value)}
             />
           </div>
@@ -174,6 +182,7 @@ const ContactForm = () => {
             variant="outlined"
             type="text"
             rows={10}
+            value={message}
             onChange={(e) => validateMessage(e.target.value)}
           />
           <Button
@@ -190,6 +199,7 @@ const ContactForm = () => {
             SUBMIT
           </Button>
         </form>
+        {isModalOpen && <MessageSentModal setIsModalOpen={setIsModalOpen} />}
       </section>
     </React.Fragment>
   );
