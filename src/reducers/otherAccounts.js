@@ -5,20 +5,18 @@ export default (state = accountsReducerDefaultState, action) => {
     case "SET_OTHER_ACCOUNTS":
       return action.otherAccounts;
     case "FILTER_OTHER_ACCOUNT":
-      return {
-        ...action.others.map((user) => {
-          if (
-            user.profile.firstName.includes(action.inputName) ||
-            user.profile.lastName.includes(action.inputName)
-          ) {
-            return {
-              ...user,
-              isFiltered: true,
-            };
-          }
-          return user;
-        }),
-      };
+      return action.others.map((user) => {
+        if (
+          user.profile.firstName.includes(action.inputName) ||
+          user.profile.lastName.includes(action.inputName)
+        ) {
+          return {
+            ...user,
+            isFiltered: true,
+          };
+        }
+        return user;
+      });
     default:
       return state;
   }

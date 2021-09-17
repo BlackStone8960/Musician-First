@@ -2,20 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-export const setFilterOtherAccount = (others, inputName) => (
-  console.log("others", others, "inputName", inputName),
-  {
-    type: "FILTER_OTHER_ACCOUNT",
-    others,
-    inputName,
-  }
-);
+export const setFilterOtherAccount = (others, inputName) => ({
+  type: "FILTER_OTHER_ACCOUNT",
+  others,
+  inputName,
+});
 
 const Filter1 = () => {
   const [inputName, setInputName] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
   const users = useSelector((state) => state.otherAccounts);
+  console.log("users", users);
 
   // 下記Useeffect, Filter3からトップページに戻った時もsessionStorage中身リセットしたいので書いてる
   // （Filter2経由せずにFilter3行ってしまった時に前回の結果表示を防ぐため）
