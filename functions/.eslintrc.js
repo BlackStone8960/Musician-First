@@ -9,6 +9,11 @@ module.exports = {
     "google",
   ],
   rules: {
-    quotes: ["error", "double"],
+    'max-len': 'off', // disables line length check
+    'indent': 'off',
+    "eol-last": 0,
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "semi": [2, "always"],
+    "quotes": [2, "single", { "avoidEscape": true }]
   },
 };
