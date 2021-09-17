@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import SendIcon from "@material-ui/icons/Send";
-import Button from "@material-ui/core/Button";
-import database from "../../../firebase/firebase";
-import moment from "moment";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import TextField from '@material-ui/core/TextField';
+import SendIcon from '@material-ui/icons/Send';
+import Button from '@material-ui/core/Button';
+import database from '../../../firebase/firebase';
+import moment from 'moment';
 
-const TextInput = ({ uid, otherId }) => {
-  const [message, setMessage] = useState("");
+const TextInput = ({ uid, otherId, roomId }) => {
+  const [message, setMessage] = useState('');
   // Enter 押したときの処理も入れる
 
   const sendMessageData = () => {
@@ -17,16 +16,10 @@ const TextInput = ({ uid, otherId }) => {
     const messageData = {
       uid,
       message,
-      createdAt: timeStamp.format("YYYY-MM-DD HH:mm:ss"),
-    };
-    const orderedIdArr = [uid, otherId].sort((a, b) => (a < b ? -1 : 1));
+      createdAt: timeStamp.format('YYYY-MM-DD HH:mm:ss')
+    }
 
-    database
-      .ref(
-        `messages/${orderedIdArr[0]}_${orderedIdArr[1]}/${timeStamp.format(
-          "YYYYMMDDHHmmss"
-        )}_${uid}`
-      )
+    database.ref(`messages/${roomId}/${timeStamp.format('YYYYMMDDHHmmss')}_${uid}`)
       .set(messageData)
       .then(() => {
         console.log("success");
@@ -64,8 +57,4 @@ const TextInput = ({ uid, otherId }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  uid: state.userAccount.id,
-});
-
-export default connect(mapStateToProps)(TextInput);
+export default TextInput;

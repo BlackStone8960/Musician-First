@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import MessageLeft from './MessageLeft';
 import MessageRight from './MessageRight';
 import moment from 'moment';
-import { connect } from 'react-redux';
 import database from '../../../firebase/firebase';
 
-const ChatScreen = ({ uid, otherId }) => {
+const ChatScreen = ({ uid, otherId, roomId }) => {
   const [dataList, setDataList] = useState([]);
   const [orderedRef, setOrderedRef] = useState(null);
   let viewDate = "";
@@ -13,8 +12,7 @@ const ChatScreen = ({ uid, otherId }) => {
   useEffect(() => {
     if (uid && otherId) {
       let ref = null;
-      const orderedIdArr = [uid, otherId].sort((a, b) => (a < b ? -1 : 1));
-      ref = database.ref(`/messages/${orderedIdArr[0]}_${orderedIdArr[1]}`);
+      ref = database.ref(`/messages/${roomId}`);
       setOrderedRef(ref && ref.orderByChild('createdAt').limitToLast(30));
     }
   }, [uid, otherId]);
@@ -23,6 +21,10 @@ const ChatScreen = ({ uid, otherId }) => {
     if (orderedRef) {
       orderedRef.on('value', snapshot => {
         if (snapshot && snapshot.val()) {
+          if (!snapshot.child('firstTimeFlag').exists()) {
+            database.ref(`/messages/${roomId}/firstTimeFlag`).set(true);
+            return;
+          }
           console.log('snapshot.val()');
           const data = snapshot.val();
           setDataList(Object.entries(data || {}).map(([key, value]) => ({ key, value })));
@@ -55,7 +57,7 @@ const ChatScreen = ({ uid, otherId }) => {
             <React.Fragment key={`${key}`}>
               <div className="view-date">{showViewDate(value)}</div>
               {
-                uid !== value.uid ? (
+                value.uid && uid !== value.uid ? (
                   <MessageLeft {...value} />
                 ) : (
                   <MessageRight {...value} />
@@ -69,8 +71,4 @@ const ChatScreen = ({ uid, otherId }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  uid: state.userAccount.id
-});
-
-export default connect(mapStateToProps)(ChatScreen);
+export default ChatScreen;
