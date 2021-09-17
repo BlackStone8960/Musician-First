@@ -25,6 +25,16 @@
   }
 }
 
+.filter-input-wrappter {
+  display: flex;
+  justify-content: center;
+}
+
+.filter-input {
+  padding: 15px;
+  width: 100%;
+}
+
 .filter-bottommassage {
   @extend .filter-topmassage;
   font-size: $sm-size;

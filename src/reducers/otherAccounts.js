@@ -7,8 +7,12 @@ export default (state = accountsReducerDefaultState, action) => {
     case "FILTER_OTHER_ACCOUNT":
       return action.others.map((user) => {
         if (
-          user.profile.firstName.includes(action.inputName) ||
-          user.profile.lastName.includes(action.inputName)
+          user.profile.firstName
+            .toLowerCase()
+            .includes(action.inputName.toLowerCase()) ||
+          user.profile.lastName
+            .toLowerCase()
+            .includes(action.inputName.toLowerCase())
         ) {
           return {
             ...user,

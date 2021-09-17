@@ -31,12 +31,14 @@ const Filter1 = () => {
   const searchUsersHandler = () => {
     users.filter((user) => {
       if (
-        inputName.includes(user.profile.firstName) ||
-        inputName.includes(user.profile.lastName)
+        user.profile.firstName
+          .toLowerCase()
+          .includes(inputName.toLowerCase()) ||
+        user.profile.lastName.toLowerCase().includes(inputName.toLowerCase())
       ) {
         dispatch(setFilterOtherAccount(users, inputName));
-        history.push("/filter3");
       }
+      history.push("/filter3");
     });
   };
 
@@ -118,7 +120,7 @@ const Filter1 = () => {
           </p>
         </div>
       </div>
-      <div>
+      <div className="filter-input-wrappter">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -126,8 +128,9 @@ const Filter1 = () => {
           }}
         >
           <input
+            className="filter-input"
             type="text"
-            placeholder="search by the artist name"
+            placeholder="search by the musician name"
             onChange={(e) => {
               setInputName(e.target.value);
               resetFilteredUsersHandler();
