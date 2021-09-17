@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
+import { Button } from "@material-ui/core";
+
 export const setFilterOtherAccount = (others, inputName) => ({
   type: "FILTER_OTHER_ACCOUNT",
   others,
@@ -28,6 +30,8 @@ const Filter1 = () => {
   }, []);
 
   const searchUsersHandler = () => {
+    if (inputName.trim() === "") return;
+
     users.filter((user) => {
       if (
         user.profile.firstName
@@ -121,6 +125,7 @@ const Filter1 = () => {
       </div>
       <div className="filter-input-wrappter">
         <form
+          className="filter-form"
           onSubmit={(e) => {
             e.preventDefault();
             searchUsersHandler();
@@ -135,6 +140,15 @@ const Filter1 = () => {
               resetFilteredUsersHandler();
             }}
           />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              searchUsersHandler();
+            }}
+          >
+            Search
+          </Button>
         </form>
       </div>
     </React.Fragment>
