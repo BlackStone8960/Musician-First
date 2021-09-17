@@ -9,6 +9,8 @@ export const Filter3 = (props) => {
   const [filteredAccountsByName, setFilteredAccountsByName] = useState([]);
   const otherAccounts = useSelector((state) => state.otherAccounts);
 
+  console.log("otherAccounts", otherAccounts);
+
   const getFilteredAccountsByName = () => {
     let filteredArray = [];
     otherAccounts.map((user) => {

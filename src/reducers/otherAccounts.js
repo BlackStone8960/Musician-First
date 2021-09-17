@@ -15,7 +15,14 @@ export default (state = accountsReducerDefaultState, action) => {
             isFiltered: true,
           };
         }
-        return user;
+        return { ...user, isFiltered: false };
+      });
+    case "INITIALIZE_FILTERED_ACCOUNT":
+      return action.others.map((user) => {
+        return {
+          ...user,
+          isFiltered: false,
+        };
       });
     default:
       return state;

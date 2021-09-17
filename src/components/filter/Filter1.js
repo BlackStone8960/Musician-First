@@ -8,6 +8,11 @@ export const setFilterOtherAccount = (others, inputName) => ({
   inputName,
 });
 
+export const setInitializeFilteredAccount = (others) => ({
+  type: "INITIALIZE_FILTERED_ACCOUNT",
+  others,
+});
+
 const Filter1 = () => {
   const [inputName, setInputName] = useState("");
   const dispatch = useDispatch();
@@ -24,17 +29,19 @@ const Filter1 = () => {
   }, []);
 
   const searchUsersHandler = () => {
-    // users.filter((user) => {
-    //   if (
-    //     inputName.includes(user.profile.firstName) ||
-    //     inputName.includes(user.profile.lastName)
-    //   ) {
-    //     dispatch(setFilterOtherAccount(user));
-    //     history.push("/filter3");
-    //   }
-    // });
-    dispatch(setFilterOtherAccount(users, inputName));
-    history.push("/filter3");
+    users.filter((user) => {
+      if (
+        inputName.includes(user.profile.firstName) ||
+        inputName.includes(user.profile.lastName)
+      ) {
+        dispatch(setFilterOtherAccount(users, inputName));
+        history.push("/filter3");
+      }
+    });
+  };
+
+  const resetFilteredUsersHandler = () => {
+    dispatch(setInitializeFilteredAccount(users));
   };
 
   return (
@@ -123,6 +130,7 @@ const Filter1 = () => {
             placeholder="search by the artist name"
             onChange={(e) => {
               setInputName(e.target.value);
+              resetFilteredUsersHandler();
             }}
           />
         </form>
