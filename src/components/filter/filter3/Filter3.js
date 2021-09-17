@@ -13,9 +13,9 @@ export const Filter3 = (props) => {
     props.otherAccounts.map((user) => {
       if (user.isFiltered) {
         filteredArray.push(user);
-        setFilteredAccountsByName(filteredArray);
       }
     });
+    setFilteredAccountsByName(filteredArray);
   };
 
   useEffect(() => {
