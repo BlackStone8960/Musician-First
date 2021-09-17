@@ -18,7 +18,6 @@ const Filter1 = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const users = useSelector((state) => state.otherAccounts);
-  console.log("users", users);
 
   // 下記Useeffect, Filter3からトップページに戻った時もsessionStorage中身リセットしたいので書いてる
   // （Filter2経由せずにFilter3行ってしまった時に前回の結果表示を防ぐため）
@@ -38,8 +37,8 @@ const Filter1 = () => {
       ) {
         dispatch(setFilterOtherAccount(users, inputName));
       }
-      history.push("/filter3");
     });
+    history.push("/filter3");
   };
 
   const resetFilteredUsersHandler = () => {

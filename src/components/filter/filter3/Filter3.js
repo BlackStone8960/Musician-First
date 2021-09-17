@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { startSetAccounts } from "../../../actions/otherAccounts";
 import FilteredProfile from "./filteredProfile";
 import LoadingPage from "../../LoadingPage";
@@ -7,13 +7,10 @@ import LoadingPage from "../../LoadingPage";
 export const Filter3 = (props) => {
   const [filteredAccounts, setFilteredAccounts] = useState([]);
   const [filteredAccountsByName, setFilteredAccountsByName] = useState([]);
-  const otherAccounts = useSelector((state) => state.otherAccounts);
-
-  console.log("otherAccounts", otherAccounts);
 
   const getFilteredAccountsByName = () => {
     let filteredArray = [];
-    otherAccounts.map((user) => {
+    props.otherAccounts.map((user) => {
       if (user.isFiltered) {
         filteredArray.push(user);
         setFilteredAccountsByName(filteredArray);
@@ -24,9 +21,8 @@ export const Filter3 = (props) => {
   useEffect(() => {
     getFilteredAccountsByName();
   }, []);
-  console.log("filteredAccountsByName", filteredAccountsByName);
 
-  console.log("filteredAccounts", filteredAccounts);
+  console.log(filteredAccounts);
 
   const filterAccountsByGenres = () => {
     const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));
