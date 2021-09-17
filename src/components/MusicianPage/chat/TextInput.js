@@ -5,9 +5,8 @@ import Button from '@material-ui/core/Button';
 import database from '../../../firebase/firebase';
 import moment from 'moment';
 
-const TextInput = ({ uid, otherId, roomId }) => {
+const TextInput = ({ uid, roomId }) => {
   const [message, setMessage] = useState('');
-  // Enter 押したときの処理も入れる
 
   const sendMessageData = () => {
     if (message === "") return;

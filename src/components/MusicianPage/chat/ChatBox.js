@@ -33,12 +33,10 @@ const ChatBox = ({ uid, otherId, otherProfile }) => {
               <div className="chat-box">
                 <ChatScreen
                   uid={uid}
-                  otherId={otherId}
                   roomId={roomId}
                 />
                 <TextInput
                   uid={uid}
-                  otherId={otherId}
                   roomId={roomId}
                   className="text-input"
                 />

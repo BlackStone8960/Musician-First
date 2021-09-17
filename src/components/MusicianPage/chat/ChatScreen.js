@@ -4,18 +4,18 @@ import MessageRight from './MessageRight';
 import moment from 'moment';
 import database from '../../../firebase/firebase';
 
-const ChatScreen = ({ uid, otherId, roomId }) => {
+const ChatScreen = ({ uid, roomId }) => {
   const [dataList, setDataList] = useState([]);
   const [orderedRef, setOrderedRef] = useState(null);
   let viewDate = "";
 
   useEffect(() => {
-    if (uid && otherId) {
+    if (roomId) {
       let ref = null;
       ref = database.ref(`/messages/${roomId}`);
       setOrderedRef(ref && ref.orderByChild('createdAt').limitToLast(30));
     }
-  }, [uid, otherId]);
+  }, [roomId]);
 
   useEffect(() => {
     if (orderedRef) {
