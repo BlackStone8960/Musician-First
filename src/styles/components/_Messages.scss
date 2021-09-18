@@ -3,7 +3,7 @@
   height: 500px;
   border: 1px solid gray;
 
-  .contacts-list {
+  .contacts-list-wrapper {
     background-color: rgb(216, 216, 216);
     width: 100%;
     height: 100%;
@@ -15,38 +15,52 @@
       border-bottom: 1px solid gray;
     }
 
-    .contact-box {
-      height: 100px;
+    .contacts-list {
+      overflow-y: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      position: relative;
       width: 100%;
-      border-bottom: 1px solid gray;
-      padding: 0 16px;
+      height: 447px;
+      box-sizing: border-box;
+  
+      &::-webkit-scrollbar {
+        display:none;
+      }  
 
-      .contact-container {
-        height: 100%;
-        cursor: pointer;
-
-        .contact-photo-wrapper {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 8px;
-
-          .contact-photo {
+      .contact-box {
+        height: 84px;
+        width: 100%;
+        border-bottom: 1px solid gray;
+        padding: 0 16px;
+  
+        .contact-container {
+          height: 100%;
+          cursor: pointer;
+  
+          .contact-photo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+  
+            .contact-photo {
+              width: 100%;
+              border-radius: 9999px;
+            }  
+          }
+    
+          .contact-name-message {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            border-radius: 9999px;
+            height: 100%;
+            padding: 8px;
           }  
         }
-  
-        .contact-name-message {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          padding: 8px;
-        }  
-      }
+      }  
     }
   }
   .chat-box {
@@ -64,7 +78,7 @@
 
     .chat-box-chats {
       width: 100%;
-      height: 100%;
+      height: 89.7%;
     }
   }
 }

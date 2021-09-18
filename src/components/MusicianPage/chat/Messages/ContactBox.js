@@ -16,12 +16,12 @@ const ContactBox = ({ id }) => {
     // 見つからなかった場合はもう一度データベースから他のユーザーの情報をとってくる？
   }, [id, otherUser])
 
-  useEffect(() => {
-    if (contact) {
-      console.log("contact's info");
-      console.log(contact);
-    }
-  }, [contact])
+  // useEffect(() => {
+  //   if (contact) {
+  //     console.log("contact's info");
+  //     console.log(contact);
+  //   }
+  // }, [contact])
 
   return (
     <React.Fragment>

@@ -4,7 +4,7 @@ import ContactBox from './ContactBox';
 const ContactsList = ({ contactIds }) => {
 
   return (
-    <div>
+    <div className="contacts-list">
       {contactIds.map(id => (
         <ContactBox id={id} key={id} />
       ))}

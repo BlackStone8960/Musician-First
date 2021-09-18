@@ -47,6 +47,7 @@ const Messages = () => {
 
   useEffect(() => {
     if (selectedContactId) {
+      console.log(`Selected contact ID is ${selectedContactId}.`);
       const roomId = roomIds.filter(roomId => roomId.includes(selectedContactId));
       if (roomId.length === 1) {
         setSelectedRoomId(roomId[0]);
@@ -58,19 +59,19 @@ const Messages = () => {
     }
   }, [selectedContactId])
 
-  useEffect(() => {
-    if (roomIds.length !== 0 && contactIds.length !== 0) {
-      console.log(`roomIds: `);
-      console.log(roomIds);
-      console.log(`contactIds: `);
-      console.log(contactIds);
-    }
-  }, [roomIds, contactIds]);
+  // useEffect(() => {
+  //   if (roomIds.length !== 0 && contactIds.length !== 0) {
+  //     console.log(`roomIds: `);
+  //     console.log(roomIds);
+  //     console.log(`contactIds: `);
+  //     console.log(contactIds);
+  //   }
+  // }, [roomIds, contactIds]);
 
   return (
     <MessagesContext.Provider value={{ selectedContactId, setSelectedContactId }}>
       <Grid container className="massages-container">
-        <Grid item xs={4} className="contacts-list">
+        <Grid item xs={4} className="contacts-list-wrapper">
           <div className="contacts-header">Contacts</div>
           <ContactsList contactIds={contactIds} />
         </Grid>
