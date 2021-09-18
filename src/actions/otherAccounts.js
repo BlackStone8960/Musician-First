@@ -1,32 +1,34 @@
-import database from '../firebase/firebase';
-import { setUserAccount } from './userAccount';
+import database from "../firebase/firebase";
+import { setUserAccount } from "./userAccount";
 
 export const setOtherAccounts = (otherAccounts) => ({
   type: "SET_OTHER_ACCOUNTS",
-  otherAccounts
+  otherAccounts,
 });
 
 export const startSetAccounts = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref('userData').once('value')
-    .then((snapshot) => {
-      const otherAccounts = [];
-      let hasSignedUp = false;
-      snapshot.forEach((childSnapshot) => {
-        if(childSnapshot.key === uid) {
-          dispatch(setUserAccount({ ...childSnapshot.val() })); // dispatch userAccount's information
-          hasSignedUp = true; 
-        } else {
-          otherAccounts.push({
-            // id: childSnapshot.key,
-            ...childSnapshot.val()
-          })
-        }
+    return database
+      .ref("userData")
+      .once("value")
+      .then((snapshot) => {
+        const otherAccounts = [];
+        let hasSignedUp = false;
+        snapshot.forEach((childSnapshot) => {
+          if (childSnapshot.key === uid) {
+            dispatch(setUserAccount({ ...childSnapshot.val() })); // dispatch userAccount's information
+            hasSignedUp = true;
+          } else {
+            otherAccounts.push({
+              // id: childSnapshot.key,
+              ...childSnapshot.val(),
+            });
+          }
+        });
+        console.log("otherAccounts", otherAccounts);
+        dispatch(setOtherAccounts(otherAccounts));
+        return hasSignedUp;
       });
-      console.log(otherAccounts);
-      dispatch(setOtherAccounts(otherAccounts));
-      return hasSignedUp;
-    })
-  }
+  };
 };

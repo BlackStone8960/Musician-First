@@ -6,6 +6,23 @@ import LoadingPage from "../../LoadingPage";
 
 export const Filter3 = (props) => {
   const [filteredAccounts, setFilteredAccounts] = useState([]);
+  const [filteredAccountsByName, setFilteredAccountsByName] = useState([]);
+
+  const getFilteredAccountsByName = () => {
+    let filteredArray = [];
+    props.otherAccounts.map((user) => {
+      if (user.isFiltered) {
+        filteredArray.push(user);
+      }
+    });
+    setFilteredAccountsByName(filteredArray);
+  };
+
+  useEffect(() => {
+    getFilteredAccountsByName();
+  }, []);
+
+  console.log(filteredAccounts);
 
   const filterAccountsByGenres = () => {
     const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));
@@ -36,6 +53,7 @@ export const Filter3 = (props) => {
       filterAccountsByGenres();
     }
   }, []);
+
   return (
     <React.Fragment>
       <p className="filter-topmassage">
@@ -54,12 +72,23 @@ export const Filter3 = (props) => {
       </div>
       <div className="filter-wrapper--center">
         {props.otherAccounts ? (
-          filteredAccounts.length === 0 ? (
+          filteredAccounts.length === 0 &&
+          filteredAccountsByName.length === 0 ? (
             <div>
               <span>No users</span>
             </div>
-          ) : (
+          ) : filteredAccounts.length > 0 ? (
             filteredAccounts.map((account) => {
+              return (
+                <FilteredProfile
+                  key={account.id}
+                  id={account.id}
+                  profile={account.profile}
+                />
+              );
+            })
+          ) : (
+            filteredAccountsByName.map((account) => {
               return (
                 <FilteredProfile
                   key={account.id}
