@@ -47,6 +47,7 @@ const TextInput = ({ uid, roomId }) => {
           onKeyDown={(e) => {
             e.key === "Enter" && sendMessageData();
           }}
+          className="input-field"
         />
         <Button variant="contained" color="primary" onClick={sendMessageData}>
           <SendIcon />

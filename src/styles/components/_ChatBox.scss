@@ -49,12 +49,19 @@
 	z-index: 10;
 	background-color: white;
 	border-top: 1px solid gray;
+	width: 100%;
 
 	.input-form {
 		display: flex;
 		flex-flow: row;
 		justify-content: center;
 		align-items: center;
+		width: 100%;
+		padding: 4px 12px;
+
+		.input-field {
+			width: 100%;
+		}
 	}
 }
 .paper {

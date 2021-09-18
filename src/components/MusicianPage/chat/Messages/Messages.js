@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useSelector } from 'react-redux';
-import Contacts from './Contacts';
+import ContactsList from './ContactsList';
 import TextInput from '../TextInput';
 import ChatScreen from '../ChatScreen';
 import database from '../../../../firebase/firebase';
+import Grid from '@material-ui/core/Grid';
+
+const MessagesContext = createContext();
 
 const Messages = () => {
   // authからidをとってきてそれをもとにデータベースから
   // 現在のユーザーの入れるルームをリアルタイムで取ってこれるようにする
+
   const uid = useSelector(state => state.userAccount).id;
   const authId = useSelector(state => state.auth).uid;
   const [roomIds, setRoomIds] = useState([]);
-  const [contactsId, setContactsId] = useState([]);
+  const [contactIds, setContactIds] = useState([]);
+  const [selectedRoomId, setSelectedRoomId] = useState(null); // Room Id used between clicked user
+  const [selectedContactId, setSelectedContactId] = useState(null); // Clicked user on contacts list
 
   useEffect(() => {
     if (authId) {
@@ -31,7 +37,7 @@ const Messages = () => {
           }
         }
         setRoomIds(roomIdArr);
-        setContactsId(contactsIdArr);
+        setContactIds(contactsIdArr);
       })
       return () => {
         roomsRef.off();
@@ -40,32 +46,57 @@ const Messages = () => {
   }, [authId]);
 
   useEffect(() => {
-    if (roomIds.length !== 0 && contactsId.length !== 0) {
+    if (selectedContactId) {
+      const roomId = roomIds.filter(roomId => roomId.includes(selectedContactId));
+      if (roomId.length === 1) {
+        setSelectedRoomId(roomId[0]);
+      } else if (roomId.length === 0) {
+        console.error('No room id matched.');
+      } else {
+        console.error('Room ID daplicated.');
+      }
+    }
+  }, [selectedContactId])
+
+  useEffect(() => {
+    if (roomIds.length !== 0 && contactIds.length !== 0) {
       console.log(`roomIds: `);
       console.log(roomIds);
-      console.log(`contactsId: `);
-      console.log(contactsId);
+      console.log(`contactIds: `);
+      console.log(contactIds);
     }
-  }, [roomIds, contactsId]);
+  }, [roomIds, contactIds]);
 
   return (
-    <div className="massages-container">
-      {/* Context API を使う？ */}
-      {/* <Contacts />
-      <div className="chat-box">
-        <ChatScreen
-          uid={uid}
-          roomId={roomId}
-        />
-        <TextInput
-          uid={uid}
-          roomId={roomId}
-          className="text-input"
-        />
-      </div > */}
-      <div>This is messages component</div>
-    </div>
+    <MessagesContext.Provider value={{ selectedContactId, setSelectedContactId }}>
+      <Grid container className="massages-container">
+        <Grid item xs={4} className="contacts-list">
+          <div className="contacts-header">Contacts</div>
+          <ContactsList contactIds={contactIds} />
+        </Grid>
+        <Grid item xs={8} className="chat-box">
+          <div className="chat-box-header">Messages</div>
+          <div className="chat-box-chats">
+            {selectedRoomId && (
+              <React.Fragment>
+                <ChatScreen
+                  uid={uid}
+                  roomId={selectedRoomId}
+                />
+                <TextInput
+                  uid={uid}
+                  roomId={selectedRoomId}
+                  className="text-input"
+                />
+              </React.Fragment>
+            )}
+          </div>
+        </Grid >
+      </Grid>
+    </MessagesContext.Provider>
   )
 }
 
-export default Messages
+const useMessagesContext = () => useContext(MessagesContext);
+
+export { useMessagesContext, Messages as default };
