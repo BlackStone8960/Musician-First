@@ -33,7 +33,7 @@ const AppRouter = () => (
 				<PrivateRoute path="/profile" component={EditProfile} />
 				<PrivateRoute path="/change_password" component={ConfirmSendingMail} />
 				<PrivateRoute path="/sentmail" component={SentMail} />
-				{/* <PrivateRoute path="/messages" component={Messages} /> */}
+				<PrivateRoute path="/messages" component={Messages} />
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>
