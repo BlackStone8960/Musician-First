@@ -1,14 +1,24 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
-const gmailEmail = functions.config().gmail.email;
-const gmailPassword = functions.config().gmail.password;
+// const gmailEmail = functions.config().gmail.email;
+// const gmailPassword = functions.config().gmail.password;
+const outlookEmail = functions.config().outlook.email;
+const outlookPassword = functions.config().outlook.password;
 const adminEmail = functions.config().admin.email;
+// const senderEmail = functions.config().sender.email;
 
 const mailTransport = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.office365.com",
+  // secureConnection: false,
+  secure: false,
+  port: 587,
+  // tls: {
+  //   ciphers: "SSLv3",
+  // },
+  // service: "gmail",
   auth: {
-    user: gmailEmail,
-    pass: gmailPassword,
+    user: outlookEmail,
+    pass: outlookPassword,
   },
 });
 
@@ -23,9 +33,9 @@ exports.sendMail = functions
   .region("us-central1")
   .https.onCall((data, context) => {
     const adminMail = {
-      from: gmailEmail,
+      from: outlookEmail,
       to: adminEmail,
-      subject: "Message from a user on Musician first",
+      subject: "Message from a user on Musician First",
       text: adminContents(data),
     };
     mailTransport.sendMail(adminMail, (err, info) => {
