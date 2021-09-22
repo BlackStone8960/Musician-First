@@ -4,6 +4,8 @@ import { startSetAccounts } from "../../../actions/otherAccounts";
 import FilteredProfile from "./filteredProfile";
 import LoadingPage from "../../LoadingPage";
 
+import FilterByUser from "../FilterByUser";
+
 export const Filter3 = (props) => {
   const [filteredAccounts, setFilteredAccounts] = useState([]);
   const [filteredAccountsByName, setFilteredAccountsByName] = useState([]);
@@ -24,8 +26,8 @@ export const Filter3 = (props) => {
 
   console.log(filteredAccounts);
 
+  const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));
   const filterAccountsByGenres = () => {
-    const selectedGenres = JSON.parse(sessionStorage.getItem("selectedGenres"));
     let filteredAccountsTempList = [];
     for (let i = 0; i < selectedGenres.length; i++) {
       const accountsMatchPrimaryGenre = props.otherAccounts.filter(
@@ -60,6 +62,7 @@ export const Filter3 = (props) => {
         We’ve found the best matches for your sound. Select any picture to learn
         more about them.
       </p>
+      {!selectedGenres && <FilterByUser />}
       <div className="color-example-container">
         <div className="color-example-wrap">
           <div className="primary-color"></div>

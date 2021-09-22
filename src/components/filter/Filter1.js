@@ -1,26 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import { Button } from "@material-ui/core";
-
-export const setFilterOtherAccount = (others, inputName) => ({
-  type: "FILTER_OTHER_ACCOUNT",
-  others,
-  inputName,
-});
-
-export const setInitializeFilteredAccount = (others) => ({
-  type: "INITIALIZE_FILTERED_ACCOUNT",
-  others,
-});
+import FilterByUser from "./FilterByUser";
 
 const Filter1 = () => {
-  const [inputName, setInputName] = useState("");
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const users = useSelector((state) => state.otherAccounts);
-
   // 下記Useeffect, Filter3からトップページに戻った時もsessionStorage中身リセットしたいので書いてる
   // （Filter2経由せずにFilter3行ってしまった時に前回の結果表示を防ぐため）
   useEffect(() => {
@@ -28,26 +11,6 @@ const Filter1 = () => {
       sessionStorage.removeItem("selectedGenres");
     }
   }, []);
-
-  const searchUsersHandler = () => {
-    if (inputName.trim() === "") return;
-
-    users.filter((user) => {
-      if (
-        user.profile.firstName
-          .toLowerCase()
-          .includes(inputName.toLowerCase()) ||
-        user.profile.lastName.toLowerCase().includes(inputName.toLowerCase())
-      ) {
-        dispatch(setFilterOtherAccount(users, inputName));
-      }
-    });
-    history.push("/filter3");
-  };
-
-  const resetFilteredUsersHandler = () => {
-    dispatch(setInitializeFilteredAccount(users));
-  };
 
   return (
     <React.Fragment>
@@ -123,34 +86,7 @@ const Filter1 = () => {
           </p>
         </div>
       </div>
-      <div className="filter-input-wrappter">
-        <form
-          className="filter-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            searchUsersHandler();
-          }}
-        >
-          <input
-            className="filter-input"
-            type="text"
-            placeholder="search by the musician name"
-            onChange={(e) => {
-              setInputName(e.target.value);
-              resetFilteredUsersHandler();
-            }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              searchUsersHandler();
-            }}
-          >
-            Search
-          </Button>
-        </form>
-      </div>
+      <FilterByUser />
     </React.Fragment>
   );
 };
