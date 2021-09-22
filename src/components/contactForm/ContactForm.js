@@ -97,7 +97,7 @@ const ContactForm = () => {
       setIsinvalid(false);
       removeErrMessage(errorMessage1);
     }
-    if (inputMessage.length < 5) {
+    if (inputMessage.length < 26) {
       setIsinvalid(true);
       manageErrMessages(errorMessage2);
     } else {
@@ -204,5 +204,4 @@ const ContactForm = () => {
     </React.Fragment>
   );
 };
-
 export default ContactForm;
