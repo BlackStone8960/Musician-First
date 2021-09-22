@@ -1,8 +1,8 @@
-import firebase from 'firebase/app';
-import 'firebase/analytics';
-import 'firebase/database';
-import 'firebase/storage';
-import 'firebase/auth'
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/database";
+import "firebase/storage";
+import "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -12,7 +12,7 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -22,14 +22,13 @@ const storage = firebase.storage();
 // const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 const uiConfig = {
-  signInFlow: 'popup',
+  signInFlow: "popup",
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
   callbacks: {
     signInSuccessWithAuthResult: () => false,
   },
-}
-
+};
 export { firebase, uiConfig, storage, database as default };

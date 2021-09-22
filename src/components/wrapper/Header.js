@@ -50,11 +50,6 @@ export const Header = ({ startLogout, isAuthenticated }) => {
                 className="awesomeIcon icon-user-circle"
               />
             </Link>
-            <div className="header__contact button">
-              <Link className="button-anchor" to="/">
-                Contact
-              </Link>
-            </div>
           </div>
         </React.Fragment>
       )}
