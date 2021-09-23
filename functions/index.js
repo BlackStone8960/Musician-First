@@ -1,14 +1,14 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
-const gmailEmail = functions.config().gmail.email;
-const gmailPassword = functions.config().gmail.password;
+const gmailBEmail = functions.config().gmailb.email;
+const gmailBPassword = functions.config().gmailb.password;
 const adminEmail = functions.config().admin.email;
 
 const mailTransport = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: gmailEmail,
-    pass: gmailPassword,
+    user: gmailBEmail,
+    pass: gmailBPassword,
   },
 });
 
@@ -23,9 +23,9 @@ exports.sendMail = functions
   .region("us-central1")
   .https.onCall((data, context) => {
     const adminMail = {
-      from: gmailEmail,
+      from: gmailBEmail,
       to: adminEmail,
-      subject: "Message from a user on Musician first",
+      subject: "Message from a user on Musician First",
       text: adminContents(data),
     };
     mailTransport.sendMail(adminMail, (err, info) => {
